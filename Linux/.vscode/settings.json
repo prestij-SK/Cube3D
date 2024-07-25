@@ -1,0 +1,13 @@
+{
+	"files.associations": {
+		"the_game.h": "c",
+		"mlx.h": "c",
+		"image.h": "c",
+		"utils.h": "c",
+		"minimap.h": "c",
+		"array": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"utility": "c"
+	}
+}

@@ -8,9 +8,16 @@ SRCS_DIR = src/
 OBJS_DIR = obj/
 HEADERS_DIR = header/
 
-SRCS_NAME = main.c \
+SRCS_NAME = image.c \
+			main.c \
+			minimap.c \
+			the_game.c \
 
-HEADERS = the_game.h \
+HEADERS = color.h \
+		  image.h \
+		  minimap.h \
+		  the_game.h \
+		  utils.h \
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))
 OBJS_NAME = $(SRCS_NAME:.c=.o)
