@@ -13,7 +13,11 @@ t_StatusCode	game_data_init(t_GameData *data)
 	if (!data->mlx_window)
 		return (MLX_WINDOW_ERROR);
 	// map init here
-	status = minimap_init(&data->minimap, data->mlx, 200, 200); // instead of magic, here must be the size of 'map'
+	status = minimap_init(&data->minimap, data->mlx, 500, 500); // instead of magic, here must be the size of 'map'
+	if (status != SUCCESS_EXIT)
+		return (status);
+	// calculate player pos
+	status = player_init(&data->player, data->mlx, 50, 50); // instead of magic, here must be calculated Player's position in the 'map'
 	if (status != SUCCESS_EXIT)
 		return (status);
 	return (SUCCESS_EXIT);

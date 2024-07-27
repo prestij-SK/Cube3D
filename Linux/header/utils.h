@@ -1,6 +1,8 @@
 #ifndef UTILS_H
 # define UTILS_H
 
+#include <stdio.h> // DELETE
+
 typedef struct Point2D_int
 {
 	int	x;

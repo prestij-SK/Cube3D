@@ -1,6 +1,6 @@
 NAME = the_game
 
-CC = cc -Wall -Wextra -Werror
+CC = cc #-Wall -Wextra -Werror
 CFLAGS = -I minilibx_macos
 LDFLAGS = -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit
 
@@ -8,16 +8,20 @@ SRCS_DIR = src/
 OBJS_DIR = obj/
 HEADERS_DIR = header/
 
-SRCS_NAME = image.c \
-			main.c \
-			minimap.c \
-			the_game.c \
-
 HEADERS = color.h \
+		  draw_shape.h \
 		  image.h \
 		  minimap.h \
+		  player.h \
 		  the_game.h \
 		  utils.h \
+
+SRCS_NAME = draw_shape.c \
+			image.c \
+			main.c \
+			minimap.c \
+			player.c \
+			the_game.c \
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))
 OBJS_NAME = $(SRCS_NAME:.c=.o)
