@@ -21,7 +21,6 @@ void    draw_rectangle_filled(t_Image *img, t_Point2D pos, t_Point2D size, int c
         j = 0;
         while (j < size.y)
 		{
-            // printf("i: %d    j: %d\n", i, j);
             alt_mlx_pixel_put(img, pos.x + i, pos.y + j, color);
             j++;
         }

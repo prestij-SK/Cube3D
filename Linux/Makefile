@@ -18,6 +18,8 @@ HEADERS = color.h \
 
 SRCS_NAME = draw_shape.c \
 			image.c \
+			input_update_render.c \
+			input.c \
 			main.c \
 			minimap.c \
 			player.c \

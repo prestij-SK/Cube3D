@@ -3,6 +3,15 @@
 
 #include <stdio.h> // DELETE
 
+// HOOK EVENTS
+# define EVENT_KEYDOWN 2 // pressed
+
+// KEY CODES
+# define KEY_A 97
+# define KEY_W 119
+# define KEY_D 100
+# define KEY_S 115
+
 typedef struct Point2D_int
 {
 	int	x;
@@ -17,6 +26,7 @@ typedef enum StatusCode
 	MLX_ERROR,
 	MLX_WINDOW_ERROR,
 	IMAGE_ERROR,
+	PLAYER_LOCATION_ERROR,
 	SUCCESS_EXIT,
 }	t_StatusCode;
 

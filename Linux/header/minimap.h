@@ -4,23 +4,25 @@
 # include "image.h"
 # include "utils.h"
 # include "color.h"
+# include "draw_shape.h"
 
 # define MINIMAP_NAME "Minimap"
 # define MINIMAP_POSITION_X 0
 # define MINIMAP_POSITION_Y 0
-# define MINIMAP_SQUARE_SIZE_X 50
-# define MINIMAP_SQUARE_SIZE_Y 50
+# define MINIMAP_BLOCK_SIZE 50
 
 typedef struct MinimapData
 {
-	char		*name;
-	t_Point2D	pos;
-	t_Point2D	size;
 	t_Image		image;
+	char		*name;
+	char		**map;
+	t_Point2D	block_count;
+	int			block_size;
 	int			wall_color; // This will be changed in 4 colors, north, south, easy, west wall colors
 	int			floor_color;
 }	t_Minimap;
 
-t_StatusCode	minimap_init(t_Minimap *minimap, void *mlx, int size_x, int size_y);
+t_StatusCode	minimap_init(t_Minimap *minimap, void *mlx, char **map, t_Point2D block_count);
+void			minimap_draw(t_Minimap *minimap);
 
 #endif

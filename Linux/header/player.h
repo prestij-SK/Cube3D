@@ -4,10 +4,9 @@
 # include "image.h"
 # include "utils.h"
 # include "color.h"
+# include "draw_shape.h"
 
 # define PLAYER_NAME "ABUBA"
-# define PLAYER_MINIMAP_SIZE_X 5
-# define PLAYER_MINIMAP_SIZE_Y 5
 
 typedef struct PlayerData
 {
@@ -18,6 +17,7 @@ typedef struct PlayerData
 }	t_Player;
 
 
-t_StatusCode	player_init(t_Player *player, void *mlx, int pos_x, int pos_y);
+t_StatusCode	player_init(t_Player *player, void *mlx, t_Point2D block_pos, int block_size);
+void			player_draw(t_Image *image, t_Player *player);
 
 #endif

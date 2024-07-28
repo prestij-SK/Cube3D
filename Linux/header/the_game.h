@@ -21,6 +21,13 @@ typedef struct MainGameData
 	t_Player	player;
 }	t_GameData;
 
-t_StatusCode	game_data_init(t_GameData *data);
+t_StatusCode	game_data_init(t_GameData *data, char **map, t_Point2D block_count);
+
+void	input_update_render(t_GameData *data);
+
+/*
+	input.c functions
+*/
+int		input_key_press(int key, t_GameData *data);
 
 #endif

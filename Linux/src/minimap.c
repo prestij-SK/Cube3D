@@ -1,38 +1,57 @@
 #include "../header/minimap.h"
 
-t_StatusCode	minimap_init(t_Minimap *minimap, void *mlx, int size_x, int size_y)
+t_StatusCode	minimap_init(t_Minimap *minimap, void *mlx, char **map, t_Point2D block_count)
 {
-	t_StatusCode	status;
+	t_StatusCode status;
+	t_Point2D pos;
+	t_Point2D size;
 
-	if (!minimap)
+	if (!minimap || !mlx)
 		return (NULL_POINTER_ERROR);
-	status = image_init(&minimap->image, mlx, size_x, size_y);
+	pos.x = MINIMAP_POSITION_X;
+	pos.y = MINIMAP_POSITION_Y;
+	size.x = block_count.x * MINIMAP_BLOCK_SIZE;
+	size.y = block_count.y * MINIMAP_BLOCK_SIZE;
+	status = image_init(&minimap->image, mlx, pos, size);
 	if (status != SUCCESS_EXIT)
 		return (status);
 	minimap->name = MINIMAP_NAME;
-	minimap->size.x = size_x;
-	minimap->size.y = size_y;
-	minimap->pos.x = MINIMAP_POSITION_X;
-	minimap->pos.y = MINIMAP_POSITION_Y;
-	minimap->floor_color = COLOR_BLUE;
+	minimap->map = map;
+	minimap->block_count.x = block_count.x;
+	minimap->block_count.y = block_count.y;
+	minimap->block_size = MINIMAP_BLOCK_SIZE;
 	minimap->wall_color = COLOR_WHITE;
+	minimap->floor_color = COLOR_BLUE;
 	return (SUCCESS_EXIT);
 }
 
-// void	minimap_draw(t_Minimap *minimap, char **map, int size_x, int size_y)
-// {
-// 	int i = 0;
-// 	int j = 0;
+void	minimap_draw(t_Minimap *minimap)
+{
+	t_Point2D size;
+	t_Point2D pos;
+	int i;
+	int j;
 
-// 	i = 0;
-// 	while (i < size_x)
-// 	{
-// 		j = 0;
-// 		while (j < size_y)
-// 		{
-
-// 			++j;
-// 		}
-// 		++i;
-// 	}
-// }
+	if (!minimap)
+		return;
+	size.x = minimap->block_size;
+	size.y = minimap->block_size;
+	i = 0;
+	while (i < minimap->block_count.y)
+	{
+		j = 0;
+		while (j < minimap->block_count.x)
+		{
+			pos.x = j * minimap->block_size;
+			pos.y = i * minimap->block_size;
+			if (minimap->map[i][j] == '1')
+				draw_rectangle_filled(&minimap->image, pos, size, minimap->wall_color);
+			// else if (minimap->map[i][j] == '0') // change this to else
+			else {
+				draw_rectangle_filled(&minimap->image, pos, size, minimap->floor_color);
+			}
+			++j;
+		}
+		++i;
+	}
+}
