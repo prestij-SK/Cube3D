@@ -7,13 +7,20 @@
 # include "draw_shape.h"
 
 # define PLAYER_NAME "ABUBA"
+# define PLAYER_ANGLE_DEFAULT 0
+# define PLAYER_ROTATE_SPEED 0.1 // in Radians
+# define PLAYER_MOVE_SPEED_MULTIPLIER 5
 
 typedef struct PlayerData
 {
 	char		*name;
-	t_Point2D	pos;
+	t_Point2D	initial_pos;
 	t_Point2D	size;
 	int			color;
+	double		angle;
+	t_Point2D_d	delta;
+	int			r_x; // delete
+	int			r_y; // delete
 }	t_Player;
 
 

@@ -1,15 +1,5 @@
 #include "../header/the_game.h"
 
-#include <stdlib.h> // DELETE
-
-static void	render_image(t_GameData *data, t_Image *image)
-{
-	if (!data || !image)
-		return ;
-	mlx_put_image_to_window(data->mlx, data->mlx_window,
-							image->img, image->pos.x, image->pos.y);
-}
-
 int	main()
 {
 	int size_y = 10;
@@ -70,6 +60,8 @@ int	main()
 	block_size.y = size_y;
 	game_data_init(&data, map, block_size);
 
+	data.key_pressed = 0;
+	
 	// i = 0;
 	// while (i < size_y)
 	// {
@@ -92,9 +84,5 @@ int	main()
 	// }
 	// draw_rectangle_filled(&data.minimap.image, data.player.pos, data.player.size, data.player.color);
 	
-	minimap_draw(&data.minimap);
-	player_draw(&data.minimap.image, &data.player);
-	render_image(&data, &data.minimap.image);
 	input_update_render(&data);
-	mlx_loop(data.mlx);
 }

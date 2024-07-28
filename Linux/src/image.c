@@ -1,5 +1,12 @@
 #include "../header/image.h"
 
+void	image_delete(t_Image *img, void *mlx)
+{
+	if (!img || !mlx)
+		return ;
+	mlx_destroy_image(mlx, img->img);
+}
+
 t_StatusCode	image_init(t_Image *image, void *mlx, t_Point2D pos, t_Point2D size)
 {
 	if (!image || !mlx)

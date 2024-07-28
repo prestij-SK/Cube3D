@@ -1,5 +1,16 @@
 #include "../header/the_game.h"
 
+void	game_data_delete(t_GameData *data)
+{
+	if (!data)
+		return ;
+	image_delete(&data->minimap.image, data->mlx);
+	mlx_destroy_window(data->mlx, data->mlx_window);
+	mlx_destroy_display(data->mlx);
+	// Yura delete your map here
+	exit(EXIT_SUCCESS);
+}
+
 static t_Point2D	player_location(char **map, t_Point2D block_count)
 {
 	t_Point2D	pos;

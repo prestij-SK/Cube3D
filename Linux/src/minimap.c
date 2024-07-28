@@ -19,7 +19,6 @@ t_StatusCode	minimap_init(t_Minimap *minimap, void *mlx, char **map, t_Point2D b
 	minimap->map = map;
 	minimap->block_count.x = block_count.x;
 	minimap->block_count.y = block_count.y;
-	minimap->block_size = MINIMAP_BLOCK_SIZE;
 	minimap->wall_color = COLOR_WHITE;
 	minimap->floor_color = COLOR_BLUE;
 	return (SUCCESS_EXIT);
@@ -34,16 +33,16 @@ void	minimap_draw(t_Minimap *minimap)
 
 	if (!minimap)
 		return;
-	size.x = minimap->block_size;
-	size.y = minimap->block_size;
+	size.x = MINIMAP_BLOCK_SIZE;
+	size.y = MINIMAP_BLOCK_SIZE;
 	i = 0;
 	while (i < minimap->block_count.y)
 	{
 		j = 0;
 		while (j < minimap->block_count.x)
 		{
-			pos.x = j * minimap->block_size;
-			pos.y = i * minimap->block_size;
+			pos.x = j * MINIMAP_BLOCK_SIZE;
+			pos.y = i * MINIMAP_BLOCK_SIZE;
 			if (minimap->map[i][j] == '1')
 				draw_rectangle_filled(&minimap->image, pos, size, minimap->wall_color);
 			// else if (minimap->map[i][j] == '0') // change this to else

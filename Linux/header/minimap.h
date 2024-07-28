@@ -17,7 +17,6 @@ typedef struct MinimapData
 	char		*name;
 	char		**map;
 	t_Point2D	block_count;
-	int			block_size;
 	int			wall_color; // This will be changed in 4 colors, north, south, easy, west wall colors
 	int			floor_color;
 }	t_Minimap;

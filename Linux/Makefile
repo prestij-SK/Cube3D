@@ -23,7 +23,10 @@ SRCS_NAME = draw_shape.c \
 			main.c \
 			minimap.c \
 			player.c \
+			render.c \
 			the_game.c \
+			update.c \
+			utils.c \
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))
 OBJS_NAME = $(SRCS_NAME:.c=.o)

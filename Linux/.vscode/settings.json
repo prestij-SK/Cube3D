@@ -11,6 +11,7 @@
 		"utility": "c",
 		"player.h": "c",
 		"typeinfo": "c",
-		"string": "c"
+		"string": "c",
+		"math.h": "c"
 	}
 }
