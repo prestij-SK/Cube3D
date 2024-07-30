@@ -6,5 +6,6 @@
 # define COLOR_BLUE 0x0000ff
 # define COLOR_WHITE 0xffffff
 # define COLOR_YELLOW 0xffff00
+# define COLOR_GRAY 0x808080
 
 #endif

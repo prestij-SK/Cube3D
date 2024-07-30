@@ -7,9 +7,8 @@
 # include "image.h"
 # include "minimap.h"
 # include "player.h"
+# include "first_person_view.h"
 # include "draw_shape.h"
-
-#include <stdlib.h>
 
 # define WINDOW_WIDTH 1600
 # define WINDOW_HEIGHT 900
@@ -21,6 +20,7 @@ typedef struct MainGameData
 	void		*mlx_window;
 	t_Minimap	minimap;
 	t_Player	player;
+	t_FPV		view;
 	int			key_pressed;
 }	t_GameData;
 
@@ -50,5 +50,12 @@ void	update_Left_key(t_Player *player);
 */
 void	render_image(t_GameData *data, t_Image *image);
 void	render_all(t_GameData *data);
+
+
+
+// DELETE
+# define RAYS_COUNT 1
+void	RayCast_main(t_GameData *data);
+// ALL OF IT
 
 #endif

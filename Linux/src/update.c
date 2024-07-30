@@ -5,6 +5,7 @@ void	update_A_key(t_Player *player)
 {
     // Calculate the strafe vector (perpendicular to the delta vector)
     double strafe_angle = player->angle - M_PI / 2;  // 90 degrees rotation
+	// Calculate delta X,Y again
     double strafe_x = cos(strafe_angle) * PLAYER_MOVE_SPEED_MULTIPLIER;
     double strafe_y = sin(strafe_angle) * PLAYER_MOVE_SPEED_MULTIPLIER;
 

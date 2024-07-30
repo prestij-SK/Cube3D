@@ -9,7 +9,7 @@
 # define MINIMAP_NAME "Minimap"
 # define MINIMAP_POSITION_X 0
 # define MINIMAP_POSITION_Y 0
-# define MINIMAP_BLOCK_SIZE 50
+# define MINIMAP_BLOCK_SIZE 64
 
 typedef struct MinimapData
 {

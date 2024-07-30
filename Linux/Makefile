@@ -10,6 +10,7 @@ HEADERS_DIR = header/
 
 HEADERS = color.h \
 		  draw_shape.h \
+		  first_person_view.h \
 		  image.h \
 		  minimap.h \
 		  player.h \
@@ -17,12 +18,14 @@ HEADERS = color.h \
 		  utils.h \
 
 SRCS_NAME = draw_shape.c \
+			first_person_view.c \
 			image.c \
 			input_update_render.c \
 			input.c \
 			main.c \
 			minimap.c \
 			player.c \
+			ray_cast.c \
 			render.c \
 			the_game.c \
 			update.c \

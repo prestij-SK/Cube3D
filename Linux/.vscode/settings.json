@@ -12,6 +12,8 @@
 		"player.h": "c",
 		"typeinfo": "c",
 		"string": "c",
-		"math.h": "c"
+		"math.h": "c",
+		"first_person_view.h": "c",
+		"draw_shape.h": "c"
 	}
 }

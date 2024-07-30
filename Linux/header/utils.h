@@ -3,7 +3,8 @@
 
 #include <stdio.h> // DELETE
 
-#include <math.h>
+# include <math.h>
+# include <stdlib.h>
 
 // HOOK EVENTS
 # define EVENT_KEYDOWN 2 // pressed
@@ -36,6 +37,19 @@ typedef struct Point2D_double
 	double	y;
 }	t_Point2D_d;
 
+typedef struct Line2D_int
+{
+	t_Point2D	start;
+	t_Point2D	end;
+	int			color_start;
+	int			color_end;
+}	t_Line2D;
+
+typedef struct RayCastUtils
+{
+
+}	t_RCUtil;
+
 typedef enum StatusCode
 {
 	UNDEFINED_ERROR,
@@ -49,5 +63,6 @@ typedef enum StatusCode
 }	t_StatusCode;
 
 double	get_radians(int angle);
+void	swap_int(int *a, int *b);
 
 #endif
