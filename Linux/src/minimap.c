@@ -10,8 +10,9 @@ t_StatusCode	minimap_init(t_Minimap *minimap, void *mlx, char **map, t_Point2D b
 		return (NULL_POINTER_ERROR);
 	pos.x = MINIMAP_POSITION_X;
 	pos.y = MINIMAP_POSITION_Y;
-	size.x = block_count.x * MINIMAP_BLOCK_SIZE;
-	size.y = block_count.y * MINIMAP_BLOCK_SIZE;
+	minimap->block_size = (int) pow(2, MINIMAP_BLOCK_SIZE_POWER);
+	size.x = block_count.x * minimap->block_size;
+	size.y = block_count.y * minimap->block_size;
 	status = image_init(&minimap->image, mlx, pos, size);
 	if (status != SUCCESS_EXIT)
 		return (status);
@@ -33,22 +34,20 @@ void	minimap_draw(t_Minimap *minimap)
 
 	if (!minimap)
 		return;
-	size.x = MINIMAP_BLOCK_SIZE;
-	size.y = MINIMAP_BLOCK_SIZE;
+	size.x = minimap->block_size;
+	size.y = minimap->block_size;
 	i = 0;
 	while (i < minimap->block_count.y)
 	{
 		j = 0;
 		while (j < minimap->block_count.x)
 		{
-			pos.x = j * MINIMAP_BLOCK_SIZE;
-			pos.y = i * MINIMAP_BLOCK_SIZE;
+			pos.x = j * minimap->block_size;
+			pos.y = i * minimap->block_size;
 			if (minimap->map[i][j] == '1')
 				draw_rectangle_filled(&minimap->image, pos, size, minimap->wall_color);
-			// else if (minimap->map[i][j] == '0') // change this to else
-			else {
+			else // if (minimap->map[i][j] == '0') // change this to else
 				draw_rectangle_filled(&minimap->image, pos, size, minimap->floor_color);
-			}
 			++j;
 		}
 		++i;

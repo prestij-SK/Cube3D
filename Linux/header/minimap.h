@@ -9,13 +9,14 @@
 # define MINIMAP_NAME "Minimap"
 # define MINIMAP_POSITION_X 0
 # define MINIMAP_POSITION_Y 0
-# define MINIMAP_BLOCK_SIZE 64
+# define MINIMAP_BLOCK_SIZE_POWER 6
 
 typedef struct MinimapData
 {
 	t_Image		image;
 	char		*name;
 	char		**map;
+	int			block_size;
 	t_Point2D	block_count;
 	int			wall_color; // This will be changed in 4 colors, north, south, easy, west wall colors
 	int			floor_color;

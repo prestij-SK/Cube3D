@@ -12,8 +12,8 @@ t_StatusCode	player_init(t_Player *player, void *mlx, t_Point2D block_pos, int b
 	player->name = PLAYER_NAME;
 	pos.x = block_pos.x * block_size;
 	pos.y = block_pos.y * block_size;
-	player->initial_pos.x = (pos.x + (pos.x + block_size)) / 2 - block_size / 8;
-	player->initial_pos.y = (pos.y + (pos.y + block_size)) / 2 - block_size / 8;
+	player->initial_pos.x = (pos.x + (pos.x + block_size)) / 2;
+	player->initial_pos.y = (pos.y + (pos.y + block_size)) / 2;
 	player->size.x = block_size / 4;
 	player->size.y = block_size / 4;
 	player->color = COLOR_YELLOW;
@@ -25,7 +25,11 @@ t_StatusCode	player_init(t_Player *player, void *mlx, t_Point2D block_pos, int b
 
 void	player_draw(t_Image *image, t_Player *player)
 {
+	t_Point2D	temp_pos;
+
 	if (!image || !player)
 		return ;
-	draw_rectangle_filled(image, player->initial_pos, player->size, player->color);
+	temp_pos.x = player->initial_pos.x - player->size.x / 2;
+	temp_pos.y = player->initial_pos.y - player->size.y / 2;
+	draw_rectangle_filled(image, temp_pos, player->size, player->color);
 }

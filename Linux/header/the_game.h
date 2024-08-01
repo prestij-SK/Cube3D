@@ -9,6 +9,7 @@
 # include "player.h"
 # include "first_person_view.h"
 # include "draw_shape.h"
+# include "for_math.h"
 
 # define WINDOW_WIDTH 1600
 # define WINDOW_HEIGHT 900
@@ -30,13 +31,13 @@ void			game_data_delete(t_GameData *data);
 void	input_update_render(t_GameData *data);
 
 /*
-	input.c functions
+	input functions
 */
 int		input_key_press(int key, t_GameData *data);
 int		input_close_window(t_GameData *data);
 
 /*
-	update.c functions
+	update functions
 */
 void	update_A_key(t_Player *player);
 void	update_D_key(t_Player *player);
@@ -46,16 +47,16 @@ void	update_Right_key(t_Player *player);
 void	update_Left_key(t_Player *player);
 
 /*
-	render.c functions
+	render functions
 */
 void	render_image(t_GameData *data, t_Image *image);
 void	render_all(t_GameData *data);
 
-
-
-// DELETE
-# define RAYS_COUNT 1
-void	RayCast_main(t_GameData *data);
-// ALL OF IT
+/*
+	ray_cast functions
+*/
+void	ray_casting(t_GameData *data);
+void	horizontal_checking(t_GameData *data, t_RCdata *ray_data, double angle);
+void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle);
 
 #endif

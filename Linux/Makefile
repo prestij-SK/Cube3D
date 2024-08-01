@@ -25,6 +25,7 @@ SRCS_NAME = draw_shape.c \
 			main.c \
 			minimap.c \
 			player.c \
+			ray_cast_utils.c \
 			ray_cast.c \
 			render.c \
 			the_game.c \

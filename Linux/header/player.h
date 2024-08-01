@@ -5,6 +5,7 @@
 # include "utils.h"
 # include "color.h"
 # include "draw_shape.h"
+# include "for_math.h"
 
 # define PLAYER_NAME "ABUBA"
 # define PLAYER_ANGLE_DEFAULT 0

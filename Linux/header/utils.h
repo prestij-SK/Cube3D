@@ -1,14 +1,14 @@
 #ifndef UTILS_H
-# define UTILS_H
+#define UTILS_H
 
 #include <stdio.h> // DELETE
 
-# include <math.h>
-# include <stdlib.h>
+#include <math.h>
+#include <stdlib.h>
 
 // HOOK EVENTS
-# define EVENT_KEYDOWN 2 // pressed
-# define EVENT_KEYUP 3 // released
+# define EVENT_KEYDOWN 2	 // pressed
+# define EVENT_KEYUP 3	 // released
 # define EVENT_DESTROY 17 // Window cross icon
 
 // KEY CODES
@@ -20,42 +20,57 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 
-// MATH CONSTANTS
-# ifndef M_PI
-#  define M_PI 3.14159265358979323846
-# endif
-# define P0 0 // 0 degree
-# define P1 M_PI / 2 // 90 degree
-// # define P2 M_PI // 180 degree
-# define P3 3 * M_PI / 2 // 270 degree
-# define P4 2 * M_PI // 0 degree
-
-# define D_RADIAN 0.0174532925 // one degree in radians
-
 typedef struct Point2D_int
 {
-	int	x;
-	int	y;
-}	t_Point2D;
+	int x;
+	int y;
+} t_Point2D;
 
 typedef struct Point2D_double
 {
-	double	x;
-	double	y;
-}	t_Point2D_d;
+	double x;
+	double y;
+} t_Point2D_d;
 
 typedef struct Line2D_int
 {
-	t_Point2D	start;
-	t_Point2D	end;
-	int			color_start;
-	int			color_end;
-}	t_Line2D;
+	t_Point2D start;
+	t_Point2D end;
+	int color_start;
+	int color_end;
+} t_Line2D;
 
-typedef struct RayCastUtils
+typedef struct Line2D_double
 {
+	t_Point2D start;
+	t_Point2D end;
+	int color_start;
+	int color_end;
+} t_Line2D_d;
 
-}	t_RCUtil;
+typedef struct RayCastUtils // This is for norminette
+{
+	double px; // Player
+	double py;
+	double rx; // Ray
+	double ry;
+	double ox; // Offset
+	double oy;
+	int mx; // map index
+	int my;
+	int block_power;
+	int block_size;
+} t_RCutil;
+
+typedef struct RayCastFinalData // This is for norminette
+{
+	int			dis_f;	 // Shortest distance from Horizontal and Vertical
+	t_Point2D	ray_f; // Final ray
+	int 		dis_h; // Horizontal distance
+	t_Point2D	hor; // Horizontal Ray
+	int 		dis_v; // Vertical distance
+	t_Point2D	ver; // Vertical Ray
+} t_RCdata;
 
 typedef enum StatusCode
 {
@@ -67,9 +82,8 @@ typedef enum StatusCode
 	IMAGE_ERROR,
 	PLAYER_LOCATION_ERROR,
 	SUCCESS_EXIT,
-}	t_StatusCode;
+} t_StatusCode;
 
-double	get_radians(int angle);
-void	swap_int(int *a, int *b);
+void swap_int(int *a, int *b);
 
 #endif
