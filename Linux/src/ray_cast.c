@@ -1,5 +1,15 @@
 #include "../header/the_game.h"
 
+static double	new_ray(double x1, double y1, double x2, double y2)
+{
+	double m;
+	double b;
+
+	m = (y2 - y1) / (x2 - x1);
+	b = y1 - (m * x1);
+	return (b);
+}
+
 // A lot of stuff is going on here, which is read and written from internet sources.
 // Will update to more readable after I see the results.
 void	RayCast_main(t_GameData *data)
@@ -13,12 +23,16 @@ void	RayCast_main(t_GameData *data)
 	double		a_tan; // arc tanges
 	double		offset_y;
 	double		offset_x;
-	int			m_x; // no idea
-	int			m_y; // no idea
+	int			m_x = 0; // no idea
+	int			m_y = 0; // no idea
 
-	ray_angle = data->player.angle;
+	ray_angle = data->player.angle + D_RADIAN * 60;
+	if (ray_angle < 0)
+		ray_angle += P4;
+	if (ray_angle > P4)
+		ray_angle -= P4;
 	r = 0;
-	while (r < RAYS_COUNT)
+	while (r < 360)
 	{
 		// Horizontal lines Checking
 		blocks = 0;
@@ -52,8 +66,7 @@ void	RayCast_main(t_GameData *data)
 					break ;
 				if (m_x < data->minimap.block_count.x && m_y < data->minimap.block_count.y)
 				{
-					printf("here_map\n");
-					printf("m_y: %d     m_x: %d", m_y, m_x);
+					// printf("m_y: %d     m_x: %d\n", m_y, m_x);
 					if (data->minimap.map[m_y][m_x] == '1')
 						break ;
 					else
@@ -65,16 +78,33 @@ void	RayCast_main(t_GameData *data)
 				++blocks;
 			}
 		}
+		// printf("ray_x: %f     ray_y: %f\n", ray_x, ray_y);
+		// printf("p_x: %d     p_y: %d\n", data->player.initial_pos.x, data->player.initial_pos.y);
 		t_Line2D	line;
 		line.color_end = COLOR_RED;
 		line.color_start = COLOR_RED;
 		line.start.x = data->player.initial_pos.x;
 		line.start.y = data->player.initial_pos.y;
+		if (ray_x < 0)
+		{
+			ray_y = new_ray(data->player.initial_pos.x, data->player.initial_pos.y, ray_x, ray_y);
+			ray_x = 0;
+		}
+		else if (ray_y < 0)
+		{
+			ray_x = new_ray(data->player.initial_pos.x, data->player.initial_pos.y, ray_x, ray_y);
+			ray_y = 0;
+		}
+		printf("ray_x: %f     ray_y: %f\n", ray_x, ray_y);
 		line.end.x = ray_x;
 		line.end.y = ray_y;
-		printf("here_line\n");
-		if (line.end.x > 0 && line.end.y > 0)
+		// printf("here_line\n");
 			draw_line_Bresenham(&data->minimap.image, &line);
+		ray_angle += D_RADIAN;
+		if (ray_angle < 0)
+			ray_angle += P4;
+		if (ray_angle > P4)
+			ray_angle -= P4;
 		++r;
 	}
 }

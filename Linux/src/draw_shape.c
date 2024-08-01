@@ -35,7 +35,7 @@ int	is_steep(t_Point2D start, t_Point2D end)
 
 int	in_range(int x, int y, int width, int height)
 {
-	if (x >= width || y >= height || x <= 0 || y <= 0)
+	if (x > width || y > height || x < 0 || y < 0)
 		return (0);
 	return (1);
 }

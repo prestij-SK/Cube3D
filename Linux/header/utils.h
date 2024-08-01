@@ -24,6 +24,13 @@
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
+# define P0 0 // 0 degree
+# define P1 M_PI / 2 // 90 degree
+// # define P2 M_PI // 180 degree
+# define P3 3 * M_PI / 2 // 270 degree
+# define P4 2 * M_PI // 0 degree
+
+# define D_RADIAN 0.0174532925 // one degree in radians
 
 typedef struct Point2D_int
 {
