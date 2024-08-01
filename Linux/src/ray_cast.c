@@ -2,12 +2,14 @@
 
 static double	new_ray(double x1, double y1, double x2, double y2)
 {
-	double m;
-	double b;
+	double	m;
+	double 	b;
+	double	change;
 
 	m = (y2 - y1) / (x2 - x1);
 	b = y1 - (m * x1);
-	return (b);
+	change = m * 64 + b;
+	return (change);
 }
 
 // A lot of stuff is going on here, which is read and written from internet sources.
@@ -88,12 +90,12 @@ void	RayCast_main(t_GameData *data)
 		if (ray_x < 0)
 		{
 			ray_y = new_ray(data->player.initial_pos.x, data->player.initial_pos.y, ray_x, ray_y);
-			ray_x = 0;
+			ray_x = 64;
 		}
 		else if (ray_y < 0)
 		{
 			ray_x = new_ray(data->player.initial_pos.x, data->player.initial_pos.y, ray_x, ray_y);
-			ray_y = 0;
+			ray_y = 64;
 		}
 		printf("ray_x: %f     ray_y: %f\n", ray_x, ray_y);
 		line.end.x = ray_x;
