@@ -13,6 +13,7 @@
 # define FPV_HEIGHT 900
 # define FPV_RAYS_COUNT 60
 # define FPV_VIEW_SECTOR -30
+# define FPV_PIXEL_WIDTH 8
 
 typedef struct FirstPersonView
 {

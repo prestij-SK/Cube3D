@@ -24,7 +24,7 @@ int	intersection_point(t_Line2D_d *l1, t_Line2D_d *l2, double *x, double *y)
     // Calculate the coefficients for the first line (Ax + By = C)
 	util.a1 = l1->end.y - l1->start.y;
 	util.b1 = l1->start.x - l1->end.x;
-	util.c1 = (util.a1 * l1->start.x) + (util.b1 * l1->start.x);
+	util.c1 = (util.a1 * l1->start.x) + (util.b1 * l1->start.y);
 
     // Calculate the coefficients for the second line (Ax + By = C)
 	util.a2 = l2->end.y - l2->start.y;
@@ -39,7 +39,6 @@ int	intersection_point(t_Line2D_d *l1, t_Line2D_d *l2, double *x, double *y)
 	{
         *x = ((util.b2 * util.c1) - (util.b1 * util.c2)) / util.deter;
         *y = ((util.a1 * util.c2) - (util.a2 * util.c1)) / util.deter;
-		printf("here\n");
         return (1); // Intersection found
     }
 	return (0); // no Intersection

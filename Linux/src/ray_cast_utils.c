@@ -9,32 +9,38 @@ static void	adjust_ray_range(t_GameData *data, t_RCutil *util)
 	l1.start.y = util->py;
 	l1.end.x = util->rx;
 	l1.end.y = util->ry;
-	// if (util->rx < 0)
-	// {
-	// 	util->ry = intersection_point(start, end, util->block_size);
-	// 	util->rx = util->block_size;
-	// }
+	if (util->rx < 0)
+	{
+		l2.start.x = data->minimap.block_size;
+		l2.start.y = 0;
+		l2.end.x = data->minimap.block_size;
+		l2.end.y = data->minimap.image.size.y;
+		intersection_point(&l1, &l2, &util->rx, &util->ry);
+	}
 	if (util->ry < 0)
 	{
-		printf("p_x: %f    p_y: %f\n", util->px, util->py);
-		printf("r_x: %f    r_y: %f\n", util->rx, util->ry);
 		l2.start.x = 0;
-		l2.start.y = 0;
+		l2.start.y = data->minimap.block_size;
 		l2.end.x = data->minimap.image.size.x;
-		l2.end.y = 0;
-		util->rx = intersection_point(&l1, &l2, &util->rx, &util->ry);
-		printf("r_x: %f    r_y: %f\n", util->rx, util->ry);
+		l2.end.y = data->minimap.block_size;
+		intersection_point(&l1, &l2, &util->rx, &util->ry);
 	}
-	// else if (util->rx > data->minimap.image.size.x)
-	// {
-	// 	util->ry = intersection_point(start, end, data->minimap.image.size.x - util->block_size);
-	// 	util->rx = data->minimap.image.size.x - util->block_size;
-	// }
-	// else if (util->ry > data->minimap.image.size.y)
-	// {
-	// 	util->rx = intersection_point(start, end, data->minimap.image.size.x - util->block_size);
-	// 	util->ry = data->minimap.image.size.y - util->block_size;
-	// }
+	if (util->rx > data->minimap.image.size.x)
+	{
+		l2.start.x = data->minimap.image.size.x - data->minimap.block_size;
+		l2.start.y = 0;
+		l2.end.x = data->minimap.image.size.x - data->minimap.block_size;
+		l2.end.y = data->minimap.image.size.y;
+		intersection_point(&l1, &l2, &util->rx, &util->ry);
+	}
+	if (util->ry > data->minimap.image.size.y)
+	{
+		l2.start.x = 0;
+		l2.start.y = data->minimap.image.size.y - data->minimap.block_size;
+		l2.end.x = data->minimap.image.size.x;
+		l2.end.y = data->minimap.image.size.y - data->minimap.block_size;
+		intersection_point(&l1, &l2, &util->rx, &util->ry);
+	}
 }
 
 void	horizontal_checking(t_GameData *data, t_RCdata *ray_data, double angle)

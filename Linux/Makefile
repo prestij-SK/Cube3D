@@ -11,6 +11,7 @@ HEADERS_DIR = header/
 HEADERS = color.h \
 		  draw_shape.h \
 		  first_person_view.h \
+		  for_math.h \
 		  image.h \
 		  minimap.h \
 		  player.h \
@@ -19,6 +20,7 @@ HEADERS = color.h \
 
 SRCS_NAME = draw_shape.c \
 			first_person_view.c \
+			for_math.c \
 			image.c \
 			input_update_render.c \
 			input.c \
@@ -30,7 +32,6 @@ SRCS_NAME = draw_shape.c \
 			render.c \
 			the_game.c \
 			update.c \
-			utils.c \
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))
 OBJS_NAME = $(SRCS_NAME:.c=.o)

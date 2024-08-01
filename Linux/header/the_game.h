@@ -56,6 +56,7 @@ void	render_all(t_GameData *data);
 	ray_cast functions
 */
 void	ray_casting(t_GameData *data);
+void	ray_cast_3d_walls(t_GameData *data, t_RCdata *ray_data, int ray);
 void	horizontal_checking(t_GameData *data, t_RCdata *ray_data, double angle);
 void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle);
 

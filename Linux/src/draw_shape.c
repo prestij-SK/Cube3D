@@ -18,9 +18,13 @@ void    draw_rectangle_filled(t_Image *img, t_Point2D pos, t_Point2D size, int c
     i = 0;
     while (i < size.x)
 	{
+        if (pos.x + i < 0 || pos.x + i > img->size.x)
+            break ;
         j = 0;
         while (j < size.y)
 		{
+            if (pos.y + j < 0 || pos.y + j > img->size.y)
+                break ;
             alt_mlx_pixel_put(img, pos.x + i, pos.y + j, color);
             j++;
         }
@@ -28,12 +32,12 @@ void    draw_rectangle_filled(t_Image *img, t_Point2D pos, t_Point2D size, int c
     }
 }
 
-int	is_steep(t_Point2D start, t_Point2D end)
+static int  is_steep(t_Point2D start, t_Point2D end)
 {
 	return (abs(end.y - start.y) > abs(end.x - start.x));
 }
 
-int	in_range(int x, int y, int width, int height)
+static int  in_range(int x, int y, int width, int height)
 {
 	if (x > width || y > height || x < 0 || y < 0)
 		return (0);
