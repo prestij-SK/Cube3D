@@ -16,7 +16,7 @@ t_StatusCode	fp_view_init(t_FPV *view, void *mlx)
 	if (status != SUCCESS_EXIT)
 		return (status);
 	view->name = FPV_NAME;
-	view->color = COLOR_GRAY;
+	view->color = COLOR_BLUE;
 	return (SUCCESS_EXIT);
 }
 

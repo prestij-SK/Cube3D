@@ -17,5 +17,5 @@ void	render_all(t_GameData *data)
 	player_draw(&data->minimap.image, &data->player);
 	ray_casting(data);
 	render_image(data, &data->view.image);
-	render_image(data, &data->minimap.image);
+	// render_image(data, &data->minimap.image);
 }

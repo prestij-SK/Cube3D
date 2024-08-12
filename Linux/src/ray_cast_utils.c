@@ -96,9 +96,9 @@ void	horizontal_checking(t_GameData *data, t_RCdata *ray_data, double angle)
 		}
 	}
 	adjust_ray_range(data, &util);
-	ray_data->hor.x = util.rx;
-	ray_data->hor.y = util.ry;
-	ray_data->dis_h = (int) round(distance(util.px, util.py, util.rx, util.ry));
+	ray_data->hor.x = (int) floor(util.rx);
+	ray_data->hor.y = (int) floor(util.ry);
+	ray_data->dis_h = (int) floor(distance(util.px, util.py, util.rx, util.ry));
 }
 
 void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle)
@@ -154,7 +154,7 @@ void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle)
 		}
 	}
 	adjust_ray_range(data, &util);
-	ray_data->ver.x = (int) round(util.rx);
-	ray_data->ver.y = (int) round(util.ry);
-	ray_data->dis_v = (int) round(distance(util.px, util.py, util.rx, util.ry));
+	ray_data->ver.x = (int) floor(util.rx);
+	ray_data->ver.y = (int) floor(util.ry);
+	ray_data->dis_v = (int) floor(distance(util.px, util.py, util.rx, util.ry));
 }

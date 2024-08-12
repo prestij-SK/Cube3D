@@ -1,5 +1,105 @@
 #include "../header/the_game.h"
 
+#include <stdio.h>
+
+// char *path = "/home/steve/Desktop/cube3D/Linux/texture/flag.xpm";
+
+// typedef struct  s_img
+// {
+//     void        *img_ptr;
+//     char        *addr; // Changed from int *data to char *addr
+//     int         width;
+//     int         height;
+//     int         size_line;
+//     int         bpp;    // Bits per pixel
+//     int         endian;
+// }               t_img;
+
+// typedef struct  s_draw_state
+// {
+//     int         last_x;
+//     int         last_y;
+//     int         repeat_width;
+// }               t_draw_state;
+
+// void draw_textured_rectangle(void *mlx, void *win, t_img *texture, t_draw_state *state, int x, int y, int width, int height)
+// {
+//     int tx;
+//     int ty;
+//     int color;
+//     int bpp = texture->bpp / 8; // Assuming bpp is in bits
+
+//     for (int i = 0; i < height; i++)
+//     {
+//         for (int j = 0; j < width; j++)
+//         {
+//             // Calculate the texture coordinates for horizontal repetition
+//             tx = (j + state->last_x) % state->repeat_width;
+//             tx = tx * texture->width / state->repeat_width;
+
+//             // Scale the texture vertically to fit the rectangle height
+//             ty = (i * texture->height) / height;
+
+//             // Calculate the offset in the texture data
+//             int offset = (ty * texture->width + tx) * bpp;
+
+//             // Fetch the color from the texture
+//             color = *((int *)(texture->addr + offset));
+            
+//             // Draw the pixel on the window
+//             mlx_pixel_put(mlx, win, x + j, y + i, color);
+//         }
+//     }
+
+//     // Update state with the new end position
+//     state->last_x = (x + width) % state->repeat_width;
+//     state->last_y = (y + height) % texture->height;
+// }
+
+// int main(void)
+// {
+//     void    *mlx;
+//     void    *win;
+//     t_img   texture;
+//     t_draw_state state = {0, 0, 200}; // Initialize state with repeat width
+
+//     mlx = mlx_init();
+//     win = mlx_new_window(mlx, 800, 600, "Textured Rectangle");
+
+//     // Load your texture image
+//     texture.img_ptr = mlx_xpm_file_to_image(mlx, path, &texture.width, &texture.height);
+//     if (!texture.img_ptr)
+//     {
+//         fprintf(stderr, "Error: Failed to load texture from '../texture/flag.xpm'\n");
+//         mlx_destroy_window(mlx, win);
+//         return (EXIT_FAILURE);
+//     }
+//     texture.addr = mlx_get_data_addr(texture.img_ptr, &texture.bpp, &texture.size_line, &texture.endian);
+
+//     // Draw the first textured rectangle
+//     draw_textured_rectangle(mlx, win, &texture, &state, 0, 0, 50, 250);
+
+//     // Draw another textured rectangle, continuing from the last position
+//     draw_textured_rectangle(mlx, win, &texture, &state, 400, 0, 300, 250); // Example with width less than repeat_width
+
+//     mlx_loop(mlx);
+//     return 0;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int	main()
 {
 	int size_y = 10;
