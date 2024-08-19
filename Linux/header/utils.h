@@ -64,12 +64,12 @@ typedef struct RayCastUtils // This is for norminette
 
 typedef struct RayCastFinalData // This is for norminette
 {
-	int			dis_f;	 // Shortest distance from Horizontal and Vertical
-	t_Point2D	ray_f; // Final ray
-	int 		dis_h; // Horizontal distance
-	t_Point2D	hor; // Horizontal Ray
-	int 		dis_v; // Vertical distance
-	t_Point2D	ver; // Vertical Ray
+	double		dis_f;	 // Shortest distance from Horizontal and Vertical
+	t_Point2D_d	ray_f; // Final ray
+	double 		dis_h; // Horizontal distance
+	t_Point2D_d	hor; // Horizontal Ray
+	double 		dis_v; // Vertical distance
+	t_Point2D_d	ver; // Vertical Ray
 } t_RCdata;
 
 typedef enum StatusCode

@@ -9,7 +9,7 @@
 # define FPV_NAME "FP POV"
 # define FPV_POSITION_X 0
 # define FPV_POSITION_Y 0
-# define FPV_WIDTH 1600
+# define FPV_WIDTH 1500
 # define FPV_HEIGHT 900
 # define FPV_RAYS_COUNT 60
 # define FPV_VIEW_SECTOR -30

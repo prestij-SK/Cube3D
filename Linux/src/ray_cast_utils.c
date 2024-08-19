@@ -95,10 +95,10 @@ void	horizontal_checking(t_GameData *data, t_RCdata *ray_data, double angle)
 			++blocks;
 		}
 	}
-	adjust_ray_range(data, &util);
-	ray_data->hor.x = (int) floor(util.rx);
-	ray_data->hor.y = (int) floor(util.ry);
-	ray_data->dis_h = (int) floor(distance(util.px, util.py, util.rx, util.ry));
+	// adjust_ray_range(data, &util);
+	ray_data->hor.x = util.rx;
+	ray_data->hor.y = util.ry;
+	ray_data->dis_h = distance(util.px, util.py, util.rx, util.ry);
 }
 
 void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle)
@@ -134,7 +134,7 @@ void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle)
 	else
 	{
 		blocks = 0;
-		while (blocks < data->minimap.block_count.x)
+		while (blocks < data->minimap.block_count.y)
 		{
 			util.mx = (int) (util.rx) >> util.block_power;
 			util.my = (int) (util.ry) >> util.block_power;
@@ -153,8 +153,8 @@ void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle)
 			++blocks;
 		}
 	}
-	adjust_ray_range(data, &util);
-	ray_data->ver.x = (int) floor(util.rx);
-	ray_data->ver.y = (int) floor(util.ry);
-	ray_data->dis_v = (int) floor(distance(util.px, util.py, util.rx, util.ry));
+	// adjust_ray_range(data, &util);
+	ray_data->ver.x = util.rx;
+	ray_data->ver.y = util.ry;
+	ray_data->dis_v = distance(util.px, util.py, util.rx, util.ry);
 }

@@ -11,7 +11,7 @@
 # include "draw_shape.h"
 # include "for_math.h"
 
-# define WINDOW_WIDTH 1600
+# define WINDOW_WIDTH 1500
 # define WINDOW_HEIGHT 900
 # define GAME_NAME "THE GAME"
 

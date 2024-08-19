@@ -17,6 +17,7 @@
 		"draw_shape.h": "c",
 		"for_math.h": "c",
 		"temp_texture.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"numbers": "c"
 	}
 }
