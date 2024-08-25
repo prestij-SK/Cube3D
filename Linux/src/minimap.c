@@ -1,5 +1,19 @@
 #include "../header/minimap.h"
 
+void	minimap_delete(t_Minimap *minimap)
+{
+	if (!minimap)
+		return ;
+	int i = 0;
+	while (i < minimap->block_count.y)
+	{
+		free(minimap->map[i]);
+		++i;
+	}
+	free(minimap->map);
+	minimap->map = NULL;
+}
+
 t_StatusCode	minimap_init(t_Minimap *minimap, void *mlx, char **map, t_Point2D block_count)
 {
 	t_StatusCode status;

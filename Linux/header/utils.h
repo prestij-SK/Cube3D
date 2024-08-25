@@ -1,8 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <stdio.h> // DELETE
-
+#include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
 
@@ -84,6 +83,8 @@ typedef enum StatusCode
 	SUCCESS_EXIT,
 } t_StatusCode;
 
-void swap_int(int *a, int *b);
+void	swap_int(int *a, int *b);
+void	error_exit(t_StatusCode status, char *str);
+void	success_exit(t_StatusCode status, char *str);
 
 #endif

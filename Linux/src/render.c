@@ -14,7 +14,7 @@ void	render_all(t_GameData *data)
 		return ;
 	fp_view_draw(&data->view);
 	minimap_draw(&data->minimap);
-	player_draw(&data->minimap.image, &data->player);
+	player_on_minimap_draw(&data->minimap.image, &data->player);
 	ray_casting(data);
 	render_image(data, &data->view.image);
 	render_image(data, &data->minimap.image);

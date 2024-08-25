@@ -26,6 +26,6 @@ typedef struct PlayerData
 
 
 t_StatusCode	player_init(t_Player *player, void *mlx, t_Point2D block_pos, int block_size);
-void			player_draw(t_Image *image, t_Player *player);
+void			player_on_minimap_draw(t_Image *image, t_Player *player);
 
 #endif

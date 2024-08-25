@@ -2,12 +2,11 @@
 
 t_StatusCode	player_init(t_Player *player, void *mlx, t_Point2D block_pos, int block_size)
 {
-	t_StatusCode	status;
 	t_Point2D		pos;
 
 	if (!player)
 		return (NULL_POINTER_ERROR);
-	if (pos.x == -1 || pos.y == -1)
+	if (block_pos.x == -1 || block_pos.y == -1)
 		return (PLAYER_LOCATION_ERROR);
 	player->name = PLAYER_NAME;
 	pos.x = block_pos.x * block_size;
@@ -23,7 +22,7 @@ t_StatusCode	player_init(t_Player *player, void *mlx, t_Point2D block_pos, int b
 	return (SUCCESS_EXIT);
 }
 
-void	player_draw(t_Image *image, t_Player *player)
+void	player_on_minimap_draw(t_Image *image, t_Player *player)
 {
 	t_Point2D	temp_pos;
 

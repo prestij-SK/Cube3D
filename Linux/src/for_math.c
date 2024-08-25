@@ -5,13 +5,6 @@ double	get_radians(int angle)
 	return (angle * M_PI / 180.0);
 }
 
-void	swap_int(int *a, int *b)
-{
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
 double  distance(double x1, double y1, double x2, double y2)
 {
     return (sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)));

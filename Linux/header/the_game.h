@@ -22,9 +22,17 @@ typedef struct MainGameData
 	t_Minimap	minimap;
 	t_Player	player;
 	t_FPV		view;
-	int			key_pressed;
+	t_Image		north_wall;
+	t_Image		south_wall;
+	t_Image		west_wall;
+	t_Image		east_wall;
+	t_Image		*tex_p; // changable texture pointer 
 }	t_GameData;
 
+// Start
+void			the_game(char *path);
+void			game_nullify_pointers(t_GameData *data);
+t_StatusCode	game_mlx_init(t_GameData *data);
 t_StatusCode	game_data_init(t_GameData *data, char **map, t_Point2D block_count);
 void			game_data_delete(t_GameData *data);
 

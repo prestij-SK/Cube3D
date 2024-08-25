@@ -24,5 +24,6 @@ typedef struct MinimapData
 
 t_StatusCode	minimap_init(t_Minimap *minimap, void *mlx, char **map, t_Point2D block_count);
 void			minimap_draw(t_Minimap *minimap);
+void			minimap_delete(t_Minimap *minimap);
 
 #endif

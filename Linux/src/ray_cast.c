@@ -2,8 +2,6 @@
 
 #include "../header/tex.h" // DELETE
 
-#define EPSILON 1e-6
-
 void	ray_cast_3d_walls(t_GameData *data, t_RCdata *ray_data, int ray, double ray_angle)
 {
 	t_Point2D	pos;
@@ -26,9 +24,9 @@ void	ray_cast_3d_walls(t_GameData *data, t_RCdata *ray_data, int ray, double ray
 		line_h = FPV_HEIGHT;
 	}
 	line_offset = FPV_HEIGHT / 2 - line_h / 2;
-	size.x = FPV_WIDTH / 60;
+	size.x = FPV_WIDTH / 240;
 	size.y = line_h;
-	pos.x = ray * (FPV_WIDTH / 60);
+	pos.x = ray * (FPV_WIDTH / 240);
 	pos.y = line_offset;
 
 	int x = 0;
@@ -87,13 +85,13 @@ void	ray_casting(t_GameData *data)
 	int			r; // rays
 	double		ray_angle; // in radians
 
-	ray_angle = data->player.angle + D_RADIAN * (-30);
+	ray_angle = data->player.angle + 0.0174532925 * (-30);
 	if (ray_angle < 0)
 		ray_angle += P4;
 	if (ray_angle > P4)
 		ray_angle -= P4;
 	r = 0;
-	while (r < 60)
+	while (r < 240)
 	{
 		horizontal_checking(data, &ray_data, ray_angle);
 		vertical_checking(data, &ray_data, ray_angle);

@@ -6,8 +6,6 @@ static int	frame(t_GameData *data)
 	if (!data)
 		return (0);
 	render_all(data);
-	// printf("x_angle: %d   %d\n", fdf_data->land_data->setup.angles.x, fdf_data->land_data->z_val_flip);
-	// printf("y_angle: %d   %d\n", fdf_data->land_data->setup.angles.y, fdf_data->land_data->z_val_flip);
 	return (1);
 }
 
