@@ -43,3 +43,20 @@ void	adjust_ray_range(t_GameData *data, t_RCutil *util)
 	}
 }
 
+void	set_shortest_ray_dis(t_RCdata *ray_data)
+{
+	if (!ray_data)
+		return ;
+	if (ray_data->dis_v < ray_data->dis_h)
+	{
+		ray_data->dis_f = ray_data->dis_v;
+		ray_data->ray_f.x = ray_data->ver.x;
+		ray_data->ray_f.y = ray_data->ver.y;
+	}
+	else
+	{
+		ray_data->dis_f = ray_data->dis_h;
+		ray_data->ray_f.x = ray_data->hor.x;
+		ray_data->ray_f.y = ray_data->hor.y;
+	}
+}

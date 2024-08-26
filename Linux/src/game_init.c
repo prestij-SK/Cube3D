@@ -80,7 +80,7 @@ t_StatusCode	game_data_init(t_GameData *data, char **map, t_Point2D block_count)
 	if (status != SUCCESS_EXIT)
 		return (status);
 	pos = player_location(map, block_count);
-	status = player_init(&data->player, data->mlx, pos, data->minimap.block_size);
+	status = player_init(&data->player, &data->minimap, pos, data->minimap.block_size);
 	if (status != SUCCESS_EXIT)
 		return (status);
 	status = fp_view_init(&data->view, data->mlx);

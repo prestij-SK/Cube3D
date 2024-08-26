@@ -42,18 +42,27 @@ typedef struct Line2D_double
 
 typedef struct RayCastUtils // This is for norminette
 {
-	double px; // Player
-	double py;
-	double rx; // Ray
-	double ry;
-	double ox; // Offset
-	double oy;
-	int mx; // map index
-	int my;
-	int block_power;
-	int block_size;
-	
-} t_RCutil;
+	double 	px; // Player
+	double 	py;
+	double 	rx; // Ray
+	double 	ry;
+	double 	ox; // Offset
+	double 	oy;
+	int 	mx; // map index
+	int 	my;
+	int 	block_power;
+	int		block_size;
+	double	tx; // Texture
+	double	ty;
+	double	ty_step; // Next texture slice interval
+	double	ty_offset; // Texture placement control
+	double	line_offset; // Wall placement control
+	double	line_h; // Height of the wall
+	int		pixel_index;
+	int		color;
+	int		x; // counter for x
+	int		y; // counter for y
+}	t_RCutil;
 
 typedef struct RayCastFinalData // This is for norminette
 {
@@ -63,7 +72,15 @@ typedef struct RayCastFinalData // This is for norminette
 	t_Point2D_d	hor; // Horizontal Ray
 	double 		dis_v; // Vertical distance
 	t_Point2D_d	ver; // Vertical Ray
-} t_RCdata;
+	short		closed_door; // Information if ray hits Door
+}	t_RCdata;
+
+typedef struct GameUpdateUtil // This is for norminette
+{
+	t_Point2D	offset; // Calculate gap between player and wall
+	t_Point2D	current; // Where is current player position for map[][]
+	t_Point2D	next; // Where is player position after change for map[][]
+}	t_UpdateUtil;
 
 typedef enum StatusCode
 {

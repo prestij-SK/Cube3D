@@ -1,42 +1,109 @@
 #include "../header/the_game.h"
 
+static int	is_in_minimap_range(t_Minimap *minimap, int y, int x)
+{
+	if ((y >= 0 && y < minimap->block_count.y) &&
+		(x >= 0 && x < minimap->block_count.x))
+	{
+		return (B_TRUE);
+	}
+	return (B_FALSE);
+}
+
+static void	set_xy_offset(t_UpdateUtil *util, double change_x, double change_y)
+{
+	if (change_x < 0)
+		util->offset.x = -COLLISION_GAP;
+	else
+		util->offset.x = COLLISION_GAP;
+	if (change_y < 0)
+		util->offset.y = -COLLISION_GAP;
+	else
+		util->offset.y = COLLISION_GAP;
+}
+
 // strafing left
 void	update_A(t_Player *player)
 {
+	t_UpdateUtil	util;
+
     // Calculate the strafe vector (perpendicular to the delta vector)
     double strafe_angle = player->angle - M_PI / 2;  // 90 degrees rotation
 	// Calculate delta X,Y again
     double strafe_x = cos(strafe_angle) * PLAYER_MOVE_SPEED;
     double strafe_y = sin(strafe_angle) * PLAYER_MOVE_SPEED;
 
-    player->pos.x += (int)round(strafe_x);
-    player->pos.y += (int)round(strafe_y);
+    set_xy_offset(&util, strafe_x, strafe_y);
+	util.current.x = player->pos.x / player->minimap->block_size;
+	util.current.y = player->pos.y / player->minimap->block_size;
+	util.next.x = (player->pos.x + util.offset.x) / player->minimap->block_size;
+	util.next.y = (player->pos.y + util.offset.y) / player->minimap->block_size;
+	if (is_in_minimap_range(player->minimap, util.current.y, util.next.x))
+		if (player->minimap->map[util.current.y][util.next.x] != '1')
+			player->pos.x += (int)round(strafe_x);
+	if (is_in_minimap_range(player->minimap, util.next.y, util.current.x ))
+		if (player->minimap->map[util.next.y][util.current.x ] != '1')
+			player->pos.y += (int)round(strafe_y);
 }
 
 // strafing right
 void	update_D(t_Player *player)
 {
+	t_UpdateUtil	util;
+
     // Same thing, but we add 90 degree
     double strafe_angle = player->angle + M_PI / 2;
+	// Calculate delta X,Y again
     double strafe_x = cos(strafe_angle) * PLAYER_MOVE_SPEED;
     double strafe_y = sin(strafe_angle) * PLAYER_MOVE_SPEED;
 
-    player->pos.x += (int)round(strafe_x);
-    player->pos.y += (int)round(strafe_y);
+	set_xy_offset(&util, strafe_x, strafe_y);
+	util.current.x = player->pos.x / player->minimap->block_size;
+	util.current.y = player->pos.y / player->minimap->block_size;
+	util.next.x = (player->pos.x + util.offset.x) / player->minimap->block_size;
+	util.next.y = (player->pos.y + util.offset.y) / player->minimap->block_size;
+	if (is_in_minimap_range(player->minimap, util.current.y, util.next.x))
+		if (player->minimap->map[util.current.y][util.next.x] != '1')
+			player->pos.x += (int)round(strafe_x);
+	if (is_in_minimap_range(player->minimap, util.next.y, util.current.x ))
+		if (player->minimap->map[util.next.y][util.current.x ] != '1')
+			player->pos.y += (int)round(strafe_y);
 }
 
 // going forward
 void	update_W(t_Player *player)
 {
-	player->pos.x += (int)round(player->delta.x);
-	player->pos.y += (int)round(player->delta.y);
+	t_UpdateUtil	util;
+
+	set_xy_offset(&util, player->delta.x, player->delta.y);
+	util.current.x = player->pos.x / player->minimap->block_size;
+	util.current.y = player->pos.y / player->minimap->block_size;
+	util.next.x = (player->pos.x + util.offset.x) / player->minimap->block_size;
+	util.next.y = (player->pos.y + util.offset.y) / player->minimap->block_size;
+	if (is_in_minimap_range(player->minimap, util.current.y, util.next.x))
+		if (player->minimap->map[util.current.y][util.next.x] != '1')
+			player->pos.x += (int)round(player->delta.x);
+	if (is_in_minimap_range(player->minimap, util.next.y, util.current.x ))
+		if (player->minimap->map[util.next.y][util.current.x ] != '1')
+			player->pos.y += (int)round(player->delta.y);
 }
 
 // going back
 void	update_S(t_Player *player)
 {
-	player->pos.x -= (int)round(player->delta.x);
-	player->pos.y -= (int)round(player->delta.y);
+	t_UpdateUtil	util;
+
+	set_xy_offset(&util, player->delta.x, player->delta.y);
+	util.current.x = player->pos.x / player->minimap->block_size;
+	util.current.y = player->pos.y / player->minimap->block_size;
+	util.next.x = (player->pos.x - util.offset.x) / player->minimap->block_size;
+	util.next.y = (player->pos.y - util.offset.y) / player->minimap->block_size;
+	if (is_in_minimap_range(player->minimap, util.current.y, util.next.x))
+		if (player->minimap->map[util.current.y][util.next.x] != '1')
+			player->pos.x -= (int)round(player->delta.x);
+	if (is_in_minimap_range(player->minimap, util.next.y, util.current.x ))
+		if (player->minimap->map[util.next.y][util.current.x ] != '1')
+			player->pos.y -= (int)round(player->delta.y);
 }
 
 // show big map

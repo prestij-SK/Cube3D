@@ -10,5 +10,6 @@
 
 # define COLOR_CEILING 0x5ca1bd
 # define COLOR_FLOOR 0x35612f
+# define COLOR_DOOR 0x00ff00
 
 #endif

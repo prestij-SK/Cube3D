@@ -4,7 +4,7 @@ void	horizontal_checking(t_GameData *data, t_RCdata *ray_data, double angle)
 {
 	t_RCutil	util;
 	int			blocks; // maximum blocks count for horizontal or vertical lines
-	double		a_tan; // negative cotangent of that angle
+	double		a_tan;
 
 	util.px = data->player.pos.x;
 	util.py = data->player.pos.y;

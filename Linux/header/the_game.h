@@ -16,9 +16,10 @@
 # define UPDATE_60FPS_INTERVAL 16 // 60 fps in miliseconds. 1000 / 60
 
 // Ray casting options
-# define RADIAN_STEP 0.004363323 //  (1 radian / 4)
-# define SECTOR_ANGLE -30 // in case of 240 rays and 0.004363323 radian step, the sector will start at -30 and increase to 30, which will make 60 degree sector
+# define RADIAN_STEP 0.004363323 //  (1 radian / 4) will be used to increment sector degree which starts from -30
+# define SECTOR_ANGLE -30 // the sector will start at -30 degree and increase to 30, which will make 60 degree sector
 # define RAY_COUNT 240 // 240 rays in 60 degree sector
+# define COLLISION_GAP 10
 
 typedef struct MainGameData
 {
@@ -70,5 +71,6 @@ void	ray_casting(t_GameData *data);
 void	horizontal_checking(t_GameData *data, t_RCdata *ray_data, double angle);
 void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle);
 void	adjust_ray_range(t_GameData *data, t_RCutil *util); // Wasn't needed
+void	set_shortest_ray_dis(t_RCdata *ray_data);
 
 #endif

@@ -2,90 +2,84 @@
 
 #include "../header/tex.h" // DELETE
 
-static void	ray_cast_3d_walls(t_GameData *data, t_RCdata *ray_data, int ray, double ray_angle)
+static void	set_wall_texture(t_GameData *data, t_RCdata *ray_data, double ray_angle)
 {
+	if (ray_data->dis_v < ray_data->dis_h)
+	{
+		if (ray_angle > P1 && ray_angle < P3) // West
+			data->tex_p = &data->west_wall;
+		else // East
+			data->tex_p = &data->east_wall;
+	}
+	else
+	{
+		if (ray_angle > 0 && ray_angle < M_PI) // South
+			data->tex_p = &data->south_wall;
+		else // North
+			data->tex_p = &data->north_wall;
+	}
+}
+
+static void	texture_mapping(t_GameData *data, t_RCdata *ray_data, t_RCutil *util, double ray_angle)
+{
+	util->ty_step = data->tex_p->size.y / util->line_h;
+	util->ty_offset = 0;
+	if (util->line_h > FPV_HEIGHT)
+	{
+		util->ty_offset = abs((FPV_HEIGHT - util->line_h) / 2.0);
+		util->line_h = FPV_HEIGHT;
+	}
+	if (ray_data->dis_v < ray_data->dis_h)
+	{
+		util->tx = (int)(ray_data->ray_f.y) % data->tex_p->size.x;
+		if (ray_angle > P1 && ray_angle < P3)
+		{
+			util->tx = data->tex_p->size.x - 1 - util->tx;
+		}
+	}
+	else
+	{
+		util->tx = (int)(ray_data->ray_f.x) % data->tex_p->size.x;
+		if (ray_angle > 0 && ray_angle < M_PI)
+		{
+			util->tx = data->tex_p->size.x - 1 - util->tx;
+		}
+	}
+	util->ty = util->ty_offset * util->ty_step;
+}
+
+static void	ray_cast_walls(t_GameData *data, t_RCdata *ray_data, int ray, double ray_angle)
+{
+	t_RCutil	util;
 	t_Point2D	pos;
 	t_Point2D	size;
-	double		ca;
-	double		line_h;
-	double		line_offset;
+	double		ca; // cos angle
 
 	ca = data->player.angle - ray_angle;
 	ca = angle_wrapping(ca); // cos(ca) will help to fix fish eye
-	line_h = (data->minimap.block_size * FPV_HEIGHT) / (ray_data->dis_f * cos(ca));
-	double	ty_step = 32.0 / line_h;
-	double	ty_offset = 0;
-	if (line_h > FPV_HEIGHT)
-	{
-		ty_offset = abs((FPV_HEIGHT - line_h) / 2.0);
-		line_h = FPV_HEIGHT;
-	}
-	line_offset = FPV_HEIGHT / 2 - line_h / 2;
-	size.x = FPV_WIDTH / 240;
-	size.y = line_h;
-	pos.x = ray * (FPV_WIDTH / 240);
-	pos.y = line_offset;
+	util.line_h = (data->minimap.block_size * FPV_HEIGHT) / (ray_data->dis_f * cos(ca));
+	set_wall_texture(data, ray_data, ray_angle);
+	texture_mapping(data, ray_data, &util, ray_angle);
+	util.line_offset = FPV_HEIGHT / 2 - util.line_h / 2;
+	size.x = FPV_WIDTH / RAY_COUNT;
+	size.y = util.line_h;
+	pos.x = ray * (FPV_WIDTH / RAY_COUNT);
+	pos.y = util.line_offset;
 
-	int x = 0;
-	int y = 0;
-	double	ty = ty_offset * ty_step;
-	double	tx;//(int) (ray_data->ray_f.y / 2.0) % 32;
-	int		shade = 1;
-	// if (ray_angle > P1 && ray_angle < P3)
-	// 	tx = 31 - tx;
-
-	if (ray_data->dis_v < ray_data->dis_h)
+	util.y = 0;
+	while (util.y < size.y)
 	{
-		tx = (int) (ray_data->ray_f.y / 2.0) % 32;
-		if (ray_angle > P1 && ray_angle < P3)
-			tx = 31 - tx;
-		shade = 0;
-	}
-	else
-	{
-		tx = (int) (ray_data->ray_f.x / 2.0) % 32;
-		if (ray_angle > 0 && ray_angle < M_PI)
-			tx = 31 - tx;
-	}
-	// printf("radian: %f\n", ray_angle);
-	// printf("angle: %f\n", ray_angle * 180 / M_PI);
+		util.pixel_index = (int)util.ty * data->tex_p->line_length + (int)util.tx * (data->tex_p->bits_per_pixel / 8);
+		util.color = *(int *)(data->tex_p->addr + util.pixel_index);
 
-	// if (ray_data->dis_v < ray_data->dis_h)
-	// 	printf("ray: %d    dis_v: %f     dis_h: %f\n", ray, ray_data->dis_v, ray_data->dis_h);
-	
-	while (y < size.y)
-	{
-		int	color = All_Textures[(int)ty * 32 + (int) tx];
-		if (color == 1)
-			color = COLOR_RED - (0x222222 * shade);
-		else if (color == 0)
-			color = COLOR_GRAY - (0x222222 * shade);
-
-		x = 0;
-		while (x < size.x)
+		util.x = 0;
+		while (util.x < size.x)
 		{
-			alt_mlx_pixel_put(&data->view.image, pos.x + x, pos.y + y, color);
-			++x;
+			alt_mlx_pixel_put(&data->view.image, pos.x + util.x, pos.y + util.y, util.color);
+			++util.x;
 		}
-		ty += ty_step;
-		++y;
-	}
-	// printf("x: %d     y: %d\n", ray_data->ray_f.x, ray_data->ray_f.y);
-}
-
-static void	set_shortest_ray_dis(t_RCdata *ray_data)
-{
-	if (ray_data->dis_v < ray_data->dis_h)
-	{
-		ray_data->dis_f = ray_data->dis_v;
-		ray_data->ray_f.x = ray_data->ver.x;
-		ray_data->ray_f.y = ray_data->ver.y;
-	}
-	else
-	{
-		ray_data->dis_f = ray_data->dis_h;
-		ray_data->ray_f.x = ray_data->hor.x;
-		ray_data->ray_f.y = ray_data->hor.y;
+		util.ty += util.ty_step;
+		++util.y;
 	}
 }
 
@@ -119,7 +113,7 @@ void	ray_casting(t_GameData *data)
 		vertical_checking(data, &ray_data, ray_angle);
 		set_shortest_ray_dis(&ray_data); // Final Line
 		draw_ray_line(data, &ray_data); // Draw the ray
-		ray_cast_3d_walls(data, &ray_data, r, ray_angle); // Draw the walls
+		ray_cast_walls(data, &ray_data, r, ray_angle); // Draw the walls
 		ray_angle += RADIAN_STEP;
 		ray_angle = angle_wrapping(ray_angle);
 		++r;

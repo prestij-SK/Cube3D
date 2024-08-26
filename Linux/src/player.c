@@ -1,12 +1,12 @@
 #include "../header/player.h"
 
-t_StatusCode	player_init(t_Player *player, void *mlx, t_Point2D block_pos, int block_size)
+t_StatusCode	player_init(t_Player *player, t_Minimap *minimap, t_Point2D block_pos, int block_size)
 {
 	t_Point2D		pos;
 
-	if (!player)
+	if (!player || !minimap)
 		return (NULL_POINTER_ERROR);
-	if (block_pos.x == -1 || block_pos.y == -1)
+	if (block_pos.x < 0 || block_pos.y < 0)
 		return (PLAYER_LOCATION_ERROR);
 	player->name = PLAYER_NAME;
 	pos.x = block_pos.x * block_size;
@@ -19,6 +19,7 @@ t_StatusCode	player_init(t_Player *player, void *mlx, t_Point2D block_pos, int b
 	player->angle = get_radians(PLAYER_ANGLE_DEFAULT);
 	player->delta.x = cos(player->angle) * PLAYER_MOVE_SPEED;
 	player->delta.y = sin(player->angle) * PLAYER_MOVE_SPEED;
+	player->minimap = minimap;
 	return (SUCCESS_EXIT);
 }
 

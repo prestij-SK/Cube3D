@@ -74,6 +74,8 @@ void	minimap_draw_origin(t_Minimap *minimap)
 			pos.y = (i * minimap->block_size);
 			if (minimap->map[i][j] == '1')
 				draw_rectangle_filled(&minimap->origin_image, pos, size, minimap->wall_color);
+			else if (minimap->map[i][j] == 'D')
+				draw_rectangle_filled(&minimap->origin_image, pos, size, COLOR_DOOR);
 			else // if (minimap->map[i][j] == '0') // change this to else
 				draw_rectangle_filled(&minimap->origin_image, pos, size, minimap->floor_color);
 			++j;
@@ -104,6 +106,8 @@ void	minimap_draw_small(t_Minimap *minimap)
 			pos.y = (i * minimap->block_size) / MINIMAP_SIZE_DIVISER;
 			if (minimap->map[i][j] == '1')
 				draw_rectangle_filled(&minimap->small_image, pos, size, minimap->wall_color);
+			else if (minimap->map[i][j] == 'D')
+				draw_rectangle_filled(&minimap->small_image, pos, size, COLOR_DOOR);
 			else // if (minimap->map[i][j] == '0') // change this to else
 				draw_rectangle_filled(&minimap->small_image, pos, size, minimap->floor_color);
 			++j;
