@@ -14,31 +14,31 @@ static void	adjust_ray_range(t_GameData *data, t_RCutil *util)
 		l2.start.x = data->minimap.block_size;
 		l2.start.y = 0;
 		l2.end.x = data->minimap.block_size;
-		l2.end.y = data->minimap.image.size.y;
+		l2.end.y = data->minimap.origin_image.size.y;
 		intersection_point(&l1, &l2, &util->rx, &util->ry);
 	}
 	if (util->ry < 0)
 	{
 		l2.start.x = 0;
 		l2.start.y = data->minimap.block_size;
-		l2.end.x = data->minimap.image.size.x;
+		l2.end.x = data->minimap.origin_image.size.x;
 		l2.end.y = data->minimap.block_size;
 		intersection_point(&l1, &l2, &util->rx, &util->ry);
 	}
-	if (util->rx > data->minimap.image.size.x)
+	if (util->rx > data->minimap.origin_image.size.x)
 	{
-		l2.start.x = data->minimap.image.size.x - data->minimap.block_size;
+		l2.start.x = data->minimap.origin_image.size.x - data->minimap.block_size;
 		l2.start.y = 0;
-		l2.end.x = data->minimap.image.size.x - data->minimap.block_size;
-		l2.end.y = data->minimap.image.size.y;
+		l2.end.x = data->minimap.origin_image.size.x - data->minimap.block_size;
+		l2.end.y = data->minimap.origin_image.size.y;
 		intersection_point(&l1, &l2, &util->rx, &util->ry);
 	}
-	if (util->ry > data->minimap.image.size.y)
+	if (util->ry > data->minimap.origin_image.size.y)
 	{
 		l2.start.x = 0;
-		l2.start.y = data->minimap.image.size.y - data->minimap.block_size;
-		l2.end.x = data->minimap.image.size.x;
-		l2.end.y = data->minimap.image.size.y - data->minimap.block_size;
+		l2.start.y = data->minimap.origin_image.size.y - data->minimap.block_size;
+		l2.end.x = data->minimap.origin_image.size.x;
+		l2.end.y = data->minimap.origin_image.size.y - data->minimap.block_size;
 		intersection_point(&l1, &l2, &util->rx, &util->ry);
 	}
 }
@@ -49,8 +49,8 @@ void	horizontal_checking(t_GameData *data, t_RCdata *ray_data, double angle)
 	int			blocks; // maximum blocks count for horizontal or vertical lines
 	double		a_tan; // negative cotangent of that angle
 
-	util.px = data->player.initial_pos.x;
-	util.py = data->player.initial_pos.y;
+	util.px = data->player.pos.x;
+	util.py = data->player.pos.y;
 	util.block_power = MINIMAP_BLOCK_SIZE_POWER;
 	util.block_size = pow(2, MINIMAP_BLOCK_SIZE_POWER);
 	a_tan = -1 / tan(angle); // negative cotangent of that angle
@@ -107,8 +107,8 @@ void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle)
 	int			blocks; // maximum blocks count for horizontal or vertical lines
 	double		a_tan; // negative cotangent of that angle
 
-	util.px = data->player.initial_pos.x;
-	util.py = data->player.initial_pos.y;
+	util.px = data->player.pos.x;
+	util.py = data->player.pos.y;
 	util.block_power = MINIMAP_BLOCK_SIZE_POWER;
 	util.block_size = pow(2, MINIMAP_BLOCK_SIZE_POWER);
 	a_tan = -tan(angle); // negative tangent

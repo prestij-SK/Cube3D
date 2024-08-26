@@ -36,8 +36,16 @@ void	success_exit(t_StatusCode status, char *str)
 	}
 	printf("Success !\n");
 	if (str)
-		printf("\n%s\n", str);
+		printf("%s\n", str);
 	exit(EXIT_SUCCESS);
+}
+
+size_t	get_time(void)
+{
+	struct timeval tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));
 }
 
 void	swap_int(int *a, int *b)

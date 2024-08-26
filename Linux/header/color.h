@@ -8,4 +8,7 @@
 # define COLOR_YELLOW 0xffff00
 # define COLOR_GRAY 0x808080
 
+# define COLOR_CEILING 0x5ca1bd
+# define COLOR_FLOOR 0x35612f
+
 #endif

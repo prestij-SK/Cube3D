@@ -5,7 +5,8 @@ void	game_data_delete(t_GameData *data)
 	if (!data)
 		return ;
 	minimap_delete(&data->minimap);
-	image_delete(&data->minimap.image, data->mlx);
+	image_delete(&data->minimap.origin_image, data->mlx);
+	image_delete(&data->minimap.small_image, data->mlx);
 	image_delete(&data->view.image, data->mlx);
 	image_delete(&data->north_wall, data->mlx);
 	image_delete(&data->south_wall, data->mlx);

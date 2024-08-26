@@ -9,12 +9,12 @@
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
-// # define P0 0		// 0 degree
+// # define P0 0 // 0 degree
 # define P1 M_PI / 2 // 90 degree
 // # define P2 M_PI // 180 degree
 # define P3 3 * M_PI / 2 // 270 degree
 # define P4 2 * M_PI		// 360 degree
-# define D_RADIAN 0.004363323 // one degree in radians
+# define ONE_DEGREE_RADIAN 0.0174532925 // one degree in radians
 
 // a: This is the coefficient of the x-term in the line equation. It represents the change in y with respect to x.
 // b: This is the coefficient of the y-term in the line equation. It represents the change in x with respect to y.

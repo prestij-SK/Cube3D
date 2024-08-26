@@ -18,6 +18,20 @@
 		"for_math.h": "c",
 		"temp_texture.h": "c",
 		"stdlib.h": "c",
-		"numbers": "c"
+		"numbers": "c",
+		"input.h": "c",
+		"*.tcc": "c",
+		"atomic": "c",
+		"bit": "c",
+		"deque": "c",
+		"vector": "c",
+		"algorithm": "c",
+		"memory_resource": "c",
+		"memory": "c",
+		"random": "c",
+		"stdexcept": "c",
+		"tuple": "c",
+		"type_traits": "c",
+		"new": "c"
 	}
 }

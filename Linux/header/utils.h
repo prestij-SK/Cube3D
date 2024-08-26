@@ -1,23 +1,16 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
+# include <stdio.h>
+# include <math.h>
+# include <stdlib.h>
+# include <sys/time.h>
 
-// HOOK EVENTS
-# define EVENT_KEYDOWN 2	 // pressed
-# define EVENT_KEYUP 3	 // released
-# define EVENT_DESTROY 17 // Window cross icon
-
-// KEY CODES
-# define KEY_ESC 65307
-# define KEY_A 97
-# define KEY_W 119
-# define KEY_D 100
-# define KEY_S 115
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
+# define B_TRUE 1
+# define B_FALSE 0
+# define WINDOW_WIDTH 1440  // Whatever WIDTH parameter is chosen, it must be divisible by RAYS_COUNT without a remainder.
+# define WINDOW_HEIGHT 900
+# define MINIMAP_SIZE_DIVISER 4 // Makes minimap smaller
 
 typedef struct Point2D_int
 {
@@ -83,8 +76,9 @@ typedef enum StatusCode
 	SUCCESS_EXIT,
 } t_StatusCode;
 
-void	swap_int(int *a, int *b);
 void	error_exit(t_StatusCode status, char *str);
 void	success_exit(t_StatusCode status, char *str);
+size_t	get_time(void);
+void	swap_int(int *a, int *b);
 
 #endif

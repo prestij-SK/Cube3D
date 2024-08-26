@@ -41,13 +41,15 @@ static void	wall_textures_init(t_GameData *data)
 	}
 	data->east_wall.addr = mlx_get_data_addr(data->east_wall.img, &data->east_wall.bits_per_pixel,
 											 &data->east_wall.line_length, &data->east_wall.endian);
-}
 
+	data->view.ceiling_color = COLOR_CEILING;
+	data->view.floor_color = COLOR_FLOOR;
+}
 
 void	the_game(char *path)
 {
 	t_GameData		data;
-	t_Point2D		block_size;
+	t_Point2D		block_count;
 	t_StatusCode	status;
 	char			**map;
 
@@ -98,17 +100,19 @@ void	the_game(char *path)
 		++i;
 	}
 	
-	block_size.x = size_x;
-	block_size.y = size_y;
+	block_count.x = size_x;
+	block_count.y = size_y;
 	// Yura's function must called like this:
-	// map = map_parsing(&data, &block_size);   ->   char	**map_parsing(t_GameData *data, t_Point2D *block_size);
-	status = game_data_init(&data, map, block_size);
+	// map = map_parsing(&data, &block_count);   ->   char	**map_parsing(t_GameData *data, t_Point2D *block_count);
+	status = game_data_init(&data, map, block_count);
 	if (status != SUCCESS_EXIT)
 	{
 		game_data_delete(&data);
 		error_exit(status, "Game data init failed.");
 	}
 	wall_textures_init(&data); // Yura must do this in his function. But it must always be after game_data_init !
+	data.last_update_time = get_time();
+	input_reset_all(&data.input);
 	input_update_render(&data);
 	success_exit(status, "Game Ended");
 }
