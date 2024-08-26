@@ -11,10 +11,7 @@ static void	ray_cast_3d_walls(t_GameData *data, t_RCdata *ray_data, int ray, dou
 	double		line_offset;
 
 	ca = data->player.angle - ray_angle;
-	if (ca < 0)
-		ca += P4;
-	if (ca > P4)
-		ca -= P4;
+	ca = angle_wrapping(ca); // cos(ca) will help to fix fish eye
 	line_h = (data->minimap.block_size * FPV_HEIGHT) / (ray_data->dis_f * cos(ca));
 	double	ty_step = 32.0 / line_h;
 	double	ty_offset = 0;
@@ -114,10 +111,7 @@ void	ray_casting(t_GameData *data)
 	double		ray_angle; // in radians
 
 	ray_angle = data->player.angle + ONE_DEGREE_RADIAN * (SECTOR_ANGLE);
-	if (ray_angle < 0)
-		ray_angle += P4;
-	if (ray_angle > P4)
-		ray_angle -= P4;
+	ray_angle = angle_wrapping(ray_angle);
 	r = 0;
 	while (r < RAY_COUNT)
 	{
@@ -127,10 +121,7 @@ void	ray_casting(t_GameData *data)
 		draw_ray_line(data, &ray_data); // Draw the ray
 		ray_cast_3d_walls(data, &ray_data, r, ray_angle); // Draw the walls
 		ray_angle += RADIAN_STEP;
-		if (ray_angle < 0)
-			ray_angle += P4;
-		if (ray_angle > P4)
-			ray_angle -= P4;
+		ray_angle = angle_wrapping(ray_angle);
 		++r;
 	}
 }

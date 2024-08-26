@@ -2,7 +2,7 @@
 
 static void	wall_textures_init(t_GameData *data)
 {
-	data->north_wall.img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/game_fix/Linux/texture/bluestone.xpm",
+	data->north_wall.img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/the_game/Linux/texture/bluestone.xpm",
 												&data->north_wall.size.x, &data->north_wall.size.y);
 	if (!data->north_wall.img)
 	{
@@ -12,7 +12,7 @@ static void	wall_textures_init(t_GameData *data)
 	data->north_wall.addr = mlx_get_data_addr(data->north_wall.img, &data->north_wall.bits_per_pixel,
 											 &data->north_wall.line_length, &data->north_wall.endian);
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	data->south_wall.img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/game_fix/Linux/texture/greystone.xpm",
+	data->south_wall.img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/the_game/Linux/texture/greystone.xpm",
 												&data->south_wall.size.x, &data->south_wall.size.y);
 	if (!data->south_wall.img)
 	{
@@ -22,7 +22,7 @@ static void	wall_textures_init(t_GameData *data)
 	data->south_wall.addr = mlx_get_data_addr(data->south_wall.img, &data->south_wall.bits_per_pixel,
 											 &data->south_wall.line_length, &data->south_wall.endian);
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	data->west_wall.img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/game_fix/Linux/texture/redbrick.xpm",
+	data->west_wall.img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/the_game/Linux/texture/redbrick.xpm",
 												&data->west_wall.size.x, &data->west_wall.size.y);
 	if (!data->west_wall.img)
 	{
@@ -32,7 +32,7 @@ static void	wall_textures_init(t_GameData *data)
 	data->west_wall.addr = mlx_get_data_addr(data->west_wall.img, &data->west_wall.bits_per_pixel,
 											 &data->west_wall.line_length, &data->west_wall.endian);
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	data->east_wall.img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/game_fix/Linux/texture/colorstone.xpm",
+	data->east_wall.img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/the_game/Linux/texture/colorstone.xpm",
 												&data->east_wall.size.x, &data->east_wall.size.y);
 	if (!data->east_wall.img)
 	{

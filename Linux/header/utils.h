@@ -52,6 +52,7 @@ typedef struct RayCastUtils // This is for norminette
 	int my;
 	int block_power;
 	int block_size;
+	
 } t_RCutil;
 
 typedef struct RayCastFinalData // This is for norminette

@@ -36,5 +36,6 @@ typedef struct t_MathDataUtil
 double	get_radians(int angle);
 double	distance(double x1, double y1, double x2, double y2);
 int		intersection_point(t_Line2D_d *l1, t_Line2D_d *l2, double *x, double *y);
+double	angle_wrapping(double angle);
 
 # endif

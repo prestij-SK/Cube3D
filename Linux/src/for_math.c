@@ -10,6 +10,18 @@ double  distance(double x1, double y1, double x2, double y2)
     return (sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)));
 }
 
+double	angle_wrapping(double angle)
+{
+    double  new_angle;
+
+    new_angle = angle;
+	if (angle < 0)
+		new_angle += P4;
+	if (angle > P4)
+		new_angle -= P4;
+    return (new_angle);
+}
+
 int	intersection_point(t_Line2D_d *l1, t_Line2D_d *l2, double *x, double *y)
 {
 	t_MathUtil	util;

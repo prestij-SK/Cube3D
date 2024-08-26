@@ -69,5 +69,6 @@ void	render(t_GameData *data);
 void	ray_casting(t_GameData *data);
 void	horizontal_checking(t_GameData *data, t_RCdata *ray_data, double angle);
 void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle);
+void	adjust_ray_range(t_GameData *data, t_RCutil *util); // Wasn't needed
 
 #endif
