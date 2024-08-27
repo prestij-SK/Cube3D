@@ -10,16 +10,16 @@ static int	is_in_minimap_range(t_Minimap *minimap, int y, int x)
 	return (B_FALSE);
 }
 
-static void	set_xy_offset(t_UpdateUtil *util, double change_x, double change_y)
+static void	set_xy_offset(t_UpdateUtil *util, double change_x, double change_y, int gap)
 {
 	if (change_x < 0)
-		util->offset.x = -COLLISION_GAP;
+		util->offset.x = -gap;
 	else
-		util->offset.x = COLLISION_GAP;
+		util->offset.x = gap;
 	if (change_y < 0)
-		util->offset.y = -COLLISION_GAP;
+		util->offset.y = -gap;
 	else
-		util->offset.y = COLLISION_GAP;
+		util->offset.y = gap;
 }
 
 // strafing left
@@ -33,17 +33,19 @@ void	update_A(t_Player *player)
     double strafe_x = cos(strafe_angle) * PLAYER_MOVE_SPEED;
     double strafe_y = sin(strafe_angle) * PLAYER_MOVE_SPEED;
 
-    set_xy_offset(&util, strafe_x, strafe_y);
+    set_xy_offset(&util, strafe_x, strafe_y, COLLISION_GAP);
 	util.current.x = player->pos.x / player->minimap->block_size;
 	util.current.y = player->pos.y / player->minimap->block_size;
 	util.next.x = (player->pos.x + util.offset.x) / player->minimap->block_size;
 	util.next.y = (player->pos.y + util.offset.y) / player->minimap->block_size;
 	if (is_in_minimap_range(player->minimap, util.current.y, util.next.x))
 		if (player->minimap->map[util.current.y][util.next.x] != '1')
-			player->pos.x += (int)round(strafe_x);
+			if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x) == B_FALSE)
+				player->pos.x += (int)round(strafe_x);
 	if (is_in_minimap_range(player->minimap, util.next.y, util.current.x ))
-		if (player->minimap->map[util.next.y][util.current.x ] != '1')
-			player->pos.y += (int)round(strafe_y);
+		if (player->minimap->map[util.next.y][util.current.x] != '1')
+			if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.next.y, util.current.x) == B_FALSE)
+				player->pos.y += (int)round(strafe_y);
 }
 
 // strafing right
@@ -57,17 +59,19 @@ void	update_D(t_Player *player)
     double strafe_x = cos(strafe_angle) * PLAYER_MOVE_SPEED;
     double strafe_y = sin(strafe_angle) * PLAYER_MOVE_SPEED;
 
-	set_xy_offset(&util, strafe_x, strafe_y);
+	set_xy_offset(&util, strafe_x, strafe_y, COLLISION_GAP);
 	util.current.x = player->pos.x / player->minimap->block_size;
 	util.current.y = player->pos.y / player->minimap->block_size;
 	util.next.x = (player->pos.x + util.offset.x) / player->minimap->block_size;
 	util.next.y = (player->pos.y + util.offset.y) / player->minimap->block_size;
 	if (is_in_minimap_range(player->minimap, util.current.y, util.next.x))
 		if (player->minimap->map[util.current.y][util.next.x] != '1')
-			player->pos.x += (int)round(strafe_x);
+			if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x) == B_FALSE)
+				player->pos.x += (int)round(strafe_x);
 	if (is_in_minimap_range(player->minimap, util.next.y, util.current.x ))
-		if (player->minimap->map[util.next.y][util.current.x ] != '1')
-			player->pos.y += (int)round(strafe_y);
+		if (player->minimap->map[util.next.y][util.current.x] != '1')
+			if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.next.y, util.current.x) == B_FALSE)
+				player->pos.y += (int)round(strafe_y);
 }
 
 // going forward
@@ -75,17 +79,19 @@ void	update_W(t_Player *player)
 {
 	t_UpdateUtil	util;
 
-	set_xy_offset(&util, player->delta.x, player->delta.y);
+	set_xy_offset(&util, player->delta.x, player->delta.y, COLLISION_GAP);
 	util.current.x = player->pos.x / player->minimap->block_size;
 	util.current.y = player->pos.y / player->minimap->block_size;
 	util.next.x = (player->pos.x + util.offset.x) / player->minimap->block_size;
 	util.next.y = (player->pos.y + util.offset.y) / player->minimap->block_size;
 	if (is_in_minimap_range(player->minimap, util.current.y, util.next.x))
 		if (player->minimap->map[util.current.y][util.next.x] != '1')
-			player->pos.x += (int)round(player->delta.x);
+			if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x) == B_FALSE)
+				player->pos.x += (int)round(player->delta.x);
 	if (is_in_minimap_range(player->minimap, util.next.y, util.current.x ))
-		if (player->minimap->map[util.next.y][util.current.x ] != '1')
-			player->pos.y += (int)round(player->delta.y);
+		if (player->minimap->map[util.next.y][util.current.x] != '1')
+			if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.next.y, util.current.x) == B_FALSE)
+				player->pos.y += (int)round(player->delta.y);
 }
 
 // going back
@@ -93,23 +99,56 @@ void	update_S(t_Player *player)
 {
 	t_UpdateUtil	util;
 
-	set_xy_offset(&util, player->delta.x, player->delta.y);
+	set_xy_offset(&util, player->delta.x, player->delta.y, COLLISION_GAP);
 	util.current.x = player->pos.x / player->minimap->block_size;
 	util.current.y = player->pos.y / player->minimap->block_size;
 	util.next.x = (player->pos.x - util.offset.x) / player->minimap->block_size;
 	util.next.y = (player->pos.y - util.offset.y) / player->minimap->block_size;
 	if (is_in_minimap_range(player->minimap, util.current.y, util.next.x))
 		if (player->minimap->map[util.current.y][util.next.x] != '1')
-			player->pos.x -= (int)round(player->delta.x);
+			if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x) == B_FALSE)
+				player->pos.x -= (int)round(player->delta.x);
 	if (is_in_minimap_range(player->minimap, util.next.y, util.current.x ))
-		if (player->minimap->map[util.next.y][util.current.x ] != '1')
-			player->pos.y -= (int)round(player->delta.y);
+		if (player->minimap->map[util.next.y][util.current.x] != '1')
+			if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.next.y, util.current.x) == B_FALSE)
+				player->pos.y -= (int)round(player->delta.y);
 }
 
 // show big map
 void	update_M(t_Minimap *minimap, short val)
 {
 	minimap->map_draw_flag = val;
+}
+
+// Do action
+void	update_E(t_GameData *data, t_Player *player)
+{
+	t_UpdateUtil	util;
+
+	if (data->input.e_checked == B_TRUE)
+		return ;
+	// printf("here\n");
+	set_xy_offset(&util, player->delta.x, player->delta.y, DOOR_ACTIVATION_GAP);
+	util.current.x = player->pos.x / player->minimap->block_size;
+	util.current.y = player->pos.y / player->minimap->block_size;
+	util.next.x = (player->pos.x + util.offset.x) / player->minimap->block_size;
+	util.next.y = (player->pos.y + util.offset.y) / player->minimap->block_size;
+	if (is_in_minimap_range(player->minimap, util.current.y, util.next.x))
+		if (player->minimap->map[util.current.y][util.next.x] == 'D')
+		{
+			if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x) == B_TRUE)
+				door_open(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x);
+			else
+				door_close(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x);
+			return ;
+		}
+	if (is_in_minimap_range(player->minimap, util.next.y, util.current.x ))
+		if (player->minimap->map[util.next.y][util.current.x] == 'D')
+			if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.next.y, util.current.x) == B_TRUE)
+				if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x) == B_TRUE)
+				door_open(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x);
+			else
+				door_close(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x);
 }
 
 // rotating left
@@ -152,6 +191,11 @@ void	update_check(t_GameData *data)
 		update_M(&data->minimap, B_TRUE);
 	else
 		update_M(&data->minimap, B_FALSE);
+	if (data->input.e == B_TRUE)
+	{
+		update_E(data, &data->player);
+		data->input.e_checked = B_TRUE;
+	}
 	if (data->input.arrow_left == B_TRUE)
 		update_Arrow_Left(&data->player);
 	if (data->input.arrow_right == B_TRUE)

@@ -15,6 +15,7 @@
 # define KEY_D 100
 # define KEY_S 115
 # define KEY_M 109
+# define KEY_E 101
 # define KEY_ARROR_LEFT 65361
 # define KEY_ARROR_RIGHT 65363
 
@@ -25,6 +26,8 @@ typedef struct InputData
 	short	a;
 	short	d;
 	short	m;
+	short	e;
+	short	e_checked; // E is action button, to avoid spams we will need this
 	short	esc;
 	short	arrow_left;
 	short	arrow_right;

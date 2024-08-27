@@ -43,16 +43,21 @@ void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle)
 			{
 				if (data->minimap.map[util.my][util.mx] == '1')
 					break ;
-				else
+				if (data->minimap.map[util.my][util.mx] == 'D')
 				{
-					util.rx += util.ox;
-					util.ry += util.oy;
+					if (door_is_closed(data->minimap.doors, data->minimap.door_count, util.my, util.mx) == B_TRUE)
+					{
+						ray_data->v_closed_door = B_TRUE;
+						break ;
+					}
 				}
+				util.rx += util.ox;
+				util.ry += util.oy;
 			}
 			++blocks;
 		}
 	}
-	// adjust_ray_range(data, &util);
+	// adjust_ray_range(data, &util); // turn this on if you want to see only vertical ray
 	ray_data->ver.x = util.rx;
 	ray_data->ver.y = util.ry;
 	ray_data->dis_v = distance(util.px, util.py, util.rx, util.ry);

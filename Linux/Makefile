@@ -9,6 +9,7 @@ OBJS_DIR = obj/
 HEADERS_DIR = header/
 
 HEADERS = color.h \
+		  door.h \
 		  draw_shape.h \
 		  first_person_view.h \
 		  for_math.h \
@@ -19,7 +20,8 @@ HEADERS = color.h \
 		  the_game.h \
 		  utils.h \
 
-SRCS_NAME = draw_shape.c \
+SRCS_NAME = door.c \
+			draw_shape.c \
 			first_person_view.c \
 			for_math.c \
 			game_init.c \

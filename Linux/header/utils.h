@@ -66,13 +66,15 @@ typedef struct RayCastUtils // This is for norminette
 
 typedef struct RayCastFinalData // This is for norminette
 {
-	double		dis_f;	 // Shortest distance from Horizontal and Vertical
 	t_Point2D_d	ray_f; // Final ray
-	double 		dis_h; // Horizontal distance
 	t_Point2D_d	hor; // Horizontal Ray
-	double 		dis_v; // Vertical distance
 	t_Point2D_d	ver; // Vertical Ray
-	short		closed_door; // Information if ray hits Door
+	double		dis_f; // Shortest distance from Horizontal and Vertical
+	double 		dis_h; // Horizontal distance
+	double 		dis_v; // Vertical distance
+	short		f_closed_door; // Final information about closed door
+	short		h_closed_door; // Information if horizontal Door is closed
+	short		v_closed_door; // Information if vertical Door is closed
 }	t_RCdata;
 
 typedef struct GameUpdateUtil // This is for norminette
@@ -91,6 +93,7 @@ typedef enum StatusCode
 	MLX_WINDOW_ERROR,
 	IMAGE_ERROR,
 	PLAYER_LOCATION_ERROR,
+	DOOR_NUMBER_ERROR,
 	SUCCESS_EXIT,
 } t_StatusCode;
 

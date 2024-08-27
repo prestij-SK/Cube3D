@@ -22,6 +22,8 @@ void	error_exit(t_StatusCode status, char *str)
 		printf("MLX Image");
 	else if (status == PLAYER_LOCATION_ERROR)
 		printf("Player Location");
+	else if (status == DOOR_NUMBER_ERROR)
+		printf("Doors Count");
 	if (str)
 		printf("\n%s\n", str);
 	exit(EXIT_FAILURE);

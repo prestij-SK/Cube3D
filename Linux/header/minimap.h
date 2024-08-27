@@ -5,11 +5,12 @@
 # include "utils.h"
 # include "color.h"
 # include "draw_shape.h"
+# include "door.h"
 
 # define MINIMAP_NAME "Minimap"
 # define MINIMAP_POSITION_X 0
 # define MINIMAP_POSITION_Y 0
-# define MINIMAP_BLOCK_SIZE_POWER 5 // for 2^5 = 32
+# define MINIMAP_BLOCK_SIZE_POWER 6 // for 2^6 = 64
 
 typedef struct MinimapData
 {
@@ -22,6 +23,8 @@ typedef struct MinimapData
 	int			wall_color; // This will be changed in 4 colors, north, south, easy, west wall colors
 	int			floor_color;
 	short		map_draw_flag; // determines if small or origin (big) map must be drawn
+	t_Door		doors[DOOR_COUNT];
+	int			door_count; 
 }	t_Minimap;
 
 t_StatusCode	minimap_init(t_Minimap *minimap, void *mlx, char **map, t_Point2D block_count);

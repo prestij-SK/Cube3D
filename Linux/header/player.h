@@ -10,8 +10,8 @@
 
 # define PLAYER_NAME "ABUBA"
 # define PLAYER_ANGLE_DEFAULT 270 // North
-# define PLAYER_ROTATE_SPEED 0.08 // in Radians
-# define PLAYER_MOVE_SPEED 3
+# define PLAYER_ROTATE_SPEED 0.05 // in Radians
+# define PLAYER_MOVE_SPEED 5
 
 typedef struct PlayerData
 {

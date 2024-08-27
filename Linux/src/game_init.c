@@ -12,6 +12,7 @@ void	game_data_delete(t_GameData *data)
 	image_delete(&data->south_wall, data->mlx);
 	image_delete(&data->west_wall, data->mlx);
 	image_delete(&data->east_wall, data->mlx);
+	image_delete(&data->door_tex, data->mlx);
 	if (data->mlx && data->mlx_window)
 		mlx_destroy_window(data->mlx, data->mlx_window);
 	if (data->mlx)
@@ -84,6 +85,9 @@ t_StatusCode	game_data_init(t_GameData *data, char **map, t_Point2D block_count)
 	if (status != SUCCESS_EXIT)
 		return (status);
 	status = fp_view_init(&data->view, data->mlx);
+	if (status != SUCCESS_EXIT)
+		return (status);
+	status = doors_data_init(data->minimap.doors, &data->minimap.door_count, data->minimap.map, data->minimap.block_count);
 	if (status != SUCCESS_EXIT)
 		return (status);
 	return (SUCCESS_EXIT);

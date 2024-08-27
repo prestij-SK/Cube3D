@@ -52,11 +52,15 @@ void	set_shortest_ray_dis(t_RCdata *ray_data)
 		ray_data->dis_f = ray_data->dis_v;
 		ray_data->ray_f.x = ray_data->ver.x;
 		ray_data->ray_f.y = ray_data->ver.y;
+		if (ray_data->v_closed_door == B_TRUE)
+			ray_data->f_closed_door = B_TRUE;
 	}
 	else
 	{
 		ray_data->dis_f = ray_data->dis_h;
 		ray_data->ray_f.x = ray_data->hor.x;
 		ray_data->ray_f.y = ray_data->hor.y;
+		if (ray_data->h_closed_door == B_TRUE)
+			ray_data->f_closed_door = B_TRUE;
 	}
 }

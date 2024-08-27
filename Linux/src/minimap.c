@@ -75,7 +75,12 @@ void	minimap_draw_origin(t_Minimap *minimap)
 			if (minimap->map[i][j] == '1')
 				draw_rectangle_filled(&minimap->origin_image, pos, size, minimap->wall_color);
 			else if (minimap->map[i][j] == 'D')
-				draw_rectangle_filled(&minimap->origin_image, pos, size, COLOR_DOOR);
+			{
+				if (door_is_closed(minimap->doors, minimap->door_count, i, j) == B_TRUE)
+					draw_rectangle_filled(&minimap->origin_image, pos, size, COLOR_RED);
+				else
+					draw_rectangle_filled(&minimap->origin_image, pos, size, COLOR_GREEN);
+			}
 			else // if (minimap->map[i][j] == '0') // change this to else
 				draw_rectangle_filled(&minimap->origin_image, pos, size, minimap->floor_color);
 			++j;
@@ -107,7 +112,12 @@ void	minimap_draw_small(t_Minimap *minimap)
 			if (minimap->map[i][j] == '1')
 				draw_rectangle_filled(&minimap->small_image, pos, size, minimap->wall_color);
 			else if (minimap->map[i][j] == 'D')
-				draw_rectangle_filled(&minimap->small_image, pos, size, COLOR_DOOR);
+			{
+				if (door_is_closed(minimap->doors, minimap->door_count, i, j) == B_TRUE)
+					draw_rectangle_filled(&minimap->small_image, pos, size, COLOR_RED);
+				else
+					draw_rectangle_filled(&minimap->small_image, pos, size, COLOR_GREEN);
+			}
 			else // if (minimap->map[i][j] == '0') // change this to else
 				draw_rectangle_filled(&minimap->small_image, pos, size, minimap->floor_color);
 			++j;

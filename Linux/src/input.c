@@ -9,6 +9,8 @@ void	input_reset_all(t_Input *input)
 	input->a = B_FALSE;
 	input->d = B_FALSE;
 	input->m = B_FALSE;
+	input->e = B_FALSE;
+	input->e_checked = B_FALSE;
 	input->esc = B_FALSE;
 	input->arrow_left = B_FALSE;
 	input->arrow_right = B_FALSE;
@@ -54,6 +56,8 @@ int	input_key_press(int key, t_Input *input)
 		input->d = B_TRUE;
 	else if (key == KEY_M)
 		input->m = B_TRUE;
+	else if (key == KEY_E)
+		input->e = B_TRUE;
 	else if (key == KEY_ESC)
 		input->esc = B_TRUE;
 	else if (key == KEY_ARROR_LEFT)
@@ -78,6 +82,11 @@ int	input_key_release(int key, t_Input *input)
 		input->d = B_FALSE;
 	else if (key == KEY_M)
 		input->m = B_FALSE;
+	else if (key == KEY_E)
+	{
+		input->e = B_FALSE;
+		input->e_checked = B_FALSE;
+	}
 	else if (key == KEY_ESC)
 		input->esc = B_FALSE;
 	else if (key == KEY_ARROR_LEFT)

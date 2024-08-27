@@ -32,6 +32,7 @@
 		"stdexcept": "c",
 		"tuple": "c",
 		"type_traits": "c",
-		"new": "c"
+		"new": "c",
+		"door.h": "c"
 	}
 }

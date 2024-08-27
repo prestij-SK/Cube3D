@@ -41,7 +41,17 @@ static void	wall_textures_init(t_GameData *data)
 	}
 	data->east_wall.addr = mlx_get_data_addr(data->east_wall.img, &data->east_wall.bits_per_pixel,
 											 &data->east_wall.line_length, &data->east_wall.endian);
-
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	data->door_tex.img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/the_game/Linux/texture/gate.xpm",
+											   &data->door_tex.size.x, &data->door_tex.size.y);
+	if (!data->door_tex.img)
+	{
+		fprintf(stderr, "Error: Failed to load texture 'gate.xpm'\n");
+		exit(1);
+	}
+	data->door_tex.addr = mlx_get_data_addr(data->door_tex.img, &data->door_tex.bits_per_pixel,
+											&data->door_tex.line_length, &data->door_tex.endian);
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	data->view.ceiling_color = COLOR_CEILING;
 	data->view.floor_color = COLOR_FLOOR;
 }
@@ -77,14 +87,14 @@ void	the_game(char *path)
 	char	other_map[10][9] =
 	{
 		{'0', '1', '1', '1', '1', '1', '1', '1', '0'},
-		{'1', '0', '1', '0', '0', '0', '0', '0', '1'},
+		{'1', '0', '1', '0', '0', 'D', '0', '0', '1'},
 		{'1', '0', 'D', '0', '0', '1', '0', '0', '1'},
-		{'1', '0', '1', '0', '0', '0', '1', '0', '1'},
+		{'1', '0', 'D', '0', '0', '0', '1', '0', '1'},
 		{'1', '0', '1', '1', '1', '0', '0', '1', '1'},
 		{'1', '0', '0', '0', '0', '0', '0', '0', '1'},
 		{'1', '0', '0', '0', '0', '0', '0', '0', '1'},
-		{'1', '0', '0', 'P', '0', '0', '1', '0', '1'},
-		{'1', '1', '0', '0', '0', '0', '0', '0', '1'},
+		{'1', '0', '0', 'P', '0', '0', '1', '1', '1'},
+		{'1', '1', '0', '0', '0', '0', 'D', '0', '1'},
 		{'0', '1', '1', '1', '1', '1', '1', '1', '0'}
 	};
 

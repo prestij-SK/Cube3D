@@ -18,6 +18,11 @@ static void	set_wall_texture(t_GameData *data, t_RCdata *ray_data, double ray_an
 		else // North
 			data->tex_p = &data->north_wall;
 	}
+	// printf("_%d_\n", ray_data->f_closed_door);
+	if (ray_data->f_closed_door == B_TRUE)
+	{
+		data->tex_p = &data->door_tex;
+	}
 }
 
 static void	texture_mapping(t_GameData *data, t_RCdata *ray_data, t_RCutil *util, double ray_angle)
@@ -109,6 +114,9 @@ void	ray_casting(t_GameData *data)
 	r = 0;
 	while (r < RAY_COUNT)
 	{
+		ray_data.f_closed_door = B_FALSE;
+		ray_data.h_closed_door = B_FALSE;
+		ray_data.v_closed_door = B_FALSE;
 		horizontal_checking(data, &ray_data, ray_angle);
 		vertical_checking(data, &ray_data, ray_angle);
 		set_shortest_ray_dis(&ray_data); // Final Line
