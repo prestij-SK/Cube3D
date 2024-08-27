@@ -36,7 +36,9 @@ void	input_update_render(t_GameData *data)
 		return ;
 	mlx_hook(data->mlx_window, EVENT_KEYDOWN, 1L<<0, input_key_press, &data->input);
 	mlx_hook(data->mlx_window, EVENT_KEYUP, 1L<<1, input_key_release, &data->input);
+	mlx_hook(data->mlx_window, EVENT_MOUSEMOVE, 1L<<6, input_mouse_move, &data->input);
 	mlx_hook(data->mlx_window, EVENT_DESTROY, 0, close_game, data);
+	mlx_mouse_hook(data->mlx_window, input_mouse_button, &data->input);
 	mlx_loop_hook(data->mlx, update, data);
 	mlx_loop(data->mlx);
 }

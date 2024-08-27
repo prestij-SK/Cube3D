@@ -14,6 +14,12 @@ void	input_reset_all(t_Input *input)
 	input->esc = B_FALSE;
 	input->arrow_left = B_FALSE;
 	input->arrow_right = B_FALSE;
+	input->mouse_prev_pos.x = -1;
+	input->mouse_prev_pos.y = -1;
+	input->mouse_move = B_FALSE;
+	input->mouse_curr_pos.x = WINDOW_WIDTH / 2;
+	input->mouse_curr_pos.y = WINDOW_HEIGHT / 2;
+	input->mouse_left = B_FALSE;
 }
 
 // int	input_key_press(int key, t_GameData *data)
@@ -93,5 +99,32 @@ int	input_key_release(int key, t_Input *input)
 		input->arrow_left = B_FALSE;
 	else if (key == KEY_ARROR_RIGHT)
 		input->arrow_right = B_FALSE;
+	return (B_TRUE);
+}
+
+int	input_mouse_move(int x, int y, t_Input *input)
+{
+	// printf("x: %d     y: %d\n", x, y);
+	if (!input)
+		return (B_FALSE);
+	input->mouse_curr_pos.x = x;
+	input->mouse_curr_pos.y = y;
+	input->mouse_move = B_TRUE;
+	return (B_TRUE);
+}
+
+int	input_mouse_button(int button, int x, int y, t_Input *input)
+{
+	(void) x;
+	(void) y;
+	// printf("%d\n", button);
+	if (!input)
+		return (B_FALSE);
+	if (button == LEFT_CLICK)
+		input->mouse_left = B_TRUE;
+	// else if (button == SCROLL_UP)
+	// 	update_mouse_scroll_up(fdf_data);
+	// else if (button == SCROLL_DOWN)
+	// 	update_mouse_scroll_down(fdf_data);
 	return (B_TRUE);
 }

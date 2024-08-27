@@ -59,8 +59,8 @@ void	update_A(t_Player *player);
 void	update_D(t_Player *player);
 void	update_W(t_Player *player);
 void	update_S(t_Player *player);
-void	update_Arrow_Left(t_Player *player);
-void	update_Arrow_Right(t_Player *player);
+void	update_Arrow_Left(t_Player *player, double rotate_speed);
+void	update_Arrow_Right(t_Player *player, double rotate_speed);
 void	update_check(t_GameData *data);
 
 /*

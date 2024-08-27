@@ -90,5 +90,6 @@ t_StatusCode	game_data_init(t_GameData *data, char **map, t_Point2D block_count)
 	status = doors_data_init(data->minimap.doors, &data->minimap.door_count, data->minimap.map, data->minimap.block_count);
 	if (status != SUCCESS_EXIT)
 		return (status);
+	input_reset_all(&data->input);
 	return (SUCCESS_EXIT);
 }

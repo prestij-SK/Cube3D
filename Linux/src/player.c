@@ -20,6 +20,9 @@ t_StatusCode	player_init(t_Player *player, t_Minimap *minimap, t_Point2D block_p
 	player->delta.x = cos(player->angle) * PLAYER_MOVE_SPEED;
 	player->delta.y = sin(player->angle) * PLAYER_MOVE_SPEED;
 	player->minimap = minimap;
+	player->move_speed = PLAYER_MOVE_SPEED;
+	player->rotate_speed = PLAYER_ROTATE_SPEED;
+	player->mouse_sens = PLAYER_MOUSE_SENSITIVITY;
 	return (SUCCESS_EXIT);
 }
 
