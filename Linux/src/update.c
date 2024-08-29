@@ -220,6 +220,16 @@ void	update_mouse_move(t_GameData *data, double rotate_speed)
 	data->input.mouse_move = B_FALSE;
 }
 
+void	update_mouse_left_click(t_GameData *data)
+{
+	if (!data)
+		return ;
+	if (data->anim_start == B_TRUE)
+		return ;
+	data->anim_start = B_TRUE;
+	data->anim_start_time = get_time();
+}
+
 void	update_check(t_GameData *data)
 {
 	if (!data)
@@ -247,4 +257,6 @@ void	update_check(t_GameData *data)
 		update_Arrow_Left(&data->player, data->player.rotate_speed);
 	if (data->input.arrow_right == B_TRUE)
 		update_Arrow_Right(&data->player, data->player.rotate_speed);
+	if (data->input.mouse_left == B_TRUE)
+		update_mouse_left_click(data);
 }

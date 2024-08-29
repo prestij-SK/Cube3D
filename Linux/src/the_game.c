@@ -1,6 +1,60 @@
 #include "../header/the_game.h"
 
-static void	wall_textures_init(t_GameData *data)
+static void	gun_textures_init(t_GameData *data)
+{
+	data->gun[0].img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/the_game/Linux/texture/gun_00.xpm",
+												&data->gun[0].size.x, &data->gun[0].size.y);
+	if (!data->gun[0].img)
+	{
+		fprintf(stderr, "Error: Failed to load texture 'gun_00.xpm'\n");
+		exit(1);
+	}
+	data->gun[0].addr = mlx_get_data_addr(data->gun[0].img, &data->gun[0].bits_per_pixel,
+											 &data->gun[0].line_length, &data->gun[0].endian);
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	data->gun[1].img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/the_game/Linux/texture/gun_01.xpm",
+												&data->gun[1].size.x, &data->gun[0].size.y);
+	if (!data->gun[1].img)
+	{
+		fprintf(stderr, "Error: Failed to load texture 'gun_01.xpm'\n");
+		exit(1);
+	}
+	data->gun[1].addr = mlx_get_data_addr(data->gun[1].img, &data->gun[1].bits_per_pixel,
+											 &data->gun[1].line_length, &data->gun[1].endian);
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	data->gun[2].img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/the_game/Linux/texture/gun_02.xpm",
+												&data->gun[2].size.x, &data->gun[2].size.y);
+	if (!data->gun[2].img)
+	{
+		fprintf(stderr, "Error: Failed to load texture 'gun_02.xpm'\n");
+		exit(1);
+	}
+	data->gun[2].addr = mlx_get_data_addr(data->gun[2].img, &data->gun[2].bits_per_pixel,
+											 &data->gun[2].line_length, &data->gun[2].endian);
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	data->gun[3].img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/the_game/Linux/texture/gun_03.xpm",
+												&data->gun[3].size.x, &data->gun[3].size.y);
+	if (!data->gun[3].img)
+	{
+		fprintf(stderr, "Error: Failed to load texture 'gun_03.xpm'\n");
+		exit(1);
+	}
+	data->gun[3].addr = mlx_get_data_addr(data->gun[3].img, &data->gun[3].bits_per_pixel,
+											 &data->gun[3].line_length, &data->gun[3].endian);
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	data->gun[4].img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/the_game/Linux/texture/gun_04.xpm",
+												&data->gun[4].size.x, &data->gun[4].size.y);
+	if (!data->gun[4].img)
+	{
+		fprintf(stderr, "Error: Failed to load texture 'gun_04.xpm'\n");
+		exit(1);
+	}
+	data->gun[4].addr = mlx_get_data_addr(data->gun[4].img, &data->gun[4].bits_per_pixel,
+											 &data->gun[4].line_length, &data->gun[4].endian);
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+}
+
+static void wall_textures_init(t_GameData *data)
 {
 	data->north_wall.img = mlx_xpm_file_to_image(data->mlx, "/home/steve/Desktop/the_game/Linux/texture/bluestone.xpm",
 												&data->north_wall.size.x, &data->north_wall.size.y);
@@ -121,6 +175,8 @@ void	the_game(char *path)
 		error_exit(status, "Game data init failed.");
 	}
 	wall_textures_init(&data); // Yura must do this in his function. But it must always be after game_data_init !
+	gun_textures_init(&data);
+	data.anim_start = B_FALSE;
 	data.last_update_time = get_time();
 	input_reset_all(&data.input);
 	input_update_render(&data);

@@ -20,6 +20,8 @@
 # define UPDATE_60FPS_INTERVAL 16 // 60 fps in miliseconds. 1000 / 60
 # define COLLISION_GAP 20
 # define DOOR_ACTIVATION_GAP 60
+# define GUN_TEXTURES_COUNT 5
+# define GUN_SWITCH_FRAME_TIME 80
 
 // Ray casting options
 # define RADIAN_STEP 0.0021816616 //  (1 radian / 4) will be used to increment sector degree which starts from -30
@@ -38,6 +40,9 @@ typedef struct MainGameData
 	t_Image		west_wall;
 	t_Image		east_wall;
 	t_Image		door_tex;
+	t_Image		gun[GUN_TEXTURES_COUNT];
+	int			anim_start;
+	size_t		anim_start_time;
 	t_Image		*tex_p; // changable texture pointer
 	t_Input		input;
 	size_t		last_update_time;
@@ -66,6 +71,7 @@ void	update_check(t_GameData *data);
 /*
 	render functions
 */
+void	render_image_pos(t_GameData *data, t_Image *image, int x, int y);
 void	render_image(t_GameData *data, t_Image *image);
 void	render(t_GameData *data);
 

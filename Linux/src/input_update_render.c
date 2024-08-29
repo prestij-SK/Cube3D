@@ -18,7 +18,6 @@ static int	update(t_GameData *data)
 		return (B_FALSE);
 	current_update_time = get_time();
 	elapsed_time = current_update_time - data->last_update_time;
-
 	if (elapsed_time >= UPDATE_60FPS_INTERVAL)
 	{
 		if (data->input.esc == B_TRUE)
