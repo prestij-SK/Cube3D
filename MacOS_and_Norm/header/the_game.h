@@ -1,7 +1,13 @@
 #ifndef THE_GAME_H
 # define THE_GAME_H
 
-# include "../mlx/mlx.h"
+# ifdef __linux__
+#  define UNAME		"Linux"
+# include "../mlx_linux/mlx.h"
+# else
+#  define UNAME		"Darwin"
+# include "../mlx_mac/mlx.h"
+# endif
 
 # include "utils.h"
 # include "image.h"
