@@ -5,7 +5,7 @@ ifeq ($(UNAME),Darwin)
 	MLX_DIR = mlx_mac
 	LDFLAGS = -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit
 else
-	MLX_DIR = mlx_mac
+	MLX_DIR = mlx_linux
 	LDFLAGS = -L./${MLX_DIR} -lmlx -lXext -lX11 -lm -lbsd
 endif
 
@@ -48,28 +48,28 @@ SRCS_NAME = door.c \
 			update.c \
 			utils.c \
 			vertical_ray.c \
-			parsing_utils.c \
-			parsing.c \
-			ft_split.c \
-			get_next_line.c \
-			parsing_basic_utils.c \
-			read_file.c \
-			get_textures_and_colors.c \
-			save_textures.c \
-			parsing_memory_management.c \
-			validation.c \
-			resolve_error.c \
-			save_colors.c \
-			debug.c \
-			libft.c \
-			validate_map_chars.c \
-			map_parsing_utils.c \
-			validate_map_scheme.c
+			Y_parsing_utils.c \
+			Y_parsing.c \
+			Y_ft_split.c \
+			Y_get_next_line.c \
+			Y_parsing_basic_utils.c \
+			Y_read_file.c \
+			Y_get_textures_and_colors.c \
+			Y_save_textures.c \
+			Y_parsing_memory_management.c \
+			Y_validation.c \
+			Y_resolve_error.c \
+			Y_save_colors.c \
+			Y_debug.c \
+			Y_libft.c \
+			Y_validate_map_chars.c \
+			Y_map_parsing_utils.c \
+			Y_validate_map_scheme.c
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))
 OBJS_NAME = $(SRCS_NAME:.c=.o)
 
-all: $(NAME)
+all: create_obj_folder $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
@@ -79,10 +79,14 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(addprefix $(HEADERS_DIR), $(HEADERS)) Makefile
 
 clean:
 	$(RM) $(OBJS)
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: clean all
 
-.PHONY: all clean fclean re
+create_obj_folder:
+	@mkdir -p $(OBJS_DIR)
+
+.PHONY: all clean fclean re create_obj_folder
