@@ -1,82 +1,76 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Y_parsing_utils.c                                    :+:      :+:    :+:   */
+/*   Y_parsing_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/30 12:55:46 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/08/30 14:13:36 by yuhayrap         ###   ########.fr       */
+/*   Created: 2024/08/30 14:03:52 by yuhayrap          #+#    #+#             */
+/*   Updated: 2024/08/31 18:49:14 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/parsing.h"
 #include "../header/the_game.h"
+#include "../header/parsing.h"
 
-static int	is_in_set(char const ch, char const *set)
+char	*err_message(char *message)
 {
-    int	i;
-
-    i = 0;
-    while (set[i])
-    {
-        if (set[i] == ch)
-            return (1);
-        i++;
-    }
-    return (0);
+	write(2, "Error\n", 6);
+	write(2, message, ft_strlen(message));
+	system("leaks the_game");
+	exit(1);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+int	is_empty(char *str)
 {
-    char	*ch;
-    int		i;
-    int		len;
+	int	i;
 
-    if (s1 == NULL)
-        return (NULL);
-    i = 0;
-    while (s1[i] && is_in_set(s1[i], set))
-        i++;
-    len = ft_strlen((char *)s1) - 1;
-    while (len > 0 && is_in_set(s1[len], set))
-        len--;
-    if (len < i)
-    {
-        ch = (char *)malloc(1);
-        ch[0] = '\0';
-        return (ch);
-    }
-    ch = (char *)malloc(sizeof(char) * (len - i + 2));
-    if (ch == NULL)
-        return (NULL);
-    ft_strlcpy(ch, &s1[i], len - i + 2);
-    return (ch);
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_strchr(" \t\r\v\f\n", str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-char	*ft_strtrim_end(char const *s1, char const *set)
+int	arr_len(char **arr)
 {
-    char	*ch;
-    int		i;
-    int		len;
+	int	i;
 
-    if (s1 == NULL)
-        return (NULL);
-    i = 0;
-    len = ft_strlen((char *)s1) - 1;
-    while (len > 0 && is_in_set(s1[len], set) == 1)
-        len--;
-    if (len < i)
-        return (ft_strdup(""));
-    ch = (char *)malloc(sizeof(char) * (len + 3));
-    if (ch == NULL)
-        return (NULL);
-    while (i <= len)
-    {
-        ch[i] = s1[i];
-        i++;
-    }
-    ch[len + 1] = '\n';
-    ch[len + 2] = '\0';
-    return (ch);
+	i = 0;
+	if (!arr || !arr[0])
+		return (i);
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strjoin_and_free(char *left_str, char *buff)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	if (!left_str)
+	{
+		left_str = (char *)malloc(1 * sizeof(char));
+		left_str[0] = '\0';
+	}
+	if (!left_str || !buff)
+		return (NULL);
+	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
+	j = 0;
+	if (left_str)
+		while (left_str[++i] != '\0')
+			str[i] = left_str[i];
+	while (buff[j] != '\0')
+		str[i++] = buff[j++];
+	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
+	free(left_str);
+	return (str);
 }

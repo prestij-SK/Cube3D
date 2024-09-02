@@ -48,11 +48,10 @@ SRCS_NAME = door.c \
 			update.c \
 			utils.c \
 			vertical_ray.c \
-			Y_parsing_utils.c \
 			Y_parsing.c \
 			Y_ft_split.c \
 			Y_get_next_line.c \
-			Y_parsing_basic_utils.c \
+			Y_parsing_utils.c \
 			Y_read_file.c \
 			Y_get_textures_and_colors.c \
 			Y_save_textures.c \
@@ -63,6 +62,7 @@ SRCS_NAME = door.c \
 			Y_debug.c \
 			Y_libft.c \
 			Y_libft2.c \
+			Y_libft3.c \
 			Y_validate_map_chars.c \
 			Y_map_parsing_utils.c \
 			Y_validate_map_scheme.c

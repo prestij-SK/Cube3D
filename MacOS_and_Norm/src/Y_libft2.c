@@ -6,27 +6,6 @@ int	ft_isdigit(int c)
     return (c >= 48 && c <= 57);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-    size_t	i;
-    size_t	j;
-
-    i = 0;
-    j = 0;
-    while (src[j])
-        j++;
-    if (dstsize != 0)
-    {
-        while (src[i] && (i < (dstsize - 1)))
-        {
-            dst[i] = src[i];
-            i++;
-        }
-        dst[i] = '\0';
-    }
-    return (j);
-}
-
 void	ft_putchar_fd(char c, int fd)
 {
     write(fd, &c, 1);
