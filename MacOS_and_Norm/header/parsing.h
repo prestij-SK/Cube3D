@@ -108,6 +108,10 @@ int				ft_atoi(const char *str);
 int				is_empty(char *str);
 int				arr_len(char **arr);
 int				ft_isdigit(int c);
+void			ft_putnbr_fd(int n, int fd);
+void			ft_putstr_fd(char *s, int fd);
+void			ft_putendl_fd(char *s, int fd);
+void			ft_putchar_fd(char c, int fd);
 
 t_parse			parsing(char *path);
 char			**read_file(int fd);

@@ -62,6 +62,7 @@ SRCS_NAME = door.c \
 			Y_save_colors.c \
 			Y_debug.c \
 			Y_libft.c \
+			Y_libft2.c \
 			Y_validate_map_chars.c \
 			Y_map_parsing_utils.c \
 			Y_validate_map_scheme.c
