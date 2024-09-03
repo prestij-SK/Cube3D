@@ -78,7 +78,7 @@ char	*ft_strstr(char *str, char *to_find)
 	return (0);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str)//need to check for buffer overflow and some unexpected results
 {
 	unsigned int	num;
 	int				i;

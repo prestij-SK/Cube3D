@@ -93,9 +93,9 @@ int	get_textures_and_colors(t_parse *p_data)
 			resolve_error(p_data->file[i], type, status);
 			return (status);
 		}
-		i++;
 		if (!is_empty(p_data->file[i]))
 			not_empty_lines++;
+		i++;
 	}
 	return (1);
 }
