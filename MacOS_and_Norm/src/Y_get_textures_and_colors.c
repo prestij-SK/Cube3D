@@ -59,9 +59,12 @@ int	save_data(t_parse *p_data, char *str, t_type type)
 
 static int	not_valid_line(char *line)
 {
-	write(2, "not valid line:\n", 16);
-	write(2, line, ft_strlen(line));
-	write(2, "\n", 1);
+	ft_putstr_fd(RED, STD_ERR);
+	ft_putstr_fd("Error\n", STD_ERR);
+	ft_putstr_fd(YELLOW, STD_ERR);
+	ft_putstr_fd("not valid line:\n", STD_ERR);
+	ft_putstr_fd(DEFAULT, STD_ERR);
+    ft_putendl_fd(line, STD_ERR);
 	return (-5);
 }
 

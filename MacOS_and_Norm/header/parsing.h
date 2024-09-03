@@ -22,6 +22,7 @@
 # define GREEN "\033[1;32m"
 
 # define BUFFER_SIZE 1024
+# define STD_ERR 2
 
 typedef enum Type
 {
@@ -117,12 +118,14 @@ void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putchar_fd(char c, int fd);
+char			**ft_arrdup(char **env);
 
 t_parse			parsing(char *path);
 char			**read_file(int fd);
 int				open_file(char *path);
 void			tabs_to_spaces(char **map);
 int				init_map(t_parse *p_data);
+void			make_map_rectangle(t_parse	*p_data);
 
 //TEXTURES
 int				get_textures_and_colors(t_parse *p_data);
@@ -141,6 +144,7 @@ void			validate_map_chars(t_parse *p_data);
 void			validate_data(t_parse *p_data);
 void			validate_map_emptyness(t_parse *p_data);
 void			validate_doors(t_parse *p_data);
+void			validate_invalid_path(t_parse *p_data, t_Point2D size, t_Point2D cur, char to_fill);
 
 //MEMORY
 void			free_ptr(void *ptr);

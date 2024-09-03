@@ -16,17 +16,17 @@
 static void	write_type(t_type type)
 {
 	if (type == NO)
-		write(2, "NO", 2);
+        ft_putstr_fd("NO", STD_ERR);
 	else if (type == WE)
-		write(2, "WE", 2);
+		ft_putstr_fd("WE", STD_ERR);
 	else if (type == SO)
-		write(2, "SO", 2);
+		ft_putstr_fd("SO", STD_ERR);
 	else if (type == EA)
-		write(2, "EA", 2);
+		ft_putstr_fd("EA", STD_ERR);
 	else if (type == F)
-		write(2, "F", 1);
+		ft_putstr_fd("F", STD_ERR);
 	else if (type == C)
-		write(2, "C", 1);
+		ft_putstr_fd("C", STD_ERR);
 }
 
 static void	write_key(char *line)
@@ -42,37 +42,45 @@ static void	write_key(char *line)
 		end++;
 	if (end <= i)
 		return ;
-	write(2, line + i, end - i + 1);
+	write(STD_ERR, line + i, end - i + 1);
+	ft_putstr_fd("\n", STD_ERR);
+}
+
+static void	resolve_error2(int status)
+{
+	if (status == DOUBLE_COMMAS)
+		ft_putstr_fd("invlid color separator: ',,'\n", STD_ERR);
+	else if (status == INVALID_RANGE)
+		ft_putstr_fd("clors should be in range of 0-255\n", STD_ERR);
+	else if (status == COMMA_EDGE)
+		ft_putstr_fd("clors value should not start or end with ','\n", STD_ERR);
+	else if (status == INVALID_COLOR_VALUES)
+		ft_putstr_fd("colors value should only be numbers\n", STD_ERR);
+	ft_putstr_fd(DEFAULT, STD_ERR);
 }
 
 void	resolve_error(char *line, t_type type, t_pstatus status)
 {
-  	write(2, "Error\n", 6);
+	ft_putstr_fd(RED, STD_ERR);
+	ft_putstr_fd("Error\n", STD_ERR);
+	ft_putstr_fd(YELLOW, STD_ERR);
 	if (status == MALLOC)
-		write(2, "Malloc error\n", 13);
+		ft_putstr_fd("Malloc error\n", STD_ERR);
 	else if (status == DOUBLICATE)
 	{
 		write_type(type);
-		write(2, " already set\n", 13);
+		ft_putstr_fd(" already set\n", STD_ERR);
 	}
 	else if (status == INVALID_KEY)
 	{
-		write(2, "invalid key: ", 13);
+		ft_putstr_fd("invalid key: ", STD_ERR);
 		write_key(line);
-		write(2, "\n", 1);
 	}
 	else if (status == TOO_MANY_VALUES)
 	{
-		write(2, "too many arguments for: ", 24);
+		ft_putstr_fd("too many arguments for: ", STD_ERR);
 		write_type(type);
-		write(2, "\n", 1);
+		ft_putstr_fd("\n", STD_ERR);
 	}
-	else if (status == DOUBLE_COMMAS)
-		write(2, "invlid color separator: ',,'\n", 29);	
-	else if (status == INVALID_RANGE)
-		write(2, "clors should be in range of 0-255\n", 34);
-	else if (status == COMMA_EDGE)
-		write(2, "clors value should not start or end with ','\n", 45);
-    else if (status == INVALID_COLOR_VALUES)
-      	write(2, "colors value should only be numbers\n", 36);
+    resolve_error2(status);
 }

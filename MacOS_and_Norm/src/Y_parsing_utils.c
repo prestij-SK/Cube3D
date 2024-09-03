@@ -24,6 +24,17 @@ char	*err_message(char *message)
 	exit(1);
 }
 
+//char	*err_message(char *message)
+//{
+//	write(2, RED, 7);
+//	write(2, "Error\n", 6);
+//	write(2, YELLOW, 7);
+//	write(2, message, ft_strlen(message));
+//	write(2, DEFAULT, 4);
+//	system("leaks the_game");
+//	exit(1);
+//}
+
 int	is_empty(char *str)
 {
 	int	i;
@@ -48,6 +59,34 @@ int	arr_len(char **arr)
 	while (arr[i])
 		i++;
 	return (i);
+}
+
+char	**ft_arrdup(char **env)
+{
+	int		i;
+	char	**res;
+
+	if (!env)
+		return (NULL);
+	i = 0;
+	while (env[i])
+		i++;
+	res = (char **)malloc(sizeof(char *) * (i + 1));
+	if (!res)
+		return (NULL);
+	i = 0;
+	while (env[i])
+	{
+		res[i] = ft_strdup(env[i]);
+		if (!res[i])
+		{
+			free_arr(res);
+			return (NULL);
+		}
+		i++;
+	}
+	res[i] = NULL;
+	return (res);
 }
 
 char	*ft_strjoin_and_free(char *left_str, char *buff)

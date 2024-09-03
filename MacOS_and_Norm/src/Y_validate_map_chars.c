@@ -15,9 +15,13 @@
 
 static int	resolve_char_error(char ch)
 {
-	write(2, "Invalid char in map: ", 21);
-	write(2, &ch, 1);
-	write(2, "\n", 1);
+	ft_putstr_fd(RED, STD_ERR);
+	ft_putstr_fd("Error\n", STD_ERR);
+	ft_putstr_fd(YELLOW, STD_ERR);
+	ft_putstr_fd("Invalid char in map: ", STD_ERR);
+    ft_putchar_fd(ch, STD_ERR);
+    ft_putstr_fd("\n", STD_ERR);
+	ft_putstr_fd(DEFAULT, STD_ERR);
 	return (0);
 }
 
@@ -42,12 +46,15 @@ static int	check_chars(char ch, t_parse *p_data)
 
 static void	too_many_err(t_parse *p_data, char *str)
 {
-	write(2, "Error\n", 6);
-	write(2, "several player positon set for ", 31);
-	write(2, str, ft_strlen(str));
-	write(2, " : \"", 4);
-	write(2, str, 1);
-	write(2, "\"\n", 2);
+	ft_putstr_fd(RED, STD_ERR);
+	ft_putstr_fd("Error\n", STD_ERR);
+	ft_putstr_fd(YELLOW, STD_ERR);
+	ft_putstr_fd("several player positon set for ", STD_ERR);
+	ft_putstr_fd(str, STD_ERR);
+	ft_putstr_fd(" : \"", STD_ERR);
+	ft_putchar_fd(str[0], STD_ERR);
+	ft_putstr_fd("\"\n", STD_ERR);
+	ft_putstr_fd(DEFAULT, STD_ERR);
 	clean_exit(p_data, 1);
 }
 
@@ -68,7 +75,8 @@ static int	check_if_only_one_player(t_parse *p_data)
 	return (1);
 }
 
-//we can also add doors validation 
+//we can also add doors validation
+//Need to add funciton which just print error message and change this
 static void	check_player_count(t_parse *p_data)
 {
 	if (p_data->elements.north > 1)
@@ -82,14 +90,20 @@ static void	check_player_count(t_parse *p_data)
 	if (p_data->elements.north == 0 && p_data->elements.west == 0 && \
 		p_data->elements.east == 0 && p_data->elements.south == 0)
 	{
-		write(2, "Error\n", 6);
-		write(2, "No player position set\n", 23);
+		ft_putstr_fd(RED, STD_ERR);
+		ft_putstr_fd("Error\n", STD_ERR);
+		ft_putstr_fd(YELLOW, STD_ERR);
+		ft_putstr_fd("No player position set\n", STD_ERR);
+		ft_putstr_fd(DEFAULT, STD_ERR);
 		clean_exit(p_data, 1);
 	}
 	if (!check_if_only_one_player(p_data))
 	{
-		write(2, "Error\n", 6);
-		write(2, "different player positon set\n", 29);
+		ft_putstr_fd(RED, STD_ERR);
+		ft_putstr_fd("Error\n", STD_ERR);
+		ft_putstr_fd(YELLOW, STD_ERR);
+		ft_putstr_fd("different player positon set\n", STD_ERR);
+		ft_putstr_fd(DEFAULT, STD_ERR);
 		clean_exit(p_data, 1);
 	}
 }

@@ -53,10 +53,14 @@ static void	parsing2(t_parse *p_data)
 	status = check_textures_and_colors(p_data);
 	if (status < 0)
 	{
+        ft_putstr_fd(RED, STD_ERR);
+		ft_putstr_fd("Error\n", STD_ERR);
+		ft_putstr_fd(YELLOW, STD_ERR);
 		if (status == -1)
-			write(2, "textures missing\n", 17);
+			ft_putstr_fd("textures missing\n", STD_ERR);
 		if (status == -2)
-			write(2, "colors missing\n", 15);
+			ft_putstr_fd("colors missing\n", STD_ERR);
+        ft_putstr_fd(DEFAULT, STD_ERR);
 		clean_exit(p_data, 1);
 	}
 	status = init_map(p_data);
@@ -80,7 +84,7 @@ t_parse	parsing(char *path)
 	int		max;
 
 	if (!is_valid_map_name(path))
-		err_message("Invalid map name\n");
+		err_message("Invalid map name maps should have '.cub' format\n");
 	p_data = init_Pdata();
 	parsing1(&p_data, path);
 	parsing2(&p_data);
