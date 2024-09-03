@@ -16,6 +16,11 @@
 # include "fcntl.h"
 # include "the_game.h"
 
+# define RED "\033[1;31m"
+# define YELLOW "\033[1;33m"
+# define DEFAULT "\033[0m"
+# define GREEN "\033[1;32m"
+
 # define BUFFER_SIZE 1024
 
 typedef enum Type

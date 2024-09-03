@@ -15,8 +15,11 @@
 
 char	*err_message(char *message)
 {
+	write(2, RED, 7);
 	write(2, "Error\n", 6);
+	write(2, YELLOW, 7);
 	write(2, message, ft_strlen(message));
+	write(2, DEFAULT, 4);
 	system("leaks the_game");
 	exit(1);
 }
