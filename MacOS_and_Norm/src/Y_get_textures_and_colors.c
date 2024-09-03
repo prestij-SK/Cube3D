@@ -82,6 +82,11 @@ int	get_textures_and_colors(t_parse *p_data)
 		type = check_type(p_data->file[i]);
 		if (type == NOT_VALID)
 			return (not_valid_line(p_data->file[i]));
+        else if (type == EMPTY)
+        {
+          i++;
+          continue ;
+        }
 		status = save_data(p_data, p_data->file[i], type);
 		if (status < 0)
 		{
