@@ -77,15 +77,19 @@ static	int	get_color(char *line)
 int	save_floor_color(t_parse *p_data, char *str)
 {
 	char	**key_value;
+    int		len;
 
 	if (p_data->floor_c != -1)
 		return (DOUBLICATE);
 	key_value = ft_split(str, ' ');
 	if (!key_value)
 		return (MALLOC);
-	if (arr_len(key_value) != 2)
+    len = arr_len(key_value);
+	if (len != 2)
 	{
 		free_arr(key_value);
+        if (len < 2)
+          return (TOO_FEW_VALUES);
 		return (TOO_MANY_VALUES);
 	}
 	if (ft_strcmp(key_value[0], "F") != 0)
@@ -103,15 +107,19 @@ int	save_floor_color(t_parse *p_data, char *str)
 int	save_ceill_color(t_parse *p_data, char *str)
 {
 	char	**key_value;
+    int		len;
 
 	if (p_data->ceiling_c != -1)
 		return (DOUBLICATE);
 	key_value = ft_split(str, ' ');
 	if (!key_value)
 		return (MALLOC);
-	if (arr_len(key_value) != 2)
+    len = arr_len(key_value);
+	if (len != 2)
 	{
 		free_arr(key_value);
+        if (len < 2)
+          return (TOO_FEW_VALUES);
 		return (TOO_MANY_VALUES);
 	}
 	if (ft_strcmp(key_value[0], "C") != 0)

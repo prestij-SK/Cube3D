@@ -46,6 +46,7 @@ typedef enum PStatus
 	INVALID_RANGE = -6,
 	COMMA_EDGE = -7,
 	INVALID_COLOR_VALUES = -8,
+  	TOO_FEW_VALUES = -9,
 }	t_pstatus;
 
 typedef struct ElemnetnsCounter

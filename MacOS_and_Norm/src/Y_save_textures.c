@@ -16,16 +16,20 @@
 int	save_north(t_parse *p_data, char *str)
 {
 	char	**key_value;
+    int		len;
 
 	if (p_data->north != NULL)
 		return (DOUBLICATE);
 	key_value = ft_split(str, ' ');//check malloc
     if (!key_value)
       return (MALLOC);
-	if (arr_len(key_value) != 2)
+    len = arr_len(key_value);
+	if (len != 2)
 	{
 		free_arr(key_value);
-		return (TOO_MANY_VALUES);
+        if (len > 2)
+			return (TOO_MANY_VALUES);
+        return (TOO_FEW_VALUES);
 	}
 	if (ft_strcmp(key_value[0], "NO") != 0)
 	{
@@ -42,16 +46,20 @@ int	save_north(t_parse *p_data, char *str)
 int	save_west(t_parse *p_data, char *str)
 {
 	char	**key_value;
+    int		len;
 
 	if (p_data->west != NULL)
 		return (DOUBLICATE);
 	key_value = ft_split(str, ' ');
 	if (!key_value)
 		return (MALLOC);
-	if (arr_len(key_value) != 2)
+    len = arr_len(key_value);
+	if (len != 2)
 	{
 		free_arr(key_value);
-		return (TOO_MANY_VALUES);
+		if (len > 2)
+			return (TOO_MANY_VALUES);
+		return (TOO_FEW_VALUES);
 	}
 	if (ft_strcmp(key_value[0], "WE") != 0)
 	{
@@ -68,16 +76,20 @@ int	save_west(t_parse *p_data, char *str)
 int	save_east(t_parse *p_data, char *str)
 {
 	char	**key_value;
+    int		len;
 
 	if (p_data->east != NULL)
 		return (DOUBLICATE);
 	key_value = ft_split(str, ' ');
 	if (!key_value)
 		return (MALLOC);
-	if (arr_len(key_value) != 2)
+    len = arr_len(key_value);
+	if (len != 2)
 	{
 		free_arr(key_value);
-		return (TOO_MANY_VALUES);
+		if (len > 2)
+			return (TOO_MANY_VALUES);
+		return (TOO_FEW_VALUES);
 	}
 	if (ft_strcmp(key_value[0], "EA") != 0)
 	{
@@ -94,16 +106,20 @@ int	save_east(t_parse *p_data, char *str)
 int	save_south(t_parse *p_data, char *str)
 {
 	char	**key_value;
+    int		len;
 
 	if (p_data->south != NULL)
 		return (DOUBLICATE);
 	key_value = ft_split(str, ' ');
 	if (!key_value)
 		return (MALLOC);
-	if (arr_len(key_value) != 2)
+    len = arr_len(key_value);
+	if (len != 2)
 	{
 		free_arr(key_value);
-		return (TOO_MANY_VALUES);
+		if (len > 2)
+			return (TOO_MANY_VALUES);
+		return (TOO_FEW_VALUES);
 	}
 	if (ft_strcmp(key_value[0], "SO") != 0)
 	{

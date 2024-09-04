@@ -76,9 +76,12 @@ void	resolve_error(char *line, t_type type, t_pstatus status)
 		ft_putstr_fd("invalid key: ", STD_ERR);
 		write_key(line);
 	}
-	else if (status == TOO_MANY_VALUES)
+	else if (status == TOO_MANY_VALUES || status == TOO_FEW_VALUES)
 	{
-		ft_putstr_fd("too many arguments for: ", STD_ERR);
+        if (status == TOO_MANY_VALUES)
+			ft_putstr_fd("too many arguments for: ", STD_ERR);
+        else
+        	ft_putstr_fd("too few arguments for: ", STD_ERR);
 		write_type(type);
 		ft_putstr_fd("\n", STD_ERR);
 	}
