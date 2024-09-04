@@ -146,6 +146,7 @@ void			validate_data(t_parse *p_data);
 void			validate_map_emptyness(t_parse *p_data);
 void			validate_doors(t_parse *p_data);
 void			validate_invalid_path(t_parse *p_data, t_Point2D size, t_Point2D cur, char to_fill);
+void			validate_borders(t_parse *p_data);
 
 //MEMORY
 void			free_ptr(void *ptr);

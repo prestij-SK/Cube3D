@@ -81,8 +81,7 @@ t_Point2D get_player_pos(char **map)
 void	validate_data(t_parse *p_data)
 {
   t_Point2D	player_pos;
-  
-  	player_pos = get_player_pos(p_data->map);
+
 //	validate_map_chars(p_data);
 	validate_map_completeness(p_data);
     make_map_rectangle(p_data);
@@ -96,6 +95,8 @@ void	validate_data(t_parse *p_data)
     	ft_putstr_fd(DEFAULT, STD_ERR);
     	clean_exit(p_data, 1);
     }
+  	player_pos = get_player_pos(p_data->map);
     validate_invalid_path(p_data, p_data->block_count, player_pos, '0');
+	validate_borders(p_data);
     validate_doors(p_data);
 }

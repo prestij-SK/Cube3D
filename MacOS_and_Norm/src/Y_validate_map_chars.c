@@ -13,18 +13,6 @@
 #include "../header/the_game.h"
 #include "../header/parsing.h"
 
-static int	resolve_char_error(char ch)
-{
-	ft_putstr_fd(RED, STD_ERR);
-	ft_putstr_fd("Error\n", STD_ERR);
-	ft_putstr_fd(YELLOW, STD_ERR);
-	ft_putstr_fd("Invalid char in map: ", STD_ERR);
-    ft_putchar_fd(ch, STD_ERR);
-    ft_putstr_fd("\n", STD_ERR);
-	ft_putstr_fd(DEFAULT, STD_ERR);
-	return (0);
-}
-
 static int	check_chars(char ch, t_parse *p_data)
 {
 	if (ch == 'N')
@@ -40,7 +28,16 @@ static int	check_chars(char ch, t_parse *p_data)
 	else if (ch == '1' || ch == ' ' || ch == '0')
 		return (1);
 	else
-		return (resolve_char_error(ch));
+    {
+		ft_putstr_fd(RED, STD_ERR);
+		ft_putstr_fd("Error\n", STD_ERR);
+		ft_putstr_fd(YELLOW, STD_ERR);
+		ft_putstr_fd("Invalid char in map: ", STD_ERR);
+		ft_putchar_fd(ch, STD_ERR);
+		ft_putstr_fd("\n", STD_ERR);
+		ft_putstr_fd(DEFAULT, STD_ERR);
+        return (0);
+    }
 	return (1);
 }
 

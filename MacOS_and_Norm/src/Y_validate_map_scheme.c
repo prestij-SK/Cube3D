@@ -46,6 +46,22 @@ void	validate_map_emptyness(t_parse *p_data)
 
 }
 
+void	validate_borders(t_parse *p_data)
+{
+    int	i;
+
+    i = 0;
+    while (p_data->map[i])
+    {
+        if (p_data->map[i][0] == '0')
+        {
+            ft_putstr_fd("Invalid Borders\n", STD_ERR);
+            clean_exit(p_data, 1);
+        }
+        i++;
+    }
+}
+
 void	validate_invalid_path(t_parse *p_data, t_Point2D size, t_Point2D cur, char to_fill)
 {
     if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x)
