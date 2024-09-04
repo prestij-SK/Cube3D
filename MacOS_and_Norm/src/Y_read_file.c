@@ -20,10 +20,7 @@ int	open_file(char *path)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-        ft_putstr_fd(RED, STD_ERR);
-        ft_putstr_fd("Error\n", STD_ERR);
-		ft_putstr_fd(YELLOW, STD_ERR);
-        ft_putstr_fd("Can't open file: ", STD_ERR);
+        print_err_message("Can't open file: ");
         ft_putendl_fd(path, STD_ERR);
 		ft_putstr_fd(DEFAULT, STD_ERR);
 		exit(1);

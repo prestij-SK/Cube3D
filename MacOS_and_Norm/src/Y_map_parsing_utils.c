@@ -96,11 +96,7 @@ void	make_map_rectangle(t_parse	*p_data)
           new_line = get_new_row(p_data->map[i], p_data->block_count.x);
           if (!new_line)
           {
-          	ft_putstr_fd(RED, STD_ERR);
-          	ft_putstr_fd("Error\n", STD_ERR);
-          	ft_putstr_fd(YELLOW, STD_ERR);
-          	ft_putstr_fd("Malloc Error\n", STD_ERR);
-          	ft_putstr_fd(DEFAULT, STD_ERR);
+            print_err_message("Malloc error\n");
             clean_exit(p_data, 1);
           }
        		free_ptr(p_data->map[i]);

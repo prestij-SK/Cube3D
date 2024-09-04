@@ -87,20 +87,12 @@ static void	check_player_count(t_parse *p_data)
 	if (p_data->elements.north == 0 && p_data->elements.west == 0 && \
 		p_data->elements.east == 0 && p_data->elements.south == 0)
 	{
-		ft_putstr_fd(RED, STD_ERR);
-		ft_putstr_fd("Error\n", STD_ERR);
-		ft_putstr_fd(YELLOW, STD_ERR);
-		ft_putstr_fd("No player position set\n", STD_ERR);
-		ft_putstr_fd(DEFAULT, STD_ERR);
+        print_err_message("No player position set\n");
 		clean_exit(p_data, 1);
 	}
 	if (!check_if_only_one_player(p_data))
 	{
-		ft_putstr_fd(RED, STD_ERR);
-		ft_putstr_fd("Error\n", STD_ERR);
-		ft_putstr_fd(YELLOW, STD_ERR);
-		ft_putstr_fd("different player positon set\n", STD_ERR);
-		ft_putstr_fd(DEFAULT, STD_ERR);
+        print_err_message("different player positon set\n");
 		clean_exit(p_data, 1);
 	}
 }

@@ -120,6 +120,7 @@ void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putchar_fd(char c, int fd);
 char			**ft_arrdup(char **env);
+void			print_err_message(char *str);
 
 t_parse			parsing(char *path);
 char			**read_file(int fd);
@@ -143,7 +144,6 @@ int				is_valid_map_name(char *name);
 int				check_textures_and_colors(t_parse *p_data);
 void			validate_map_chars(t_parse *p_data);
 void			validate_data(t_parse *p_data);
-void			validate_map_emptyness(t_parse *p_data);
 void			validate_doors(t_parse *p_data);
 void			validate_invalid_path(t_parse *p_data, t_Point2D size, t_Point2D cur, char to_fill);
 void			validate_borders(t_parse *p_data);

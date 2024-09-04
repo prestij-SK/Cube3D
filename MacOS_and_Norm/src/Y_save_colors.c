@@ -13,7 +13,6 @@
 #include "../header/the_game.h"
 #include "../header/parsing.h"
 
-
 static int	check_is_digit(char **colors)
 {
 	int	i;

@@ -13,6 +13,15 @@
 #include "../header/the_game.h"
 #include "../header/parsing.h"
 
+void print_err_message(char *str)
+{
+	ft_putstr_fd(RED, STD_ERR);
+	ft_putstr_fd("Error\n", STD_ERR);
+	ft_putstr_fd(YELLOW, STD_ERR);
+	ft_putstr_fd(str, STD_ERR);
+	ft_putstr_fd(DEFAULT, STD_ERR);
+}
+
 static void	write_type(t_type type)
 {
 	if (type == NO)

@@ -82,7 +82,7 @@ void	validate_data(t_parse *p_data)
 {
   t_Point2D	player_pos;
 
-//	validate_map_chars(p_data);
+	validate_map_chars(p_data);
 	validate_map_completeness(p_data);
     make_map_rectangle(p_data);
 	p_data->map_cpy = ft_arrdup(p_data->map);
