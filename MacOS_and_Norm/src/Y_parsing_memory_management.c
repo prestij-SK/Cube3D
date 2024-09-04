@@ -59,6 +59,7 @@ t_parse	init_Pdata(void)
 	p_data.elements.east = 0;
 	p_data.elements.south = 0;
 	p_data.elements.door = 0;
+    p_data.player_view = '\0';
 	return (p_data);
 }
 

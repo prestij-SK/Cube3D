@@ -96,6 +96,7 @@ void	validate_data(t_parse *p_data)
     	clean_exit(p_data, 1);
     }
   	player_pos = get_player_pos(p_data->map);
+    p_data->player_view = p_data->map[player_pos.y][player_pos.x];
     validate_invalid_path(p_data, p_data->block_count, player_pos, '0');
 	validate_borders(p_data);
     validate_doors(p_data);
