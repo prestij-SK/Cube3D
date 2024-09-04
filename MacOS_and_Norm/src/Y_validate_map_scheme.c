@@ -10,7 +10,7 @@ void	validate_borders(t_parse *p_data)
     {
         if (p_data->map[i][0] == '0' || p_data->map[i][0] == 'D')
         {
-            ft_putstr_fd("Invalid Borders\n", STD_ERR);
+            print_err_message("Invalid Borders\n");
             clean_exit(p_data, 1);
         }
         i++;

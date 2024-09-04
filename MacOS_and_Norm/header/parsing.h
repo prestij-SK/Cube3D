@@ -61,6 +61,7 @@ typedef struct ElemnetnsCounter
 
 typedef struct ParsingData
 {
+ 	char		player_view;
 	char		**file;
 	char		**map;
     char		**map_cpy;
