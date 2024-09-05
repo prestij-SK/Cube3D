@@ -71,18 +71,15 @@ int	get_textures_and_colors(t_parse *p_data)
 	int		not_empty_lines;
 	t_type	type;
 
-	i = 0;
+	i = -1;
 	not_empty_lines = 0;
-	while (p_data->file[i] && not_empty_lines < 6)
+	while (p_data->file[++i] && not_empty_lines < 6)
 	{
 		type = check_type(p_data->file[i]);
 		if (type == NOT_VALID)
 			return (not_valid_line(p_data->file[i]));
         else if (type == EMPTY)
-        {
-          i++;
           continue ;
-        }
 		status = save_data(p_data, p_data->file[i], type);
 		if (status < 0)
 		{
@@ -91,7 +88,6 @@ int	get_textures_and_colors(t_parse *p_data)
 		}
 		if (!is_empty(p_data->file[i]))
 			not_empty_lines++;
-		i++;
 	}
 	return (1);
 }
