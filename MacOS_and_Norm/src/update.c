@@ -159,20 +159,30 @@ void	update_E(t_GameData *data, t_Player *player)
 			return ;
 		}
 	if (is_in_minimap_range(player->minimap, util.next.y, util.current.x ))
-	{
 		if (player->minimap->map[util.next.y][util.current.x] == 'D')
 		{
 			if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.next.y, util.current.x) == B_TRUE)
-			{
-				if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x) == B_TRUE)
-					door_open(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x);
-			}
+				// if (door_is_closed(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x) == B_TRUE)
+				door_open(player->minimap->doors, player->minimap->door_count, util.next.y, util.current.x);
 			else
-			{
-				door_close(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x);
-			}
+				door_close(player->minimap->doors, player->minimap->door_count, util.next.y, util.current.x);
+			return ;
 		}
-	}
+}
+
+// rotating left
+void	update_Arrow_Left(t_Player *player, double rotate_speed)
+{
+	if (!player)
+		return ;
+	player->angle -= rotate_speed;
+	if (player->angle < 0) // full rotation is done, must bring it back to start (which is already at the start kinda)
+		player->angle += 2 * M_PI; // I can't just set angle to '0', it won't be smooth and maybe not correct
+	// Here we calculate the direction, so we know on which direction player is watching.
+	// Delta X and Y will be updated and will added to initial position of player.
+	// It will change depending on what angle we are currently in.
+	player->delta.x = cos(player->angle) * player->move_speed;
+	player->delta.y = sin(player->angle) * player->move_speed;
 }
 
 // rotating left
