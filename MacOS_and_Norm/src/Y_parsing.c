@@ -53,14 +53,10 @@ static void	parsing2(t_parse *p_data)
 	status = check_textures_and_colors(p_data);
 	if (status < 0)
 	{
-        ft_putstr_fd(RED, STD_ERR);
-		ft_putstr_fd("Error\n", STD_ERR);
-		ft_putstr_fd(YELLOW, STD_ERR);
 		if (status == -1)
-			ft_putstr_fd("textures missing\n", STD_ERR);
+			print_err_message("textures missing\n");
 		if (status == -2)
-			ft_putstr_fd("colors missing\n", STD_ERR);
-        ft_putstr_fd(DEFAULT, STD_ERR);
+			print_err_message("colors missing\n");
 		clean_exit(p_data, 1);
 	}
 	status = init_map(p_data);
@@ -88,7 +84,6 @@ t_parse	parsing(char *path)
 	p_data = init_Pdata();
 	parsing1(&p_data, path);
 	parsing2(&p_data);
-	// print_map(p_data.map, 1, 1);
 	i = 1;
 	max = ft_strlen(p_data.map[0]);
 	while (p_data.map[i])

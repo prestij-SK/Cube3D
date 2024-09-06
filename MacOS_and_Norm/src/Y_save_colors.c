@@ -41,6 +41,16 @@ static int	check_is_digit(char **colors)
     return (1);
 }
 
+static t_rgb	fill_color(char **colors)
+{
+	t_rgb	color;
+
+	color.r = ft_atoi(colors[0]);
+	color.g = ft_atoi(colors[1]);
+	color.b = ft_atoi(colors[2]);
+    return (color);
+}
+
 static	int	get_color(char *line)
 {
 	char	**colors;
@@ -63,9 +73,7 @@ static	int	get_color(char *line)
       free_arr(colors);
       return (INVALID_COLOR_VALUES);
     }
-	rgb.r = ft_atoi(colors[0]);
-	rgb.g = ft_atoi(colors[1]);
-	rgb.b = ft_atoi(colors[2]);
+    rgb = fill_color(colors);
 	free_arr(colors);
 	if (rgb.r < 0 || rgb.g < 0 || rgb.b < 0 || \
 		rgb.r > 255 || rgb.g > 255 || rgb.b > 255)
