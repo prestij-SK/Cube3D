@@ -185,21 +185,6 @@ void	update_Arrow_Left(t_Player *player, double rotate_speed)
 	player->delta.y = sin(player->angle) * player->move_speed;
 }
 
-// rotating left
-void	update_Arrow_Left(t_Player *player, double rotate_speed)
-{
-	if (!player)
-		return ;
-	player->angle -= rotate_speed;
-	if (player->angle < 0) // full rotation is done, must bring it back to start (which is already at the start kinda)
-		player->angle += 2 * M_PI; // I can't just set angle to '0', it won't be smooth and maybe not correct
-	// Here we calculate the direction, so we know on which direction player is watching.
-	// Delta X and Y will be updated and will added to initial position of player.
-	// It will change depending on what angle we are currently in.
-	player->delta.x = cos(player->angle) * player->move_speed;
-	player->delta.y = sin(player->angle) * player->move_speed;
-}
-
 // rotating right
 void	update_Arrow_Right(t_Player *player, double rotate_speed)
 {

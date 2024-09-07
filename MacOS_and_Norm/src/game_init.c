@@ -4,7 +4,7 @@ void	game_data_delete(t_GameData *data)
 {
 	if (!data)
 		return ;
-	minimap_delete(&data->minimap);
+	free_arr(data->minimap.map);
 	image_delete(&data->minimap.origin_image, data->mlx);
 	image_delete(&data->minimap.small_image, data->mlx);
 	image_delete(&data->view.image, data->mlx);
@@ -13,10 +13,15 @@ void	game_data_delete(t_GameData *data)
 	image_delete(&data->west_wall, data->mlx);
 	image_delete(&data->east_wall, data->mlx);
 	image_delete(&data->door_tex, data->mlx);
+	image_delete(&data->gun[0], data->mlx);
+	image_delete(&data->gun[1], data->mlx);
+	image_delete(&data->gun[2], data->mlx);
+	image_delete(&data->gun[3], data->mlx);
+	image_delete(&data->gun[4], data->mlx);
 	if (data->mlx && data->mlx_window)
 		mlx_destroy_window(data->mlx, data->mlx_window);
-	// if (data->mlx)
-	// 	mlx_destroy_display(data->mlx);
+	if (data->mlx)
+		mlx_destroy_display(data->mlx);
 }
 
 void	game_nullify_pointers(t_GameData *data)
@@ -44,7 +49,8 @@ static t_Point2D	player_location(char **map, t_Point2D block_count)
 		j = 0;
 		while (j < block_count.x)
 		{
-			if (map[i][j] == 'P')
+			if (map[i][j] == 'N' || map[i][j] == 'S' ||
+				map[i][j] == 'E' || map[i][j] == 'W')
 			{
 				pos.x = j;
 				pos.y = i;

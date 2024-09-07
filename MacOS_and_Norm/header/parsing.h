@@ -14,7 +14,7 @@
 # define PARSING_H
 
 # include "fcntl.h"
-# include "the_game.h"
+# include "utils.h"
 
 # define RED "\033[1;31m"
 # define YELLOW "\033[1;33m"
@@ -150,10 +150,10 @@ void			validate_invalid_path(t_parse *p_data, t_Point2D size, t_Point2D cur, cha
 void			validate_borders(t_parse *p_data);
 
 //MEMORY
-void			free_ptr(void *ptr);
 void			*free_arr(char **str);
 t_parse			init_Pdata(void);
 void			*clean_Pdata(t_parse *p_data);
+void			*clean_Pdata_except_map(t_parse *p_data);
 void			*clean_exit(t_parse *p_data, int status);
 
 //DEBUG

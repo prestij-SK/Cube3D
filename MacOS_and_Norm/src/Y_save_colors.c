@@ -41,16 +41,6 @@ static int	check_is_digit(char **colors)
     return (1);
 }
 
-static t_rgb	fill_color(char **colors)
-{
-	t_rgb	color;
-
-	color.r = ft_atoi(colors[0]);
-	color.g = ft_atoi(colors[1]);
-	color.b = ft_atoi(colors[2]);
-    return (color);
-}
-
 static	int	get_color(char *line)
 {
 	char	**colors;
@@ -73,12 +63,14 @@ static	int	get_color(char *line)
       free_arr(colors);
       return (INVALID_COLOR_VALUES);
     }
-    rgb = fill_color(colors);
+	rgb.r = ft_atoi(colors[0]);
+	rgb.g = ft_atoi(colors[1]);
+	rgb.b = ft_atoi(colors[2]);
 	free_arr(colors);
 	if (rgb.r < 0 || rgb.g < 0 || rgb.b < 0 || \
 		rgb.r > 255 || rgb.g > 255 || rgb.b > 255)
 		return (INVALID_RANGE);
-	return ((rgb.r << 4) + (rgb.g << 2) + rgb.b);
+	return ((rgb.r << 16) + (rgb.g << 8) + rgb.b);
 }
 
 int	save_floor_color(t_parse *p_data, char *str)
