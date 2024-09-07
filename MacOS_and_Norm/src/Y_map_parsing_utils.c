@@ -99,10 +99,59 @@ void	make_map_rectangle(t_parse	*p_data)
             print_err_message("Malloc error\n");
             clean_exit(p_data, 1);
           }
-       		free_ptr(p_data->map[i]);
+		  p_data->map[i] = NULL;
           p_data->map[i] = new_line;
         }
         i++;
     }
 }
 
+static	int	get_end(t_parse *p_data)
+{
+	int	i;
+
+	i = 0;
+	while (p_data->file[i])
+		i++;
+	i--;
+	while (p_data->file[i] && ft_strcmp(p_data->file[i], " ") == 0)
+		i--;
+	return (i);
+}
+
+int	init_map(t_parse *p_data)
+{
+	t_Point2D	block;
+	t_index		idx;
+	int			not_empty_lines;
+
+	idx.i = 0;
+	not_empty_lines = 0;
+	while (p_data->file[idx.i] && not_empty_lines < 6)
+	{
+		if (!is_empty(p_data->file[idx.i]))
+			not_empty_lines++;
+		idx.i++;
+	}
+	while (p_data->file[idx.i] && is_empty(p_data->file[idx.i]))
+		idx.i++;
+	if (p_data->file[idx.i] == NULL)
+		return (0);
+	block.y = 0;
+	while (p_data->file[idx.i + block.y])
+		block.y++;
+	p_data->map = (char **)malloc(sizeof(char *) * (block.y + 1));
+	if (!p_data->map)
+		return (-1);
+	idx.j = 0;
+	idx.end = get_end(p_data);
+	while (p_data->file[idx.i] && idx.i <= idx.end)//check overflow
+	{
+		p_data->map[idx.j++] = ft_strdup(p_data->file[idx.i]);
+		if (!p_data->map[idx.j - 1])
+			return (-1);
+		idx.i++;
+	}
+	p_data->map[idx.j++] = NULL;
+	return (1);
+}

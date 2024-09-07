@@ -29,7 +29,8 @@ HEADERS = color.h \
 		  utils.h \
 		  parsing.h
 
-SRCS_NAME = door.c \
+SRCS_NAME = data_from_parsed.c \
+			door.c \
 			draw_shape.c \
 			first_person_view.c \
 			for_math.c \
@@ -65,8 +66,7 @@ SRCS_NAME = door.c \
 			Y_libft3.c \
 			Y_validate_map_chars.c \
 			Y_map_parsing_utils.c \
-			Y_validate_map_scheme.c \
-			Y_map_parsing.c
+			Y_validate_map_scheme.c
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))
 OBJS_NAME = $(SRCS_NAME:.c=.o)

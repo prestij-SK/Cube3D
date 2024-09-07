@@ -24,6 +24,8 @@ void	error_exit(t_StatusCode status, char *str)
 		printf("Player Location");
 	else if (status == DOOR_NUMBER_ERROR)
 		printf("Doors Count");
+	else if (status == WALL_TEXTURE_ERROR)
+		printf("Wall Textures");
 	if (str)
 		printf("\n%s\n", str);
 	exit(EXIT_FAILURE);

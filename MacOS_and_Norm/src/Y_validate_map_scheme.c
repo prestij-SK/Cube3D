@@ -61,7 +61,7 @@ void	validate_doors(t_parse *p_data)
                 ft_putstr_fd(YELLOW, STD_ERR);
                 ft_putstr_fd("Invalid Map, doors should be surounded by walls in line: ", STD_ERR);
                 ft_putnbr_fd(i + 1, STD_ERR);
-                ft_putendl_fd(p_data->map[i], STD_ERR);
+                ft_putstr_fd(p_data->map[i], STD_ERR);
                 ft_putstr_fd(DEFAULT, STD_ERR);
                 clean_exit(p_data, 1);
             }

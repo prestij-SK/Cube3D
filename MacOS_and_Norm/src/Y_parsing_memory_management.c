@@ -13,12 +13,6 @@
 #include "../header/the_game.h"
 #include "../header/parsing.h"
 
-void	free_ptr(void *ptr)
-{
-	free(ptr);
-	ptr = NULL;
-}
-
 void	*free_arr(char **str)
 {
 	int	i;
@@ -71,10 +65,32 @@ void	*clean_Pdata(t_parse *p_data)
 	p_data->map = NULL;
 	p_data->file = NULL;
     p_data->map_cpy = NULL;
-	free_ptr(p_data->north);
-	free_ptr(p_data->west);
-	free_ptr(p_data->east);
-	free_ptr(p_data->south);
+	free(p_data->north);
+	p_data->north = NULL;
+	free(p_data->west);
+	p_data->west = NULL;
+	free(p_data->east);
+	p_data->east = NULL;
+	free(p_data->south);
+	p_data->south = NULL;
+	return (NULL);
+}
+
+void	*clean_Pdata_except_map(t_parse *p_data)
+{
+	free_arr(p_data->file);
+	free_arr(p_data->map_cpy);
+	p_data->map = NULL;
+	p_data->file = NULL;
+    p_data->map_cpy = NULL;
+	free(p_data->north);
+	p_data->north = NULL;
+	free(p_data->west);
+	p_data->west = NULL;
+	free(p_data->east);
+	p_data->east = NULL;
+	free(p_data->south);
+	p_data->south = NULL;
 	return (NULL);
 }
 

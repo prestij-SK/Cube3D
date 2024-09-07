@@ -18,7 +18,7 @@
 # include "for_math.h"
 # include "input.h"
 # include "door.h"
-// # include "parsing.h"
+# include "parsing.h"
 
 # include <unistd.h> // DELETE
 
@@ -90,5 +90,10 @@ void	horizontal_checking(t_GameData *data, t_RCdata *ray_data, double angle);
 void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle);
 void	adjust_ray_range(t_GameData *data, t_RCutil *util); // Wasn't needed
 void	set_shortest_ray_dis(t_RCdata *ray_data);
+
+/*
+	data_from_parsed.c
+*/
+t_StatusCode	set_all_parsed_data(t_GameData *data, t_parse *parse);
 
 #endif
