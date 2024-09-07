@@ -16,7 +16,7 @@ static	int	get_end(t_parse *p_data)
 
 static int	fill_map(t_parse *p_data, t_Point2D block, t_index idx)
 {
-    p_data->map = (char **)malloc(sizeof(char *) * (block.y));
+    p_data->map = (char **)malloc(sizeof(char *) * (block.y + 1));
     if (!p_data->map)
         return (-1);
     idx.j = 0;
