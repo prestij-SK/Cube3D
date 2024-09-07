@@ -80,7 +80,6 @@ void	*clean_Pdata_except_map(t_parse *p_data)
 {
 	free_arr(p_data->file);
 	free_arr(p_data->map_cpy);
-	p_data->map = NULL;
 	p_data->file = NULL;
     p_data->map_cpy = NULL;
 	free(p_data->north);

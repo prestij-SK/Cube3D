@@ -4,6 +4,8 @@ void	image_delete(t_Image *img, void *mlx)
 {
 	if (!img || !mlx)
 		return ;
+	if (!img->img)
+		return ;
 	mlx_destroy_image(mlx, img->img);
 }
 
