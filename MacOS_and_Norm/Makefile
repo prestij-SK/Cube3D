@@ -66,6 +66,7 @@ SRCS_NAME = data_from_parsed.c \
 			Y_libft3.c \
 			Y_validate_map_chars.c \
 			Y_map_parsing_utils.c \
+			Y_map_parsing.c \
 			Y_validate_map_scheme.c
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))

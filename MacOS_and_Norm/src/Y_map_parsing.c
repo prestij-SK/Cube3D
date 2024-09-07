@@ -16,19 +16,20 @@ static	int	get_end(t_parse *p_data)
 
 static int	fill_map(t_parse *p_data, t_Point2D block, t_index idx)
 {
-    p_data->map = (char **)malloc(sizeof(char *) * (block.y + 1));
+    p_data->map = (char **)malloc(sizeof(char *) * (block.y));
     if (!p_data->map)
         return (-1);
     idx.j = 0;
     idx.end = get_end(p_data);
     while (p_data->file[idx.i] && idx.i <= idx.end)//check overflow
     {
-        p_data->map[idx.j++] = ft_strdup(p_data->file[idx.i]);
-        if (!p_data->map[idx.j - 1])
+        p_data->map[idx.j] = ft_strdup(p_data->file[idx.i]);
+        if (!p_data->map[idx.j])
             return (-1);
         idx.i++;
+        idx.j++;
     }
-    p_data->map[idx.j++] = NULL;
+    p_data->map[idx.j] = NULL;
     return (1);
 }
 
