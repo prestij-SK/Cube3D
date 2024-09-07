@@ -56,12 +56,12 @@ void	validate_doors(t_parse *p_data)
             && !(p_data->map[i][j - 1] && p_data->map[i][j - 1] == '1'
             && p_data->map[i][j + 1] && p_data->map[i][j + 1] == '1'))
             {
-                ft_putstr_fd(RED, STD_ERR);
-                ft_putstr_fd("Error\n", STD_ERR);
+                print_err_message("Invalid Map, doors should be surounded by walls in line: ");
                 ft_putstr_fd(YELLOW, STD_ERR);
-                ft_putstr_fd("Invalid Map, doors should be surounded by walls in line: ", STD_ERR);
                 ft_putnbr_fd(i + 1, STD_ERR);
-                ft_putstr_fd(p_data->map[i], STD_ERR);
+                ft_putstr_fd(DEFAULT, STD_ERR);
+                ft_putstr_fd("\n", STD_ERR);
+                ft_putendl_fd(p_data->map[i], STD_ERR);
                 ft_putstr_fd(DEFAULT, STD_ERR);
                 clean_exit(p_data, 1);
             }
