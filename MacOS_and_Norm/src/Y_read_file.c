@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Y_read_file.c                                        :+:      :+:    :+:   */
+/*   Y_read_file.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:19:13 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/08/31 18:47:25 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:10:15 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/the_game.h"
 #include "../header/parsing.h"
+#include "../header/the_game.h"
 
 int	open_file(char *path)
 {
@@ -20,8 +20,8 @@ int	open_file(char *path)
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-        print_err_message("Can't open file: ");
-        ft_putendl_fd(path, STD_ERR);
+		print_err_message("Can't open file: ");
+		ft_putendl_fd(path, STD_ERR);
 		ft_putstr_fd(DEFAULT, STD_ERR);
 		exit(1);
 	}
@@ -30,7 +30,7 @@ int	open_file(char *path)
 
 static char	*ft_smart_trim(char **temp)
 {
-	char		*trim_temp;
+	char	*trim_temp;
 
 	if (!is_empty(*temp))
 	{
@@ -52,8 +52,6 @@ static char	*ft_smart_trim(char **temp)
 	return (*temp);
 }
 
-
-//it's not show malloc error
 char	**read_file(int fd)
 {
 	t_file	file;

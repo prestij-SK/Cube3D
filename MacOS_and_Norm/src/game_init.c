@@ -38,8 +38,8 @@ void	game_data_delete(t_GameData *data)
 	image_delete(&data->gun[4], data->mlx);
 	if (data->mlx && data->mlx_window)
 		mlx_destroy_window(data->mlx, data->mlx_window);
-	if (data->mlx)
-		mlx_destroy_display(data->mlx);
+	// if (data->mlx)
+	// 	mlx_destroy_display(data->mlx);
 }
 
 void	game_nullify_pointers(t_GameData *data)

@@ -6,7 +6,7 @@
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 12:54:21 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/08/31 18:49:28 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:41:27 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef enum Type
 	EA,
 	F,
 	C
-}	t_type;
+}				t_type;
 
 typedef enum PStatus
 {
@@ -46,57 +46,57 @@ typedef enum PStatus
 	INVALID_RANGE = -6,
 	COMMA_EDGE = -7,
 	INVALID_COLOR_VALUES = -8,
-  	TOO_FEW_VALUES = -9,
-}	t_pstatus;
+	TOO_FEW_VALUES = -9,
+}				t_pstatus;
 
 typedef struct ElemnetnsCounter
 {
-	int	north;
-	int	west;
-	int	south;
-	int	east;
-	int	door;
+	int			north;
+	int			west;
+	int			south;
+	int			east;
+	int			door;
 
-}	t_elements;
+}				t_elements;
 
 typedef struct ParsingData
 {
- 	char		player_view;
+	char		player_view;
 	char		**file;
 	char		**map;
-    char		**map_cpy;
+	char		**map_cpy;
 	t_Point2D	block_count;
-	t_elements	elements;		
+	t_elements	elements;
 	char		*north;
 	char		*west;
 	char		*east;
 	char		*south;
 	int			ceiling_c;
 	int			floor_c;
-}	t_parse;
+}				t_parse;
 
 typedef struct index
 {
-	int	i;
-	int	j;
-	int	end;
-}	t_index;
+	int			i;
+	int			j;
+	int			end;
+}				t_index;
 
 typedef struct RGB
 {
-	int	r;
-	int	g;
-	int	b;
-}	t_rgb;
+	int			r;
+	int			g;
+	int			b;
+}				t_rgb;
 
 typedef struct FileData
 {
-	char	*temp;
-	char	*trim_temp;
-	char	*line;
-	char	**map;
+	char		*temp;
+	char		*trim_temp;
+	char		*line;
+	char		**map;
 
-}	t_file;
+}				t_file;
 
 // UTILS
 char			*get_next_line(int fd);
@@ -128,9 +128,9 @@ char			**read_file(int fd);
 int				open_file(char *path);
 void			tabs_to_spaces(char **map);
 int				init_map(t_parse *p_data);
-void			make_map_rectangle(t_parse	*p_data);
+void			make_map_rectangle(t_parse *p_data);
 
-//TEXTURES
+// TEXTURES
 int				get_textures_and_colors(t_parse *p_data);
 int				save_north(t_parse *p_data, char *str);
 int				save_west(t_parse *p_data, char *str);
@@ -139,24 +139,26 @@ int				save_south(t_parse *p_data, char *str);
 void			resolve_error(char *line, t_type type, t_pstatus status);
 int				save_floor_color(t_parse *p_data, char *str);
 int				save_ceill_color(t_parse *p_data, char *str);
+int				resolve_type(int len);
 
-//VALIDATION
+// VALIDATION
 int				is_valid_map_name(char *name);
 int				check_textures_and_colors(t_parse *p_data);
 void			validate_map_chars(t_parse *p_data);
 void			validate_data(t_parse *p_data);
 void			validate_doors(t_parse *p_data);
-void			validate_invalid_path(t_parse *p_data, t_Point2D size, t_Point2D cur, char to_fill);
+void			validate_invalid_path(t_parse *p_data, t_Point2D size,
+					t_Point2D cur, char to_fill);
 void			validate_borders(t_parse *p_data);
 
-//MEMORY
+// MEMORY
 void			*free_arr(char **str);
-t_parse			init_Pdata(void);
-void			*clean_Pdata(t_parse *p_data);
-void			*clean_Pdata_except_map(t_parse *p_data);
+t_parse			init_pdata(void);
+void			*clean_pdata(t_parse *p_data);
+void			*clean_pdata_except_map(t_parse *p_data);
 void			*clean_exit(t_parse *p_data, int status);
 
-//DEBUG
+// DEBUG
 void			print_pdata(t_parse *p_data);
 void			print_map(char **map, int x, int y);
 void			print_line_by_char(char *str);
