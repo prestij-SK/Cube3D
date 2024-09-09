@@ -10,7 +10,7 @@ else
 endif
 
 CC = cc
-CFLAGS = -I ${MLX_DIR} #-fsanitize=address #-Wall -Wextra -Werror
+CFLAGS = -I ${MLX_DIR} -Wall -Wextra -Werror #-fsanitize=address
 
 SRCS_DIR = src/
 OBJS_DIR = obj/

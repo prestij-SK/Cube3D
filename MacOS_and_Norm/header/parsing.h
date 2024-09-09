@@ -6,7 +6,7 @@
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 12:54:21 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/09 14:41:27 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:25:48 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ char			*err_message(char *message);
 char			*ft_strstr(char *str, char *to_find);
 int				ft_strcmp(char *s1, char *s2);
 char			*ft_strstr(char *str, char *to_find);
-int				ft_atoi(const char *str);
+int				ft_atoi_check(const char *str);
 int				is_empty(char *str);
 int				arr_len(char **arr);
 int				ft_isdigit(int c);
@@ -122,6 +122,7 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putchar_fd(char c, int fd);
 char			**ft_arrdup(char **env);
 void			print_err_message(char *str);
+void			free_ptr(void *ptr);
 
 t_parse			parsing(char *path);
 char			**read_file(int fd);

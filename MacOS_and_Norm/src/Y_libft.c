@@ -6,7 +6,7 @@
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 19:12:19 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/09 14:06:34 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:24:38 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_strstr(char *str, char *to_find)
 	return (0);
 }
 
-int	ft_atoi(const char *str)//need to check for buffer overflow and some unexpected results
+int	ft_atoi_check(const char *str)
 {
 	unsigned int	num;
 	int				i;
@@ -94,6 +94,8 @@ int	ft_atoi(const char *str)//need to check for buffer overflow and some unexpec
 			np = -1;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
+		if (num > 255)
+			return (-1);
 		num = num * 10 + (str[i] - '0');
 		i++;
 	}

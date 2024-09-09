@@ -6,7 +6,7 @@
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:49:01 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/09 14:44:49 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:22:16 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ static t_rgb	fill_color(char **colors)
 {
 	t_rgb	color;
 
-	color.r = ft_atoi(colors[0]);
-	color.g = ft_atoi(colors[1]);
-	color.b = ft_atoi(colors[2]);
+	color.r = ft_atoi_check(colors[0]);
+	color.g = ft_atoi_check(colors[1]);
+	color.b = ft_atoi_check(colors[2]);
 	free_arr(colors);
 	return (color);
 }
