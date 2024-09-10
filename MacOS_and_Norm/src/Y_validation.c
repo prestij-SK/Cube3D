@@ -6,7 +6,7 @@
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:00:53 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/09 14:12:33 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:21:08 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,5 @@ void	validate_data(t_parse *p_data)
 	player_pos = get_player_pos(p_data->map);
 	p_data->player_view = p_data->map[player_pos.y][player_pos.x];
 	validate_invalid_path(p_data, p_data->block_count, player_pos, '0');
-	validate_borders(p_data);
 	validate_doors(p_data);
 }

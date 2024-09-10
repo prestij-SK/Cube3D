@@ -6,27 +6,22 @@
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:45:53 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/09 14:48:13 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/10 14:21:01 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/parsing.h"
 #include "../header/the_game.h"
 
-void	validate_borders(t_parse *p_data)
+static int	is_border_empty(t_parse *p_data, t_Point2D cur)
 {
-	int	i;
-
-	i = 0;
-	while (p_data->map[i])
+	if (cur.x == 0 || cur.y == 0 || cur.x == p_data->block_count.x - 1 || \
+		cur.y == p_data->block_count.y - 1)
 	{
-		if (p_data->map[i][0] == '0' || p_data->map[i][0] == 'D')
-		{
-			print_err_message("Invalid Borders\n");
-			clean_exit(p_data, 1);
-		}
-		i++;
+		return (p_data->map_cpy[cur.y][cur.x] == '0' || \
+			p_data->map_cpy[cur.y][cur.x] == 'D');
 	}
+	return (0);
 }
 
 void	validate_invalid_path(t_parse *p_data, t_Point2D size, t_Point2D cur,
@@ -44,6 +39,11 @@ void	validate_invalid_path(t_parse *p_data, t_Point2D size, t_Point2D cur,
 			clean_exit(p_data, 1);
 		}
 		return ;
+	}
+	else if (is_border_empty(p_data, cur))
+	{
+		print_err_message("Invalid path\n");
+		clean_exit(p_data, 1);
 	}
 	p_data->map_cpy[cur.y][cur.x] = 'F';
 	validate_invalid_path(p_data, size, (t_Point2D){cur.x - 1, cur.y}, to_fill);
