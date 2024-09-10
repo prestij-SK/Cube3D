@@ -63,8 +63,8 @@ t_StatusCode	doors_data_init(t_Door *doors, int *count, char **map, t_Point2D ma
 	if (!doors || !map)
 		return (NULL_POINTER_ERROR);
 	*count = 0;
-	i = 0;
-	while (i < map_size.y)
+	i = -1;
+	while (++i < map_size.y)
 	{
 		j = 0;
 		while (j < map_size.x)
@@ -80,7 +80,6 @@ t_StatusCode	doors_data_init(t_Door *doors, int *count, char **map, t_Point2D ma
 			}
 			++j;
 		}
-		++i;
 	}
 	return (SUCCESS_EXIT);
 }

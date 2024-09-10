@@ -31,7 +31,7 @@
 # define GUN_SWITCH_FRAME_TIME 80
 
 // Ray casting options
-# define RADIAN_STEP 0.0021816616 //  (1 radian / 4) will be used to increment sector degree which starts from -30
+# define RADIAN_STEP 0.0021816616 //  (1 radian / 8) will be used to increment sector degree which starts from -30
 # define SECTOR_ANGLE -30 // the sector will start at -30 degree and increase to 30, which will make 60 degree sector
 # define RAY_COUNT 480 // 240 rays in 60 degree sector
 
@@ -95,5 +95,10 @@ void	set_shortest_ray_dis(t_RCdata *ray_data);
 	data_from_parsed.c
 */
 t_StatusCode	set_all_parsed_data(t_GameData *data, t_parse *parse);
+
+
+
+//////////////////
+/// ALL NORMS
 
 #endif

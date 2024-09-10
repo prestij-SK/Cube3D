@@ -31,9 +31,11 @@ HEADERS = color.h \
 
 SRCS_NAME = data_from_parsed.c \
 			door.c \
+			draw_shape_norm_1.c \
 			draw_shape.c \
 			first_person_view.c \
 			for_math.c \
+			game_init_norm.c \
 			game_init.c \
 			horizontal_ray.c \
 			image.c \

@@ -78,6 +78,20 @@ void the_game(char *path)
 		error_exit(status, "mlx and mlx window init failed.");
 	}
 	p_data = parsing(path);
+	//
+	int i = 0;
+	while (i < p_data.block_count.y)
+	{
+		int j = 0;
+		while (j < p_data.block_count.x)
+		{
+			printf(".%c.", p_data.map[i][j]);
+			++j;
+		}
+		printf("\n");
+		++i;
+	}
+	//
 	status = game_data_init(&data, p_data.map, p_data.block_count);
 	if (status != SUCCESS_EXIT)
 	{

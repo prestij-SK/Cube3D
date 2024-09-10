@@ -29,10 +29,10 @@ static void	set_xy_offset(t_UpdateUtil *util, double change_x, double change_y, 
 // strafing left
 void	update_A(t_Player *player)
 {
-	if (!player)
-		return ;
 	t_UpdateUtil	util;
 
+	if (!player)
+		return ;
     // Calculate the strafe vector (perpendicular to the delta vector)
     double strafe_angle = player->angle - M_PI / 2;  // 90 degrees rotation
 	// Calculate delta X,Y again
@@ -57,10 +57,10 @@ void	update_A(t_Player *player)
 // strafing right
 void	update_D(t_Player *player)
 {
-	if (!player)
-		return ;
 	t_UpdateUtil	util;
 
+	if (!player)
+		return ;
     // Same thing, but we add 90 degree
     double strafe_angle = player->angle + M_PI / 2;
 	// Calculate delta X,Y again
@@ -85,10 +85,10 @@ void	update_D(t_Player *player)
 // going forward
 void	update_W(t_Player *player)
 {
-	if (!player)
-		return ;
 	t_UpdateUtil	util;
 
+	if (!player)
+		return ;
 	set_xy_offset(&util, player->delta.x, player->delta.y, COLLISION_GAP);
 	util.current.x = player->pos.x / player->minimap->block_size;
 	util.current.y = player->pos.y / player->minimap->block_size;
@@ -107,10 +107,10 @@ void	update_W(t_Player *player)
 // going back
 void	update_S(t_Player *player)
 {
-	if (!player)
-		return ;
 	t_UpdateUtil	util;
 
+	if (!player)
+		return ;
 	set_xy_offset(&util, player->delta.x, player->delta.y, COLLISION_GAP);
 	util.current.x = player->pos.x / player->minimap->block_size;
 	util.current.y = player->pos.y / player->minimap->block_size;
@@ -137,10 +137,10 @@ void	update_M(t_Minimap *minimap, short val)
 // Do action
 void	update_E(t_GameData *data, t_Player *player)
 {
-	if (!player)
-		return ;
 	t_UpdateUtil	util;
 
+	if (!player)
+		return ;
 	if (data->input.e_checked == B_TRUE)
 		return ;
 	// printf("here\n");

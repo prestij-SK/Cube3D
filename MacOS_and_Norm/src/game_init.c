@@ -41,42 +41,6 @@ void	game_data_delete(t_GameData *data)
 		mlx_destroy_display(data->mlx);
 }
 
-void	game_nullify_pointers(t_GameData *data)
-{
-	if (!data)
-		return ;
-	data->mlx = NULL;
-	data->mlx_window = NULL;
-	data->tex_p = NULL;
-	data->minimap.map = NULL;
-	data->minimap.small_image.img = NULL;
-	data->minimap.small_image.addr = NULL;
-	data->minimap.origin_image.img = NULL;
-	data->minimap.origin_image.addr = NULL;
-	data->view.image.img = NULL;
-	data->view.image.addr = NULL;
-	data->north_wall.img = NULL;
-	data->north_wall.addr = NULL;
-	data->south_wall.img = NULL;
-	data->south_wall.addr = NULL;
-	data->west_wall.img = NULL;
-	data->west_wall.addr = NULL;
-	data->east_wall.img = NULL;
-	data->east_wall.addr = NULL;
-	data->door_tex.img = NULL;
-	data->door_tex.addr = NULL;
-	data->gun[0].img = NULL;
-	data->gun[0].addr = NULL;
-	data->gun[1].img = NULL;
-	data->gun[1].addr = NULL;
-	data->gun[2].img = NULL;
-	data->gun[2].addr = NULL;
-	data->gun[3].img = NULL;
-	data->gun[3].addr = NULL;
-	data->gun[4].img = NULL;
-	data->gun[4].addr = NULL;
-}
-
 static t_Point2D	player_location(char **map, t_Point2D block_count)
 {
 	t_Point2D	pos;
@@ -87,8 +51,8 @@ static t_Point2D	player_location(char **map, t_Point2D block_count)
 	pos.y = -1;
 	if (!map)
 		return (pos);
-	i = 0;
-	while (i < block_count.y)
+	i = -1;
+	while (++i < block_count.y)
 	{
 		j = 0;
 		while (j < block_count.x)
@@ -102,7 +66,6 @@ static t_Point2D	player_location(char **map, t_Point2D block_count)
 			}
 			++j;
 		}
-		++i;
 	}
 	return (pos);
 }
