@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Y_debug.c                                          :+:      :+:    :+:   */
+/*   Y_debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 19:03:44 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/09 14:05:00 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:43:43 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/parsing.h"
 #include "../header/the_game.h"
+#include "../header/parsing.h"
 
 void	print_map(char **map, int x, int y)
 {
@@ -44,15 +44,14 @@ void	print_map(char **map, int x, int y)
 
 void	print_line_by_char(char *str)
 {
-	int	i;
-
-	i = 0;
+	int	i = 0;
 	while (str[i])
 	{
 		printf("%d\n", str[i]);
 		i++;
 	}
 	printf("%d\n", str[i]);
+
 }
 
 void	print_pdata(t_parse *p_data)

@@ -1,5 +1,17 @@
 #include "../header/player.h"
 
+static void	set_player_angle(t_Player *player, t_Minimap *minimap, t_Point2D pos)
+{
+	if (minimap->map[pos.y][pos.x] == 'W')
+		player->angle = get_radians(PLAYER_ANGLE_DEFAULT * 2); // 180 West
+	else if (minimap->map[pos.y][pos.x] == 'N')
+		player->angle = get_radians(PLAYER_ANGLE_DEFAULT * 3); // 270 North
+	else if (minimap->map[pos.y][pos.x] == 'E')
+		player->angle = get_radians(PLAYER_ANGLE_DEFAULT * 4); // 360 or 0 East
+	else
+		player->angle = get_radians(PLAYER_ANGLE_DEFAULT); // 90 South
+}
+
 t_StatusCode	player_init(t_Player *player, t_Minimap *minimap, t_Point2D block_pos, int block_size)
 {
 	t_Point2D		pos;
@@ -16,7 +28,7 @@ t_StatusCode	player_init(t_Player *player, t_Minimap *minimap, t_Point2D block_p
 	player->size.x = block_size / 2;
 	player->size.y = block_size / 2;
 	player->color = COLOR_YELLOW;
-	player->angle = get_radians(PLAYER_ANGLE_DEFAULT);
+	set_player_angle(player, minimap, block_pos);
 	player->delta.x = cos(player->angle) * PLAYER_MOVE_SPEED;
 	player->delta.y = sin(player->angle) * PLAYER_MOVE_SPEED;
 	player->minimap = minimap;

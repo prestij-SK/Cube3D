@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Y_parsing_utils.c                                  :+:      :+:    :+:   */
+/*   Y_parsing_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 14:03:52 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/09 14:09:06 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:49:14 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ char	*err_message(char *message)
 	system("leaks the_game");
 	exit(1);
 }
+
+//char	*err_message(char *message)
+//{
+//	write(2, RED, 7);
+//	write(2, "Error\n", 6);
+//	write(2, YELLOW, 7);
+//	write(2, message, ft_strlen(message));
+//	write(2, DEFAULT, 4);
+//	system("leaks the_game");
+//	exit(1);
+//}
 
 int	is_empty(char *str)
 {

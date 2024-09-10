@@ -10,7 +10,7 @@ else
 endif
 
 CC = cc
-CFLAGS = -I ${MLX_DIR} -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -I ${MLX_DIR} #-fsanitize=address #-Wall -Wextra -Werror
 
 SRCS_DIR = src/
 OBJS_DIR = obj/
@@ -67,8 +67,7 @@ SRCS_NAME = data_from_parsed.c \
 			Y_validate_map_chars.c \
 			Y_map_parsing_utils.c \
 			Y_map_parsing.c \
-			Y_validate_map_scheme.c \
-			Y_free_utils.c
+			Y_validate_map_scheme.c
 
 OBJS = $(addprefix $(OBJS_DIR), $(OBJS_NAME))
 OBJS_NAME = $(SRCS_NAME:.c=.o)

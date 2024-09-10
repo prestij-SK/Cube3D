@@ -9,7 +9,7 @@
 # include "minimap.h"
 
 # define PLAYER_NAME "ABUBA"
-# define PLAYER_ANGLE_DEFAULT 270 // North
+# define PLAYER_ANGLE_DEFAULT 90 // South
 # define PLAYER_ROTATE_SPEED 0.05 // in Radians
 # define PLAYER_MOUSE_SENSITIVITY 0.008 // in Radians
 # define PLAYER_MOVE_SPEED 5

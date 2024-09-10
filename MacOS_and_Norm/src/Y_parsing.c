@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Y_parsing.c                                        :+:      :+:    :+:   */
+/*   Y_parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 13:03:35 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/09 14:50:56 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:48:46 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int	is_file_empty(char **file)
 static void	parsing1(t_parse *p_data, char *path)
 {
 	int		fd;
-	int		status;
 
 	fd = open_file(path);
 	p_data->file = read_file(fd);
@@ -42,33 +41,37 @@ static void	parsing1(t_parse *p_data, char *path)
 		err_message("File is empty\n");
 	}
 	tabs_to_spaces(p_data->file);
-	status = get_textures_and_colors(p_data);
-	if (status < 0)
-		clean_exit(p_data, 1);
-	status = check_textures_and_colors(p_data);
-	if (status < 0)
-	{
-		if (status == -1)
-			print_err_message("textures missing\n");
-		if (status == -2)
-			print_err_message("colors missing\n");
-		clean_exit(p_data, 1);
-	}
 }
 
 static void	parsing2(t_parse *p_data)
 {
 	int	status;
 
+	status = get_textures_and_colors(p_data);
+	if (status < 0)
+		clean_exit(p_data, 1);
+	status = check_textures_and_colors(p_data);
+	if (status < 0)
+	{
+        ft_putstr_fd(RED, STD_ERR);
+		ft_putstr_fd("Error\n", STD_ERR);
+		ft_putstr_fd(YELLOW, STD_ERR);
+		if (status == -1)
+			ft_putstr_fd("textures missing\n", STD_ERR);
+		if (status == -2)
+			ft_putstr_fd("colors missing\n", STD_ERR);
+        ft_putstr_fd(DEFAULT, STD_ERR);
+		clean_exit(p_data, 1);
+	}
 	status = init_map(p_data);
 	if (status < 0)
 	{
-		clean_pdata(p_data);
+		clean_Pdata(p_data);
 		err_message("Malloc Error\n");
 	}
 	if (!p_data->map || !p_data->map[0])
 	{
-		clean_pdata(p_data);
+		clean_Pdata(p_data);
 		err_message("Map is Empty\n");
 	}
 }
@@ -82,9 +85,10 @@ t_parse	parsing(char *path)
 
 	if (!is_valid_map_name(path))
 		err_message("Invalid map name maps should have '.cub' format\n");
-	p_data = init_pdata();
+	p_data = init_Pdata();
 	parsing1(&p_data, path);
 	parsing2(&p_data);
+	// print_map(p_data.map, 1, 1);
 	i = 1;
 	max = ft_strlen(p_data.map[0]);
 	while (p_data.map[i])

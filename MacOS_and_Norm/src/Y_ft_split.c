@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Y_ft_split.c                                       :+:      :+:    :+:   */
+/*   Y_ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 13:05:59 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/09 14:42:55 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/08/30 13:37:55 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/parsing.h"
 #include "../header/the_game.h"
 
-void	free_split(char **str)
+void	free_split(char **str)//don't forgot to check 42headers
 {
 	int	i;
 
@@ -97,8 +97,8 @@ static int	fill(char **res, char const *s, char c, int nb_words)
 
 char	**ft_split(char const *s, char c)
 {
-	char	**res;
-	int		nb_words;
+	char **res;
+	int nb_words;
 
 	if (!s)
 		return (NULL);
