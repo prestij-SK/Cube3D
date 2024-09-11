@@ -99,7 +99,7 @@ void the_game(char *path)
 		error_exit(status, "Game data init failed.");
 	}
 	status = set_all_parsed_data(&data, &p_data);
-	clean_Pdata_except_map(&p_data);
+	clean_pdata_except_map(&p_data);
 	if (status != SUCCESS_EXIT)
 	{
 		game_data_delete(&data);
