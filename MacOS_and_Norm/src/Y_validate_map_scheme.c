@@ -6,7 +6,7 @@
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:45:53 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/10 14:21:01 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/11 14:55:17 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,30 @@ void	validate_invalid_path(t_parse *p_data, t_Point2D size, t_Point2D cur,
 	validate_invalid_path(p_data, size, (t_Point2D){cur.x, cur.y + 1}, to_fill);
 }
 
+static int	door_condition(char **map, int i, int j, t_Point2D size)
+{
+	int	vertical;
+	int	horizontal;
+
+	vertical = 0;
+	horizontal = 0;
+	if (i > 0 && i != size.y - 1)
+	{
+		if (map[i - 1][j] == '1' && map[i + 1][j] == '1')
+			vertical++;
+	}
+	else
+		vertical++;
+	if (j > 0 && j != size.x - 1)
+	{
+		if (map[i][j - 1] == '1' && map[i][j + 1] == '1')
+			horizontal++;
+	}
+	else
+		horizontal++;
+	return (vertical || horizontal);
+}
+
 void	validate_doors(t_parse *p_data)
 {
 	int	i;
@@ -63,11 +87,8 @@ void	validate_doors(t_parse *p_data)
 		j = -1;
 		while (p_data->map[i][++j])
 		{
-			if (p_data->map[i][j] == 'D' && !(p_data->map[i - 1][j]
-					&& p_data->map[i - 1][j] == '1' && p_data->map[i + 1][j]
-					&& p_data->map[i + 1][j] == '1') && !(p_data->map[i][j - 1]
-					&& p_data->map[i][j - 1] == '1' && p_data->map[i][j + 1]
-					&& p_data->map[i][j + 1] == '1'))
+			if (p_data->map[i][j] == 'D' && \
+				!door_condition(p_data->map, i, j, p_data->block_count))
 			{
 				print_err_message("Doors should be surounded by walls line: ");
 				ft_putstr_fd(YELLOW, STD_ERR);
