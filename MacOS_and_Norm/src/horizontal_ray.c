@@ -32,10 +32,15 @@ static void	horizontal_checking_blocks_norm(t_RCutil *util, t_GameData *data, t_
 		util->my = (int) (util->ry) >> util->block_power;
 		if (util->mx < 0 || util->my < 0)
 			break ;
+		// printf("hor_not_in_check\n");
 		if (util->mx < data->minimap.block_count.x && util->my < data->minimap.block_count.y)
 		{
 			if (data->minimap.map[util->my][util->mx] == '1')
 				break ;
+			// printf("1 hor_arr_checked\n");
+			if (data->minimap.map[util->my][util->mx] == ' ')
+				break ;
+			// printf("' ' hor_arr_checked\n");
 			if (data->minimap.map[util->my][util->mx] == 'D')
 			{
 				if (door_is_closed(data->minimap.doors, data->minimap.door_count, util->my, util->mx) == B_TRUE)
@@ -44,6 +49,7 @@ static void	horizontal_checking_blocks_norm(t_RCutil *util, t_GameData *data, t_
 					break ;
 				}
 			}
+			// printf("D hor_arr_checked\n");
 			util->rx += util->ox;
 			util->ry += util->oy;
 		}

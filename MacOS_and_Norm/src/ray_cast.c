@@ -1,7 +1,5 @@
 #include "../header/the_game.h"
 
-#include "../header/tex.h" // DELETE
-
 static void	set_wall_texture(t_GameData *data, t_RCdata *ray_data, double ray_angle)
 {
 	if (ray_data->dis_v < ray_data->dis_h)
@@ -71,10 +69,15 @@ static void	ray_cast_walls(t_GameData *data, t_RCdata *ray_data, int ray, double
 	pos.x = ray * (FPV_WIDTH / RAY_COUNT);
 	pos.y = util.line_offset;
 
+	// printf("drawing_part\n");
 	util.y = 0;
+	// if (util.x < 0 || util.y < 0)
+	// 	return ;
 	while (util.y < size.y)
 	{
 		util.pixel_index = (int)util.ty * data->tex_p->line_length + (int)util.tx * (data->tex_p->bits_per_pixel / 8);
+		if (util.pixel_index < 0)
+			return ;
 		util.color = *(int *)(data->tex_p->addr + util.pixel_index);
 
 		util.x = 0;
@@ -86,6 +89,7 @@ static void	ray_cast_walls(t_GameData *data, t_RCdata *ray_data, int ray, double
 		util.ty += util.ty_step;
 		++util.y;
 	}
+	// printf("all good ?\n");
 }
 
 static void	draw_ray_line(t_GameData *data, t_RCdata *ray_data)
@@ -120,6 +124,7 @@ void	ray_casting(t_GameData *data)
 		horizontal_checking(data, &ray_data, ray_angle);
 		vertical_checking(data, &ray_data, ray_angle);
 		set_shortest_ray_dis(&ray_data); // Final Line
+		// printf("checking_passed\n");
 		draw_ray_line(data, &ray_data); // Draw the ray
 		ray_cast_walls(data, &ray_data, r, ray_angle); // Draw the walls
 		ray_angle += RADIAN_STEP;

@@ -5,7 +5,10 @@ void    alt_mlx_pixel_put(t_Image *img, int x, int y, int color)
     char	*dst;
 
     if (x < 0 || x > img->size.x || y < 0 || y > img->size.y)
+    {
+        printf("dog\n");
         return ;
+    }
     if (x > WINDOW_WIDTH || y > WINDOW_HEIGHT)
         return ;
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
