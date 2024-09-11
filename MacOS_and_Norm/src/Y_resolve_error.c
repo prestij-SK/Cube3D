@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Y_resolve_error.c                                    :+:      :+:    :+:   */
+/*   Y_resolve_error.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:39:54 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/08/31 17:45:07 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:10:26 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/the_game.h"
 #include "../header/parsing.h"
+#include "../header/the_game.h"
 
-void print_err_message(char *str)
+void	print_err_message(char *str)
 {
 	ft_putstr_fd(RED, STD_ERR);
 	ft_putstr_fd("Error\n", STD_ERR);
@@ -25,7 +25,7 @@ void print_err_message(char *str)
 static void	write_type(t_type type)
 {
 	if (type == NO)
-        ft_putstr_fd("NO", STD_ERR);
+		ft_putstr_fd("NO", STD_ERR);
 	else if (type == WE)
 		ft_putstr_fd("WE", STD_ERR);
 	else if (type == SO)
@@ -87,12 +87,12 @@ void	resolve_error(char *line, t_type type, t_pstatus status)
 	}
 	else if (status == TOO_MANY_VALUES || status == TOO_FEW_VALUES)
 	{
-        if (status == TOO_MANY_VALUES)
+		if (status == TOO_MANY_VALUES)
 			ft_putstr_fd("too many arguments for: ", STD_ERR);
-        else
-        	ft_putstr_fd("too few arguments for: ", STD_ERR);
+		else
+			ft_putstr_fd("too few arguments for: ", STD_ERR);
 		write_type(type);
 		ft_putstr_fd("\n", STD_ERR);
 	}
-    resolve_error2(status);
+	resolve_error2(status);
 }

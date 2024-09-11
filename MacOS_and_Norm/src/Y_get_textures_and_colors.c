@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Y_get_textures_and_colors.c                          :+:      :+:    :+:   */
+/*   Y_get_textures_and_colors.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:09:30 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/08/31 18:48:07 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:16:26 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/the_game.h"
 #include "../header/parsing.h"
+#include "../header/the_game.h"
 
 t_type	check_type(char *str)
 {
@@ -59,8 +59,8 @@ int	save_data(t_parse *p_data, char *str, t_type type)
 
 static int	not_valid_line(char *line)
 {
-    print_err_message("not valid line:\n");
-    ft_putendl_fd(line, STD_ERR);
+	print_err_message("not valid line:\n");
+	ft_putendl_fd(line, STD_ERR);
 	return (-5);
 }
 
@@ -71,18 +71,15 @@ int	get_textures_and_colors(t_parse *p_data)
 	int		not_empty_lines;
 	t_type	type;
 
-	i = 0;
+	i = -1;
 	not_empty_lines = 0;
-	while (p_data->file[i] && not_empty_lines < 6)
+	while (p_data->file[++i] && not_empty_lines < 6)
 	{
 		type = check_type(p_data->file[i]);
 		if (type == NOT_VALID)
 			return (not_valid_line(p_data->file[i]));
-        else if (type == EMPTY)
-        {
-          i++;
-          continue ;
-        }
+		else if (type == EMPTY)
+			continue ;
 		status = save_data(p_data, p_data->file[i], type);
 		if (status < 0)
 		{
@@ -91,7 +88,6 @@ int	get_textures_and_colors(t_parse *p_data)
 		}
 		if (!is_empty(p_data->file[i]))
 			not_empty_lines++;
-		i++;
 	}
 	return (1);
 }

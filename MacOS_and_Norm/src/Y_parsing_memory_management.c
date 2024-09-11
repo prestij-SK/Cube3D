@@ -1,45 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Y_parsing_memory_management.c                        :+:      :+:    :+:   */
+/*   Y_parsing_memory_management.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:02:34 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/08/31 17:40:52 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/10 13:49:29 by yuhayrap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header/the_game.h"
 #include "../header/parsing.h"
+#include "../header/the_game.h"
 
-void	*free_arr(char **str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	while (str[i])
-	{
-		free(str[i]);
-		str[i] = NULL;
-		i++;
-	}
-	free(str[i]);
-	str[i] = NULL;
-	free(str);
-	str = NULL;
-	return (NULL);
-}
-
-t_parse	init_Pdata(void)
+t_parse	init_pdata(void)
 {
 	t_parse	p_data;
 
 	p_data.file = NULL;
 	p_data.map = NULL;
-    p_data.map_cpy = NULL;
+	p_data.map_cpy = NULL;
 	p_data.north = NULL;
 	p_data.west = NULL;
 	p_data.east = NULL;
@@ -53,49 +33,41 @@ t_parse	init_Pdata(void)
 	p_data.elements.east = 0;
 	p_data.elements.south = 0;
 	p_data.elements.door = 0;
-    p_data.player_view = '\0';
+	p_data.player_view = '\0';
 	return (p_data);
 }
 
-void	*clean_Pdata(t_parse *p_data)
+void	*clean_pdata(t_parse *p_data)
 {
 	free_arr(p_data->file);
 	free_arr(p_data->map);
 	free_arr(p_data->map_cpy);
 	p_data->map = NULL;
 	p_data->file = NULL;
-    p_data->map_cpy = NULL;
-	free(p_data->north);
-	p_data->north = NULL;
-	free(p_data->west);
-	p_data->west = NULL;
-	free(p_data->east);
-	p_data->east = NULL;
-	free(p_data->south);
-	p_data->south = NULL;
+	p_data->map_cpy = NULL;
+	free_ptr(p_data->north);
+	free_ptr(p_data->west);
+	free_ptr(p_data->east);
+	free_ptr(p_data->south);
 	return (NULL);
 }
 
-void	*clean_Pdata_except_map(t_parse *p_data)
+void	*clean_pdata_except_map(t_parse *p_data)
 {
 	free_arr(p_data->file);
 	free_arr(p_data->map_cpy);
 	p_data->file = NULL;
-    p_data->map_cpy = NULL;
-	free(p_data->north);
-	p_data->north = NULL;
-	free(p_data->west);
-	p_data->west = NULL;
-	free(p_data->east);
-	p_data->east = NULL;
-	free(p_data->south);
-	p_data->south = NULL;
+	p_data->map_cpy = NULL;
+	free_ptr(p_data->north);
+	free_ptr(p_data->west);
+	free_ptr(p_data->east);
+	free_ptr(p_data->south);
 	return (NULL);
 }
 
 void	*clean_exit(t_parse *p_data, int status)
 {
-	clean_Pdata(p_data);
+	clean_pdata(p_data);
 	p_data = NULL;
 	system("leaks the_game");
 	exit(status);
