@@ -52,76 +52,42 @@ t_StatusCode	minimap_init(t_Minimap *minimap, void *mlx, char **map, t_Point2D b
 	return (SUCCESS_EXIT);
 }
 
+static void	big_map_draw_part_norm(t_Minimap *minimap, t_Point2D pos, t_Point2D size)
+{
+	if (minimap->map[minimap->norm_i][minimap->norm_j] == '1')
+		draw_rectangle_filled(&minimap->origin_image, pos, size, minimap->wall_color);
+	else if (minimap->map[minimap->norm_i][minimap->norm_j] == 'D')
+	{
+		if (door_is_closed(minimap->doors, minimap->door_count, minimap->norm_i, minimap->norm_j) == B_TRUE)
+			draw_rectangle_filled(&minimap->origin_image, pos, size, COLOR_RED);
+		else
+			draw_rectangle_filled(&minimap->origin_image, pos, size, COLOR_GREEN);
+	}
+	else
+		draw_rectangle_filled(&minimap->origin_image, pos, size, minimap->floor_color);
+}
+
 // big minimap
 void	minimap_draw_origin(t_Minimap *minimap)
 {
 	t_Point2D size;
 	t_Point2D pos;
-	int i;
-	int j;
 
 	if (!minimap)
 		return;
 	size.x = minimap->block_size;
 	size.y = minimap->block_size;
-	i = 0;
-	while (i < minimap->block_count.y)
+	minimap->norm_i = 0;
+	while (minimap->norm_i < minimap->block_count.y)
 	{
-		j = 0;
-		while (j < minimap->block_count.x)
+		minimap->norm_j = 0;
+		while (minimap->norm_j < minimap->block_count.x)
 		{
-			pos.x = (j * minimap->block_size);
-			pos.y = (i * minimap->block_size);
-			if (minimap->map[i][j] == '1')
-				draw_rectangle_filled(&minimap->origin_image, pos, size, minimap->wall_color);
-			else if (minimap->map[i][j] == 'D')
-			{
-				if (door_is_closed(minimap->doors, minimap->door_count, i, j) == B_TRUE)
-					draw_rectangle_filled(&minimap->origin_image, pos, size, COLOR_RED);
-				else
-					draw_rectangle_filled(&minimap->origin_image, pos, size, COLOR_GREEN);
-			}
-			else // if (minimap->map[i][j] == '0') // change this to else
-				draw_rectangle_filled(&minimap->origin_image, pos, size, minimap->floor_color);
-			++j;
+			pos.x = (minimap->norm_j * minimap->block_size);
+			pos.y = (minimap->norm_i * minimap->block_size);
+			big_map_draw_part_norm(minimap, pos, size);
+			++minimap->norm_j;
 		}
-		++i;
-	}
-}
-
-// small minimap
-void	minimap_draw_small(t_Minimap *minimap)
-{
-	t_Point2D size;
-	t_Point2D pos;
-	int i;
-	int j;
-
-	if (!minimap)
-		return;
-	size.x = minimap->block_size / MINIMAP_SIZE_DIVISER;
-	size.y = minimap->block_size / MINIMAP_SIZE_DIVISER;
-	i = 0;
-	while (i < minimap->block_count.y)
-	{
-		j = 0;
-		while (j < minimap->block_count.x)
-		{
-			pos.x = (j * minimap->block_size) / MINIMAP_SIZE_DIVISER;
-			pos.y = (i * minimap->block_size) / MINIMAP_SIZE_DIVISER;
-			if (minimap->map[i][j] == '1')
-				draw_rectangle_filled(&minimap->small_image, pos, size, minimap->wall_color);
-			else if (minimap->map[i][j] == 'D')
-			{
-				if (door_is_closed(minimap->doors, minimap->door_count, i, j) == B_TRUE)
-					draw_rectangle_filled(&minimap->small_image, pos, size, COLOR_RED);
-				else
-					draw_rectangle_filled(&minimap->small_image, pos, size, COLOR_GREEN);
-			}
-			else // if (minimap->map[i][j] == '0') // change this to else
-				draw_rectangle_filled(&minimap->small_image, pos, size, minimap->floor_color);
-			++j;
-		}
-		++i;
+		++minimap->norm_i;
 	}
 }

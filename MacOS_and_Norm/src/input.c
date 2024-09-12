@@ -22,34 +22,8 @@ void	input_reset_all(t_Input *input)
 	input->mouse_left = B_FALSE;
 }
 
-// int	input_key_press(int key, t_GameData *data)
-// {
-// 	// printf("%d: \n", key);
-// 	if (!data)
-// 		return (B_FALSE);
-// 	if (key == KEY_ESC)
-// 	{
-// 		game_data_delete(data);
-// 		success_exit(SUCCESS_EXIT, "Game Exit.");
-// 	}
-// 	else if (key == KEY_A)
-// 		update_A_key(&data->player);
-// 	else if (key == KEY_D)
-// 		update_D_key(&data->player);
-// 	else if (key == KEY_W)
-// 		update_W_key(&data->player);
-// 	else if (key == KEY_S)
-// 		update_S_key(&data->player);
-// 	else if (key == KEY_LEFT)
-// 		update_Left_key(&data->player);
-// 	else if (key == KEY_RIGHT)
-// 		update_Right_key(&data->player);
-// 	return (B_TRUE);
-// }
-
 int	input_key_press(int key, t_Input *input)
 {
-	// printf("%d: \n", key);
 	if (!input)
 		return (B_FALSE);
 	if (key == KEY_W)
@@ -75,7 +49,6 @@ int	input_key_press(int key, t_Input *input)
 
 int	input_key_release(int key, t_Input *input)
 {
-	// printf("%d: \n", key);
 	if (!input)
 		return (B_FALSE);
 	if (key == KEY_W)
@@ -104,7 +77,6 @@ int	input_key_release(int key, t_Input *input)
 
 int	input_mouse_move(int x, int y, t_Input *input)
 {
-	// printf("x: %d     y: %d\n", x, y);
 	if (!input)
 		return (B_FALSE);
 	input->mouse_curr_pos.x = x;
@@ -117,14 +89,9 @@ int	input_mouse_button(int button, int x, int y, t_Input *input)
 {
 	(void) x;
 	(void) y;
-	// printf("%d\n", button);
 	if (!input)
 		return (B_FALSE);
 	if (button == LEFT_CLICK)
 		input->mouse_left = B_TRUE;
-	// else if (button == SCROLL_UP)
-	// 	update_mouse_scroll_up(fdf_data);
-	// else if (button == SCROLL_DOWN)
-	// 	update_mouse_scroll_down(fdf_data);
 	return (B_TRUE);
 }

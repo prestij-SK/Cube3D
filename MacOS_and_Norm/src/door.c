@@ -13,6 +13,8 @@ int	door_is_closed(t_Door *door, int count, int arr_y, int arr_x)
 		{
 			if (door[i].is_closed == B_TRUE)
 				return (B_TRUE);
+			else
+				return (B_FALSE);
 		}
 		++i;
 	}

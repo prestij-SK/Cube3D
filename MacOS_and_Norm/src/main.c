@@ -6,7 +6,9 @@
 
 int	main(int argc, char **argv)
 {
+	t_StatusCode	status;
+
 	if (argc != 2)
 		err_message("Invalid number of arguments\n");
-	the_game(argv[1]);
+	the_game(argv[1], status);
 }

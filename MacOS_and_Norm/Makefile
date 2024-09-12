@@ -42,12 +42,15 @@ SRCS_NAME = data_from_parsed.c \
 			input_update_render.c \
 			input.c \
 			main.c \
+			minimap_norm_1.c \
 			minimap.c \
 			player.c \
 			ray_cast_utils.c \
 			ray_cast.c \
 			render.c \
 			the_game.c \
+			update_norm_1.c \
+			update_norm_2.c \
 			update.c \
 			utils.c \
 			vertical_ray.c \

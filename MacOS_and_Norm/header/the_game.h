@@ -56,7 +56,7 @@ typedef struct MainGameData
 }	t_GameData;
 
 // Main
-void			the_game(char *path);
+void			the_game(char *path, t_StatusCode status);
 void			game_nullify_pointers(t_GameData *data);
 t_StatusCode	game_mlx_init(t_GameData *data);
 t_StatusCode	game_data_init(t_GameData *data, char **map, t_Point2D block_count);
@@ -71,9 +71,13 @@ void	update_A(t_Player *player);
 void	update_D(t_Player *player);
 void	update_W(t_Player *player);
 void	update_S(t_Player *player);
+void	update_M(t_Minimap *minimap, short val);
 void	update_Arrow_Left(t_Player *player, double rotate_speed);
 void	update_Arrow_Right(t_Player *player, double rotate_speed);
+void	update_mouse_move(t_GameData *data, double rotate_speed);
 void	update_check(t_GameData *data);
+int		is_in_minimap_range(t_Minimap *minimap, int y, int x);
+void	set_xy_offset(t_UpdateUtil *util, double change_x, double change_y, int gap);
 
 /*
 	render functions
@@ -88,17 +92,12 @@ void	render(t_GameData *data);
 void	ray_casting(t_GameData *data);
 void	horizontal_checking(t_GameData *data, t_RCdata *ray_data, double angle);
 void	vertical_checking(t_GameData *data, t_RCdata *ray_data, double angle);
-void	adjust_ray_range(t_GameData *data, t_RCutil *util); // Wasn't needed
 void	set_shortest_ray_dis(t_RCdata *ray_data);
+void	draw_ray_line(t_GameData *data, t_RCdata *ray_data);
 
 /*
 	data_from_parsed.c
 */
 t_StatusCode	set_all_parsed_data(t_GameData *data, t_parse *parse);
-
-
-
-//////////////////
-/// ALL NORMS
 
 #endif

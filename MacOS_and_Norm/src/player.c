@@ -3,13 +3,13 @@
 static void	set_player_angle(t_Player *player, t_Minimap *minimap, t_Point2D pos)
 {
 	if (minimap->map[pos.y][pos.x] == 'W')
-		player->angle = get_radians(PLAYER_ANGLE_DEFAULT * 2); // 180 West
+		player->angle = get_radians(PLAYER_ANGLE_DEFAULT * 2);
 	else if (minimap->map[pos.y][pos.x] == 'N')
-		player->angle = get_radians(PLAYER_ANGLE_DEFAULT * 3); // 270 North
+		player->angle = get_radians(PLAYER_ANGLE_DEFAULT * 3);
 	else if (minimap->map[pos.y][pos.x] == 'E')
-		player->angle = get_radians(PLAYER_ANGLE_DEFAULT * 4); // 360 or 0 East
+		player->angle = get_radians(PLAYER_ANGLE_DEFAULT * 4);
 	else
-		player->angle = get_radians(PLAYER_ANGLE_DEFAULT); // 90 South
+		player->angle = get_radians(PLAYER_ANGLE_DEFAULT);
 }
 
 t_StatusCode	player_init(t_Player *player, t_Minimap *minimap, t_Point2D block_pos, int block_size)

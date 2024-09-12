@@ -1,5 +1,19 @@
 #include "../header/utils.h"
 
+static void	error_exit_norm(t_StatusCode status, char *str)
+{
+	if (status == PLAYER_LOCATION_ERROR)
+		printf("Player Location");
+	else if (status == DOOR_NUMBER_ERROR)
+		printf("Doors Count");
+	else if (status == WALL_TEXTURE_ERROR)
+		printf("Wall Textures");
+	else if (status == GUN_TEXTURE_ERROR)
+		printf("Gun Textures");
+	else if (status == DOOR_TEXTURE_ERROR)
+		printf("Door Texture");
+}
+
 void	error_exit(t_StatusCode status, char *str)
 {
 	if (status == SUCCESS_EXIT)
@@ -20,12 +34,8 @@ void	error_exit(t_StatusCode status, char *str)
 		printf("MLX Window");
 	else if (status == IMAGE_ERROR)
 		printf("MLX Image");
-	else if (status == PLAYER_LOCATION_ERROR)
-		printf("Player Location");
-	else if (status == DOOR_NUMBER_ERROR)
-		printf("Doors Count");
-	else if (status == WALL_TEXTURE_ERROR)
-		printf("Wall Textures");
+	else
+		error_exit_norm(status, str);
 	if (str)
 		printf("\n%s\n", str);
 	exit(EXIT_FAILURE);
