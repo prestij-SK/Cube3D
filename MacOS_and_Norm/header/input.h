@@ -50,10 +50,8 @@
 
 // MOUSE CODES
 # define LEFT_CLICK 1
-// # define SCROLL_UP 4
-// # define SCROLL_DOWN 5
 
-typedef struct InputData
+typedef struct inputdata
 {
 	short		w;
 	short		s;
@@ -69,12 +67,12 @@ typedef struct InputData
 	t_Point2D	mouse_prev_pos;
 	t_Point2D	mouse_curr_pos;
 	short		mouse_left;
-} t_Input;
+} t_input;
 
-void	input_reset_all(t_Input *input);
-int		input_key_press(int key, t_Input *input);
-int		input_key_release(int key, t_Input *input);
-int		input_mouse_move(int x, int y, t_Input *input);
-int		input_mouse_button(int button, int x, int y, t_Input *input);
+void	input_reset_all(t_input *input);
+int		input_key_press(int key, t_input *input);
+int		input_key_release(int key, t_input *input);
+int		input_mouse_move(int x, int y, t_input *input);
+int		input_mouse_button(int button, int x, int y, t_input *input);
 
 #endif

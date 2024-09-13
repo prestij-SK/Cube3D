@@ -6,7 +6,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_StatusCode	status;
+	t_statuscode	status;
 
 	if (argc != 2)
 		err_message("Invalid number of arguments\n");

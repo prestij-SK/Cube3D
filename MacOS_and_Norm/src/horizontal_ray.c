@@ -1,6 +1,6 @@
 #include "../header/the_game.h"
 
-static void	horizontal_checking_norm(t_RCutil *util, double *a_tan, double angle)
+static void	horizontal_checking_norm(t_rcutil *util, double *a_tan, double angle)
 {
 	util->block_power = MINIMAP_BLOCK_SIZE_POWER;
 	util->block_size = pow(2, MINIMAP_BLOCK_SIZE_POWER);
@@ -21,9 +21,9 @@ static void	horizontal_checking_norm(t_RCutil *util, double *a_tan, double angle
 	}
 }
 
-static void	horizontal_checking_blocks_norm(t_RCutil *util, t_GameData *data, t_RCdata *ray_data, int blocks)
+static void	horizontal_checking_blocks_norm(t_rcutil *util, t_gamedata *data, t_rcdata *ray_data, int blocks)
 {
-	while (++blocks < data->minimap.block_count.x)
+	while (++blocks < data->minimap.block_max)
 	{
 		util->mx = (int) (util->rx) >> util->block_power;
 		util->my = (int) (util->ry) >> util->block_power;
@@ -49,9 +49,9 @@ static void	horizontal_checking_blocks_norm(t_RCutil *util, t_GameData *data, t_
 	}
 }
 
-void	horizontal_checking(t_GameData *data, t_RCdata *ray_data, double angle)
+void	horizontal_checking(t_gamedata *data, t_rcdata *ray_data, double angle)
 {
-	t_RCutil	util;
+	t_rcutil	util;
 	double		a_tan;
 	int			blocks;
 

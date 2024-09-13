@@ -1,6 +1,6 @@
 #include "../header/the_game.h"
 
-static void map_del(t_Minimap *minimap)
+static void map_del(t_minimap *minimap)
 {
 	int	i;
 
@@ -17,7 +17,7 @@ static void map_del(t_Minimap *minimap)
 	minimap->map = NULL;
 }
 
-void	game_data_delete(t_GameData *data)
+void	game_data_delete(t_gamedata *data)
 {
 	if (!data)
 		return ;
@@ -70,7 +70,7 @@ static t_Point2D	player_location(char **map, t_Point2D block_count)
 	return (pos);
 }
 
-t_StatusCode	game_mlx_init(t_GameData *data)
+t_statuscode	game_mlx_init(t_gamedata *data)
 {
 	if (!data)
 		return (NULL_POINTER_ERROR);
@@ -83,9 +83,9 @@ t_StatusCode	game_mlx_init(t_GameData *data)
 	return (SUCCESS_EXIT);
 }
 
-t_StatusCode	game_data_init(t_GameData *data, char **map, t_Point2D block_count)
+t_statuscode	game_data_init(t_gamedata *data, char **map, t_Point2D block_count)
 {
-	t_StatusCode	status;
+	t_statuscode	status;
 	t_Point2D		pos;
 
 	if (!data || !map)

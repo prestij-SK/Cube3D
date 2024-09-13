@@ -1,6 +1,6 @@
 #include "../header/utils.h"
 
-static void	error_exit_norm(t_StatusCode status, char *str)
+static void	error_exit_norm(t_statuscode status, char *str)
 {
 	if (status == PLAYER_LOCATION_ERROR)
 		printf("Player Location");
@@ -14,7 +14,7 @@ static void	error_exit_norm(t_StatusCode status, char *str)
 		printf("Door Texture");
 }
 
-void	error_exit(t_StatusCode status, char *str)
+void	error_exit(t_statuscode status, char *str)
 {
 	if (status == SUCCESS_EXIT)
 	{
@@ -41,7 +41,7 @@ void	error_exit(t_StatusCode status, char *str)
 	exit(EXIT_FAILURE);
 }
 
-void	success_exit(t_StatusCode status, char *str)
+void	success_exit(t_statuscode status, char *str)
 {
 	if (status != SUCCESS_EXIT)
 	{

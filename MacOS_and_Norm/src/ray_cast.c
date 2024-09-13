@@ -1,6 +1,6 @@
 #include "../header/the_game.h"
 
-static void	set_wall_texture(t_GameData *data, t_RCdata *ray_data, double ray_angle)
+static void	set_wall_texture(t_gamedata *data, t_rcdata *ray_data, double ray_angle)
 {
 	if (ray_data->dis_v < ray_data->dis_h)
 	{
@@ -22,7 +22,7 @@ static void	set_wall_texture(t_GameData *data, t_RCdata *ray_data, double ray_an
 	}
 }
 
-static void	texture_mapping(t_GameData *data, t_RCdata *ray_data, t_RCutil *util, double ray_angle)
+static void	texture_mapping(t_gamedata *data, t_rcdata *ray_data, t_rcutil *util, double ray_angle)
 {
 	util->ty_step = data->tex_p->size.y / util->line_h;
 	util->ty_offset = 0;
@@ -50,14 +50,17 @@ static void	texture_mapping(t_GameData *data, t_RCdata *ray_data, t_RCutil *util
 	util->ty = util->ty_offset * util->ty_step;
 }
 
-static void	ray_texture_mapping_draw(t_GameData *data, t_RCutil *util, t_Point2D size, t_Point2D pos)
+static void	ray_texture_mapping_draw(t_gamedata *data, t_rcutil *util, t_Point2D size, t_Point2D pos)
 {
 	util->y = 0;
 	while (util->y < size.y)
 	{
 		util->pixel_index = (int)util->ty * data->tex_p->line_length + (int)util->tx * (data->tex_p->bits_per_pixel / 8);
 		if (util->pixel_index < 0)
+		{
+			data->easter_found = B_TRUE;
 			return ;
+		}
 		util->color = *(int *)(data->tex_p->addr + util->pixel_index);
 		util->x = 0;
 		while (util->x < size.x)
@@ -70,9 +73,9 @@ static void	ray_texture_mapping_draw(t_GameData *data, t_RCutil *util, t_Point2D
 	}
 }
 
-static void	ray_cast_walls(t_GameData *data, t_RCdata *ray_data, int ray, double ray_angle)
+static void	ray_cast_walls(t_gamedata *data, t_rcdata *ray_data, int ray, double ray_angle)
 {
-	t_RCutil	util;
+	t_rcutil	util;
 	t_Point2D	pos;
 	t_Point2D	size;
 	double		ca;
@@ -80,7 +83,10 @@ static void	ray_cast_walls(t_GameData *data, t_RCdata *ray_data, int ray, double
 	ca = data->player.angle - ray_angle;
 	ca = angle_wrapping(ca);
 	util.line_h = (data->minimap.block_size * FPV_HEIGHT) / (ray_data->dis_f * cos(ca));
-	set_wall_texture(data, ray_data, ray_angle);
+	if (data->easter_found == B_TRUE)
+		data->tex_p = &data->easter_tex;
+	else
+		set_wall_texture(data, ray_data, ray_angle);
 	texture_mapping(data, ray_data, &util, ray_angle);
 	util.line_offset = FPV_HEIGHT / 2 - util.line_h / 2;
 	size.x = FPV_WIDTH / RAY_COUNT;
@@ -92,9 +98,9 @@ static void	ray_cast_walls(t_GameData *data, t_RCdata *ray_data, int ray, double
 
 // A lot of stuff is going on here, which is read and written from internet sources.
 // Will update to more readable after I see the results.
-void	ray_casting(t_GameData *data)
+void	ray_casting(t_gamedata *data)
 {
-	t_RCdata	ray_data;
+	t_rcdata	ray_data;
 	int			r;
 	double		ray_angle;
 

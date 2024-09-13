@@ -1,9 +1,9 @@
 #include "../header/the_game.h"
 
 // strafing left
-void	update_A(t_Player *player)
+void	update_A(t_player *player)
 {
-	t_UpdateUtil	util;
+	t_updateutil	util;
 
 	if (!player)
 		return ;
@@ -29,9 +29,9 @@ void	update_A(t_Player *player)
 }
 
 // strafing right
-void	update_D(t_Player *player)
+void	update_D(t_player *player)
 {
-	t_UpdateUtil	util;
+	t_updateutil	util;
 
 	if (!player)
 		return ;
@@ -58,9 +58,9 @@ void	update_D(t_Player *player)
 }
 
 // going forward
-void	update_W(t_Player *player)
+void	update_W(t_player *player)
 {
-	t_UpdateUtil	util;
+	t_updateutil	util;
 
 	if (!player)
 		return ;
@@ -84,9 +84,9 @@ void	update_W(t_Player *player)
 }
 
 // going back
-void	update_S(t_Player *player)
+void	update_S(t_player *player)
 {
-	t_UpdateUtil	util;
+	t_updateutil	util;
 
 	if (!player)
 		return ;
@@ -110,7 +110,7 @@ void	update_S(t_Player *player)
 }
 
 // show big map
-void	update_M(t_Minimap *minimap, short val)
+void	update_M(t_minimap *minimap, short val)
 {
 	if (!minimap)
 		return ;

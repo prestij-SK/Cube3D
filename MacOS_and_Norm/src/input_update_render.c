@@ -1,6 +1,6 @@
 #include "../header/the_game.h"
 
-int	close_game(t_GameData *data)
+int	close_game(t_gamedata *data)
 {
 	if (!data)
 		return (B_FALSE);
@@ -9,7 +9,7 @@ int	close_game(t_GameData *data)
 	return (B_TRUE);
 }
 
-static int	update(t_GameData *data)
+static int	update(t_gamedata *data)
 {
 	size_t		current_update_time;
 	long long	elapsed_time;
@@ -29,7 +29,7 @@ static int	update(t_GameData *data)
 	return (B_TRUE);
 }
 
-void	input_update_render(t_GameData *data)
+void	input_update_render(t_gamedata *data)
 {
 	if (!data)
 		return ;

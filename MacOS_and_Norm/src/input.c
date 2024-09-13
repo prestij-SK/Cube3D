@@ -1,6 +1,6 @@
 #include "../header/input.h"
 
-void	input_reset_all(t_Input *input)
+void	input_reset_all(t_input *input)
 {
 	if (!input)
 		return ;
@@ -22,7 +22,7 @@ void	input_reset_all(t_Input *input)
 	input->mouse_left = B_FALSE;
 }
 
-int	input_key_press(int key, t_Input *input)
+int	input_key_press(int key, t_input *input)
 {
 	if (!input)
 		return (B_FALSE);
@@ -47,7 +47,7 @@ int	input_key_press(int key, t_Input *input)
 	return (B_TRUE);
 }
 
-int	input_key_release(int key, t_Input *input)
+int	input_key_release(int key, t_input *input)
 {
 	if (!input)
 		return (B_FALSE);
@@ -75,7 +75,7 @@ int	input_key_release(int key, t_Input *input)
 	return (B_TRUE);
 }
 
-int	input_mouse_move(int x, int y, t_Input *input)
+int	input_mouse_move(int x, int y, t_input *input)
 {
 	if (!input)
 		return (B_FALSE);
@@ -85,7 +85,7 @@ int	input_mouse_move(int x, int y, t_Input *input)
 	return (B_TRUE);
 }
 
-int	input_mouse_button(int button, int x, int y, t_Input *input)
+int	input_mouse_button(int button, int x, int y, t_input *input)
 {
 	(void) x;
 	(void) y;

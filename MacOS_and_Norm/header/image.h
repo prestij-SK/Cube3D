@@ -11,7 +11,7 @@
 
 # include "utils.h"
 
-typedef struct ImageData
+typedef struct imagedata
 {
 	void		*img;
 	char		*addr;
@@ -20,9 +20,9 @@ typedef struct ImageData
 	int			endian;
 	t_Point2D	pos;
 	t_Point2D	size;
-}	t_Image;
+}	t_image;
 
-t_StatusCode	image_init(t_Image *image, void *mlx, t_Point2D pos, t_Point2D size);
-void			image_delete(t_Image *img, void *mlx);
+t_statuscode	image_init(t_image *image, void *mlx, t_Point2D pos, t_Point2D size);
+void			image_delete(t_image *img, void *mlx);
 
 #endif

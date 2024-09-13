@@ -1,6 +1,6 @@
 #include "../header/door.h"
 
-int	door_is_closed(t_Door *door, int count, int arr_y, int arr_x)
+int	door_is_closed(t_door *door, int count, int arr_y, int arr_x)
 {
 	int	i;
 
@@ -21,7 +21,7 @@ int	door_is_closed(t_Door *door, int count, int arr_y, int arr_x)
 	return (B_FALSE);	
 }
 
-void	door_open(t_Door *door, int count, int arr_y, int arr_x)
+void	door_open(t_door *door, int count, int arr_y, int arr_x)
 {
 	int	i;
 
@@ -39,7 +39,7 @@ void	door_open(t_Door *door, int count, int arr_y, int arr_x)
 	}
 }
 
-void	door_close(t_Door *door, int count, int arr_y, int arr_x)
+void	door_close(t_door *door, int count, int arr_y, int arr_x)
 {
 	int	i;
 
@@ -57,7 +57,7 @@ void	door_close(t_Door *door, int count, int arr_y, int arr_x)
 	}
 }
 
-t_StatusCode	doors_data_init(t_Door *doors, int *count, char **map, t_Point2D map_size)
+t_statuscode	doors_data_init(t_door *doors, int *count, char **map, t_Point2D map_size)
 {
 	int	i;
 	int	j;

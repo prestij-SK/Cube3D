@@ -14,7 +14,7 @@ static int  in_range(int x, int y, int width, int height)
 	return (1);
 }
 
-static void	line_preperation_norm(t_BresenhamUtils *util, t_Line2D *line)
+static void	line_preperation_norm(t_bresenhamutils *util, t_line2d *line)
 {
 	util->steep = is_steep(line->start, line->end);
 	if (util->steep)
@@ -43,7 +43,7 @@ static void	line_preperation_norm(t_BresenhamUtils *util, t_Line2D *line)
 	util->temp.y = line->start.y;
 }
 
-static void	plot_check_norm(t_BresenhamUtils *util)
+static void	plot_check_norm(t_bresenhamutils *util)
 {
 	if (!util)
 		return ;
@@ -54,9 +54,9 @@ static void	plot_check_norm(t_BresenhamUtils *util)
 	}
 }
 
-void	draw_line_Bresenham(t_Image *img, t_Line2D *line)
+void	draw_line_Bresenham(t_image *img, t_line2d *line)
 {
-	t_BresenhamUtils	util;
+	t_bresenhamutils	util;
 	int					pixel_color;
 	int					i;
 

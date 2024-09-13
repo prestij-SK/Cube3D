@@ -1,6 +1,6 @@
 #include "../header/the_game.h"
 
-static t_StatusCode	set_wall_textures(t_GameData *data, t_parse *parse)
+static t_statuscode	set_wall_textures(t_gamedata *data, t_parse *parse)
 {
 	data->north_wall.img = mlx_xpm_file_to_image(data->mlx, parse->north,
 		&data->north_wall.size.x, &data->north_wall.size.y);
@@ -29,9 +29,9 @@ static t_StatusCode	set_wall_textures(t_GameData *data, t_parse *parse)
 	return (SUCCESS_EXIT);
 }
 
-t_StatusCode	set_all_parsed_data(t_GameData *data, t_parse *parse)
+t_statuscode	set_all_parsed_data(t_gamedata *data, t_parse *parse)
 {
-	t_StatusCode	status;
+	t_statuscode	status;
 
 	if (!data || !parse)
 		return (NULL_POINTER_ERROR);

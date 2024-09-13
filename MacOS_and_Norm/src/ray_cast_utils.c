@@ -1,6 +1,6 @@
 #include "../header/the_game.h"
 
-void	set_shortest_ray_dis(t_RCdata *ray_data)
+void	set_shortest_ray_dis(t_rcdata *ray_data)
 {
 	if (!ray_data)
 		return ;
@@ -22,9 +22,9 @@ void	set_shortest_ray_dis(t_RCdata *ray_data)
 	}
 }
 
-void	draw_ray_line(t_GameData *data, t_RCdata *ray_data)
+void	draw_ray_line(t_gamedata *data, t_rcdata *ray_data)
 {
-	t_Line2D	ray_line;
+	t_line2d	ray_line;
 
 	ray_line.color_end = COLOR_RED;
 	ray_line.color_start = COLOR_RED;

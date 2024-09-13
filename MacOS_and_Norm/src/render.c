@@ -1,6 +1,6 @@
 #include "../header/the_game.h"
 
-void	render_image(t_GameData *data, t_Image *image)
+void	render_image(t_gamedata *data, t_image *image)
 {
 	if (!data || !image)
 		return ;
@@ -8,7 +8,7 @@ void	render_image(t_GameData *data, t_Image *image)
 							image->img, image->pos.x, image->pos.y);
 }
 
-void	render_image_pos(t_GameData *data, t_Image *image, int x, int y)
+void	render_image_pos(t_gamedata *data, t_image *image, int x, int y)
 {
 	if (!data || !image)
 		return ;
@@ -16,7 +16,7 @@ void	render_image_pos(t_GameData *data, t_Image *image, int x, int y)
 							image->img, x, y);
 }
 
-static void	gun_animation(t_GameData *data)
+static void	gun_animation(t_gamedata *data)
 {
 	size_t		current_time;
 	long long	elapsed_time;
@@ -39,7 +39,7 @@ static void	gun_animation(t_GameData *data)
 	}
 }
 
-void	render(t_GameData *data)
+void	render(t_gamedata *data)
 {
 	if (!data)
 		return ;

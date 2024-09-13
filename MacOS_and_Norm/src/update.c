@@ -1,6 +1,6 @@
 #include "../header/the_game.h"
 
-static void	update_E_norm(t_GameData *data, t_Player *player, t_UpdateUtil *util)
+static void	update_E_norm(t_gamedata *data, t_player *player, t_updateutil *util)
 {
 	if (is_in_minimap_range(player->minimap, util->next.y, util->current.x ))
 		if (player->minimap->map[util->next.y][util->current.x] == 'D')
@@ -14,9 +14,9 @@ static void	update_E_norm(t_GameData *data, t_Player *player, t_UpdateUtil *util
 }
 
 // Do action
-void	update_E(t_GameData *data, t_Player *player)
+void	update_E(t_gamedata *data, t_player *player)
 {
-	t_UpdateUtil	util;
+	t_updateutil	util;
 
 	if (!player)
 		return ;
@@ -36,9 +36,10 @@ void	update_E(t_GameData *data, t_Player *player)
 				door_close(player->minimap->doors, player->minimap->door_count, util.current.y, util.next.x);
 			return ;
 		}
+	update_E_norm(data, player, &util);
 }
 
-void	update_mouse_left_click(t_GameData *data)
+void	update_mouse_left_click(t_gamedata *data)
 {
 	if (!data)
 		return ;
@@ -48,7 +49,7 @@ void	update_mouse_left_click(t_GameData *data)
 	data->anim_start_time = get_time();
 }
 
-static void	update_check_norm(t_GameData *data)
+static void	update_check_norm(t_gamedata *data)
 {
 	if (data->input.mouse_move == B_TRUE)
 		update_mouse_move(data, data->player.mouse_sens);
@@ -60,7 +61,7 @@ static void	update_check_norm(t_GameData *data)
 		update_mouse_left_click(data);
 }
 
-void	update_check(t_GameData *data)
+void	update_check(t_gamedata *data)
 {
 	if (!data)
 		return ;

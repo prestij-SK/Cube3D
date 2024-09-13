@@ -1,8 +1,8 @@
 #include "../header/first_person_view.h"
 
-t_StatusCode	fp_view_init(t_FPV *view, void *mlx)
+t_statuscode	fp_view_init(t_fpv *view, void *mlx)
 {
-	t_StatusCode	status;
+	t_statuscode	status;
 	t_Point2D 		pos;
 	t_Point2D		size;
 
@@ -19,7 +19,7 @@ t_StatusCode	fp_view_init(t_FPV *view, void *mlx)
 	return (SUCCESS_EXIT);
 }
 
-void	fp_view_draw(t_FPV *view)
+void	fp_view_draw(t_fpv *view)
 {
 	t_Point2D	pos;
 	t_Point2D	size;

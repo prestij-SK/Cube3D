@@ -1,6 +1,6 @@
 #include "../header/the_game.h"
 
-static t_StatusCode	door_texture_init(t_GameData *data)
+static t_statuscode	door_texture_init(t_gamedata *data)
 {
 	data->door_tex.img = mlx_xpm_file_to_image(data->mlx, "./texture/gate.xpm",
 											   &data->door_tex.size.x, &data->door_tex.size.y);
@@ -8,10 +8,17 @@ static t_StatusCode	door_texture_init(t_GameData *data)
 		return (DOOR_TEXTURE_ERROR);
 	data->door_tex.addr = mlx_get_data_addr(data->door_tex.img, &data->door_tex.bits_per_pixel,
 											&data->door_tex.line_length, &data->door_tex.endian);
+	data->easter_tex.img = mlx_xpm_file_to_image(data->mlx, "./texture/flag.xpm",
+											   &data->easter_tex.size.x, &data->easter_tex.size.y);
+	if (!data->easter_tex.img)
+		return (DOOR_TEXTURE_ERROR);
+	data->easter_tex.addr = mlx_get_data_addr(data->easter_tex.img, &data->easter_tex.bits_per_pixel,
+											&data->easter_tex.line_length, &data->easter_tex.endian);
+	data->easter_found = B_FALSE;
 	return (SUCCESS_EXIT);
 }
 
-static t_StatusCode	gun_textures_init_norm(t_GameData *data)
+static t_statuscode	gun_textures_init_norm(t_gamedata *data)
 {
 	data->gun[2].img = mlx_xpm_file_to_image(data->mlx, "./texture/gun_02.xpm",
 											 &data->gun[2].size.x, &data->gun[2].size.y);
@@ -34,9 +41,9 @@ static t_StatusCode	gun_textures_init_norm(t_GameData *data)
 	return (SUCCESS_EXIT);
 }
 
-static t_StatusCode	gun_textures_init(t_GameData *data)
+static t_statuscode	gun_textures_init(t_gamedata *data)
 {
-	t_StatusCode	status;
+	t_statuscode	status;
 
 	data->gun[0].img = mlx_xpm_file_to_image(data->mlx, "./texture/gun_00.xpm",
 											 &data->gun[0].size.x, &data->gun[0].size.y);
@@ -54,7 +61,7 @@ static t_StatusCode	gun_textures_init(t_GameData *data)
 	return (status);
 }
 
-static void	the_game_norm(t_GameData *data, t_StatusCode status)
+static void	the_game_norm(t_gamedata *data, t_statuscode status)
 {
 	status = gun_textures_init(data);
 	if (status != SUCCESS_EXIT)
@@ -77,10 +84,10 @@ static void	the_game_norm(t_GameData *data, t_StatusCode status)
 }
 
 // I added the t_StatusCode parameter just for norminette...
-void the_game(char *path, t_StatusCode status)
+void the_game(char *path, t_statuscode status)
 {
-	t_GameData data;
-	t_parse p_data;
+	t_gamedata	data;
+	t_parse		p_data;
 
 	game_nullify_pointers(&data);
 	status = game_mlx_init(&data);

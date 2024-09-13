@@ -22,9 +22,9 @@ double	angle_wrapping(double angle)
     return (new_angle);
 }
 
-int	intersection_point(t_Line2D_d *l1, t_Line2D_d *l2, double *x, double *y)
+int	intersection_point(t_line2d_d *l1, t_line2d_d *l2, double *x, double *y)
 {
-	t_MathUtil	util;
+	t_mathutil	util;
 
 	util.a1 = l1->end.y - l1->start.y;
 	util.b1 = l1->start.x - l1->end.x;

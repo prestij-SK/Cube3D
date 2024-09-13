@@ -1,6 +1,6 @@
 #include "../header/the_game.h"
 
-static void	game_nullify_pointers_norm(t_GameData *data)
+static void	game_nullify_pointers_norm(t_gamedata *data)
 {
 	data->gun[0].img = NULL;
 	data->gun[0].addr = NULL;
@@ -14,7 +14,7 @@ static void	game_nullify_pointers_norm(t_GameData *data)
 	data->gun[4].addr = NULL;
 }
 
-void	game_nullify_pointers(t_GameData *data)
+void	game_nullify_pointers(t_gamedata *data)
 {
 	if (!data)
 		return ;

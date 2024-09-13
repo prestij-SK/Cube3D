@@ -1,6 +1,6 @@
 #include "../header/minimap.h"
 
-void	minimap_delete(t_Minimap *minimap)
+void	minimap_delete(t_minimap *minimap)
 {
 	if (!minimap)
 		return ;
@@ -14,7 +14,7 @@ void	minimap_delete(t_Minimap *minimap)
 	minimap->map = NULL;
 }
 
-static t_StatusCode	minimap_small_image_init(t_Minimap *minimap, void *mlx, t_Point2D pos, t_Point2D size)
+static t_statuscode	minimap_small_image_init(t_minimap *minimap, void *mlx, t_Point2D pos, t_Point2D size)
 {
 	t_Point2D new_size;
 
@@ -23,11 +23,21 @@ static t_StatusCode	minimap_small_image_init(t_Minimap *minimap, void *mlx, t_Po
 	return (image_init(&minimap->small_image, mlx, pos, new_size));
 }
 
-t_StatusCode	minimap_init(t_Minimap *minimap, void *mlx, char **map, t_Point2D block_count)
+static void	block_count_resolving_norm(t_minimap *minimap, t_Point2D block_count)
 {
-	t_StatusCode status;
-	t_Point2D pos;
-	t_Point2D size;
+	minimap->block_count.x = block_count.x;
+	minimap->block_count.y = block_count.y;
+	if (block_count.x > block_count.y)
+		minimap->block_max = block_count.x;
+	else
+		minimap->block_max = block_count.y;
+}
+
+t_statuscode	minimap_init(t_minimap *minimap, void *mlx, char **map, t_Point2D block_count)
+{
+	t_statuscode	status;
+	t_Point2D		pos;
+	t_Point2D		size;
 
 	if (!minimap || !mlx)
 		return (NULL_POINTER_ERROR);
@@ -44,15 +54,14 @@ t_StatusCode	minimap_init(t_Minimap *minimap, void *mlx, char **map, t_Point2D b
 		return (status);
 	minimap->name = MINIMAP_NAME;
 	minimap->map = map;
-	minimap->block_count.x = block_count.x;
-	minimap->block_count.y = block_count.y;
+	block_count_resolving_norm(minimap, block_count);
 	minimap->wall_color = COLOR_WHITE;
 	minimap->floor_color = COLOR_BLUE;
 	minimap->map_draw_flag = B_FALSE;
 	return (SUCCESS_EXIT);
 }
 
-static void	big_map_draw_part_norm(t_Minimap *minimap, t_Point2D pos, t_Point2D size)
+static void	big_map_draw_part_norm(t_minimap *minimap, t_Point2D pos, t_Point2D size)
 {
 	if (minimap->map[minimap->norm_i][minimap->norm_j] == '1')
 		draw_rectangle_filled(&minimap->origin_image, pos, size, minimap->wall_color);
@@ -68,7 +77,7 @@ static void	big_map_draw_part_norm(t_Minimap *minimap, t_Point2D pos, t_Point2D 
 }
 
 // big minimap
-void	minimap_draw_origin(t_Minimap *minimap)
+void	minimap_draw_origin(t_minimap *minimap)
 {
 	t_Point2D size;
 	t_Point2D pos;

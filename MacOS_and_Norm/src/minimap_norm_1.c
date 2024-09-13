@@ -1,6 +1,6 @@
 #include "../header/minimap.h"
 
-static void	small_map_draw_part_norm(t_Minimap *minimap, t_Point2D pos, t_Point2D size)
+static void	small_map_draw_part_norm(t_minimap *minimap, t_Point2D pos, t_Point2D size)
 {
 	if (minimap->map[minimap->norm_i][minimap->norm_j] == '1')
 		draw_rectangle_filled(&minimap->small_image, pos, size, minimap->wall_color);
@@ -16,7 +16,7 @@ static void	small_map_draw_part_norm(t_Minimap *minimap, t_Point2D pos, t_Point2
 }
 
 // small minimap
-void	minimap_draw_small(t_Minimap *minimap)
+void	minimap_draw_small(t_minimap *minimap)
 {
 	t_Point2D size;
 	t_Point2D pos;

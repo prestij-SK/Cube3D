@@ -1,6 +1,6 @@
 #include "../header/the_game.h"
 
-int	is_in_minimap_range(t_Minimap *minimap, int y, int x)
+int	is_in_minimap_range(t_minimap *minimap, int y, int x)
 {
 	if (!minimap)
 		return (B_FALSE);
@@ -12,7 +12,7 @@ int	is_in_minimap_range(t_Minimap *minimap, int y, int x)
 	return (B_FALSE);
 }
 
-void	set_xy_offset(t_UpdateUtil *util, double change_x, double change_y, int gap)
+void	set_xy_offset(t_updateutil *util, double change_x, double change_y, int gap)
 {
 	if (!util)
 		return ;
@@ -27,7 +27,7 @@ void	set_xy_offset(t_UpdateUtil *util, double change_x, double change_y, int gap
 }
 
 // rotating left
-void	update_Arrow_Left(t_Player *player, double rotate_speed)
+void	update_Arrow_Left(t_player *player, double rotate_speed)
 {
 	if (!player)
 		return ;
@@ -39,7 +39,7 @@ void	update_Arrow_Left(t_Player *player, double rotate_speed)
 }
 
 // rotating right
-void	update_Arrow_Right(t_Player *player, double rotate_speed)
+void	update_Arrow_Right(t_player *player, double rotate_speed)
 {
 	if (!player)
 		return ;
@@ -51,7 +51,7 @@ void	update_Arrow_Right(t_Player *player, double rotate_speed)
 }
 
 // rotating with mouse
-void	update_mouse_move(t_GameData *data, double rotate_speed)
+void	update_mouse_move(t_gamedata *data, double rotate_speed)
 {
 	int		pos_diff;
 	double	new_speed;
