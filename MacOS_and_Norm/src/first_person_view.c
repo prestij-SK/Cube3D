@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   first_person_view.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skedikia <skedikia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/14 14:07:58 by skedikia          #+#    #+#             */
+/*   Updated: 2024/09/14 14:08:06 by skedikia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/first_person_view.h"
 
 t_statuscode	fp_view_init(t_fpv *view, void *mlx)
 {
 	t_statuscode	status;
-	t_Point2D 		pos;
-	t_Point2D		size;
+	t_point2d		pos;
+	t_point2d		size;
 
 	if (!view || !mlx)
 		return (NULL_POINTER_ERROR);
@@ -21,8 +33,8 @@ t_statuscode	fp_view_init(t_fpv *view, void *mlx)
 
 void	fp_view_draw(t_fpv *view)
 {
-	t_Point2D	pos;
-	t_Point2D	size;
+	t_point2d	pos;
+	t_point2d	size;
 
 	if (!view)
 		return ;

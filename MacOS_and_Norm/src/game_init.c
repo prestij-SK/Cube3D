@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_init.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skedikia <skedikia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/14 13:32:29 by skedikia          #+#    #+#             */
+/*   Updated: 2024/09/14 14:13:49 by skedikia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/the_game.h"
 
-static void map_del(t_minimap *minimap)
+static void	map_del(t_minimap *minimap)
 {
 	int	i;
 
@@ -37,13 +49,11 @@ void	game_data_delete(t_gamedata *data)
 	image_delete(&data->gun[4], data->mlx);
 	if (data->mlx && data->mlx_window)
 		mlx_destroy_window(data->mlx, data->mlx_window);
-	if (data->mlx)
-		mlx_destroy_display(data->mlx);
 }
 
-static t_Point2D	player_location(char **map, t_Point2D block_count)
+static t_point2d	player_location(char **map, t_point2d block_count)
 {
-	t_Point2D	pos;
+	t_point2d	pos;
 	int			i;
 	int			j;
 
@@ -57,8 +67,8 @@ static t_Point2D	player_location(char **map, t_Point2D block_count)
 		j = 0;
 		while (j < block_count.x)
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S' ||
-				map[i][j] == 'E' || map[i][j] == 'W')
+			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
+				|| map[i][j] == 'W')
 			{
 				pos.x = j;
 				pos.y = i;
@@ -77,16 +87,18 @@ t_statuscode	game_mlx_init(t_gamedata *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (MLX_ERROR);
-	data->mlx_window = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, GAME_NAME);
+	data->mlx_window = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT,
+			GAME_NAME);
 	if (!data->mlx_window)
 		return (MLX_WINDOW_ERROR);
 	return (SUCCESS_EXIT);
 }
 
-t_statuscode	game_data_init(t_gamedata *data, char **map, t_Point2D block_count)
+t_statuscode	game_data_init(t_gamedata *data, char **map,
+		t_point2d block_count)
 {
 	t_statuscode	status;
-	t_Point2D		pos;
+	t_point2d		pos;
 
 	if (!data || !map)
 		return (NULL_POINTER_ERROR);
@@ -94,13 +106,15 @@ t_statuscode	game_data_init(t_gamedata *data, char **map, t_Point2D block_count)
 	if (status != SUCCESS_EXIT)
 		return (status);
 	pos = player_location(map, block_count);
-	status = player_init(&data->player, &data->minimap, pos, data->minimap.block_size);
+	status = player_init(&data->player, &data->minimap, pos,
+			data->minimap.block_size);
 	if (status != SUCCESS_EXIT)
 		return (status);
 	status = fp_view_init(&data->view, data->mlx);
 	if (status != SUCCESS_EXIT)
 		return (status);
-	status = doors_data_init(data->minimap.doors, &data->minimap.door_count, data->minimap.map, data->minimap.block_count);
+	status = doors_data_init(data->minimap.doors, &data->minimap.door_count,
+			data->minimap.map, data->minimap.block_count);
 	if (status != SUCCESS_EXIT)
 		return (status);
 	input_reset_all(&data->input);

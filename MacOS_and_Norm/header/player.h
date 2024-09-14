@@ -18,8 +18,8 @@ typedef struct playerdata
 {
 	char		*name;
 	t_minimap	*minimap; // The pointer to the same minimap
-	t_Point2D	pos;
-	t_Point2D	size;
+	t_point2d	pos;
+	t_point2d	size;
 	int			color;
 	double		angle;
 	t_point2d_d	delta;
@@ -28,7 +28,7 @@ typedef struct playerdata
 	double		mouse_sens; // mouse sensetivity
 }	t_player;
 
-t_statuscode	player_init(t_player *player, t_minimap *minimap, t_Point2D block_pos, int block_size);
+t_statuscode	player_init(t_player *player, t_minimap *minimap, t_point2d block_pos, int block_size);
 void			player_on_minimap_draw_origin(t_image *image, t_player *player);
 void			player_on_minimap_draw_small(t_image *image, t_player *player);
 

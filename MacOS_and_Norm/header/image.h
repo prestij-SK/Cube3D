@@ -18,11 +18,11 @@ typedef struct imagedata
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	t_Point2D	pos;
-	t_Point2D	size;
+	t_point2d	pos;
+	t_point2d	size;
 }	t_image;
 
-t_statuscode	image_init(t_image *image, void *mlx, t_Point2D pos, t_Point2D size);
+t_statuscode	image_init(t_image *image, void *mlx, t_point2d pos, t_point2d size);
 void			image_delete(t_image *img, void *mlx);
 
 #endif

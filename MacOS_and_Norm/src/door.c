@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   door.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skedikia <skedikia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/14 13:38:13 by skedikia          #+#    #+#             */
+/*   Updated: 2024/09/14 13:43:41 by skedikia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/door.h"
 
 int	door_is_closed(t_door *door, int count, int arr_y, int arr_x)
@@ -18,7 +30,7 @@ int	door_is_closed(t_door *door, int count, int arr_y, int arr_x)
 		}
 		++i;
 	}
-	return (B_FALSE);	
+	return (B_FALSE);
 }
 
 void	door_open(t_door *door, int count, int arr_y, int arr_x)
@@ -57,7 +69,8 @@ void	door_close(t_door *door, int count, int arr_y, int arr_x)
 	}
 }
 
-t_statuscode	doors_data_init(t_door *doors, int *count, char **map, t_Point2D map_size)
+t_statuscode	doors_data_init(t_door *doors, int *count, char **map,
+		t_point2d map_size)
 {
 	int	i;
 	int	j;

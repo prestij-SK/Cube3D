@@ -7,15 +7,15 @@
 // This is created just for Norminette
 typedef struct bresenhamutils
 {
-	t_Point2D	temp;
-	t_Point2D	delta;
-	t_Point2D	step;
+	t_point2d	temp;
+	t_point2d	delta;
+	t_point2d	step;
 	int			steep;
 	int			plot;
 }	t_bresenhamutils;
 
 void    alt_mlx_pixel_put(t_image *img, int x, int y, int color);
-void    draw_rectangle_filled(t_image *img, t_Point2D pos, t_Point2D size, int color);
-void	draw_line_Bresenham(t_image *img, t_line2d *line);
+void    draw_rectangle_filled(t_image *img, t_point2d pos, t_point2d size, int color);
+void	draw_line_bresenham(t_image *img, t_line2d *line);
 
 #endif

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Y_validate_map_scheme.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skedikia <skedikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:45:53 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/11 14:55:17 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:43:41 by skedikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/parsing.h"
 #include "../header/the_game.h"
 
-static int	is_border_empty(t_parse *p_data, t_Point2D cur)
+static int	is_border_empty(t_parse *p_data, t_point2d cur)
 {
 	if (cur.x == 0 || cur.y == 0 || cur.x == p_data->block_count.x - 1 || \
 		cur.y == p_data->block_count.y - 1)
@@ -24,7 +24,7 @@ static int	is_border_empty(t_parse *p_data, t_Point2D cur)
 	return (0);
 }
 
-void	validate_invalid_path(t_parse *p_data, t_Point2D size, t_Point2D cur,
+void	validate_invalid_path(t_parse *p_data, t_point2d size, t_point2d cur,
 		char to_fill)
 {
 	if (cur.y < 0 || cur.y >= size.y || cur.x < 0 || cur.x >= size.x)
@@ -46,13 +46,13 @@ void	validate_invalid_path(t_parse *p_data, t_Point2D size, t_Point2D cur,
 		clean_exit(p_data, 1);
 	}
 	p_data->map_cpy[cur.y][cur.x] = 'F';
-	validate_invalid_path(p_data, size, (t_Point2D){cur.x - 1, cur.y}, to_fill);
-	validate_invalid_path(p_data, size, (t_Point2D){cur.x + 1, cur.y}, to_fill);
-	validate_invalid_path(p_data, size, (t_Point2D){cur.x, cur.y - 1}, to_fill);
-	validate_invalid_path(p_data, size, (t_Point2D){cur.x, cur.y + 1}, to_fill);
+	validate_invalid_path(p_data, size, (t_point2d){cur.x - 1, cur.y}, to_fill);
+	validate_invalid_path(p_data, size, (t_point2d){cur.x + 1, cur.y}, to_fill);
+	validate_invalid_path(p_data, size, (t_point2d){cur.x, cur.y - 1}, to_fill);
+	validate_invalid_path(p_data, size, (t_point2d){cur.x, cur.y + 1}, to_fill);
 }
 
-static int	door_condition(char **map, int i, int j, t_Point2D size)
+static int	door_condition(char **map, int i, int j, t_point2d size)
 {
 	int	vertical;
 	int	horizontal;

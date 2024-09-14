@@ -12,11 +12,11 @@
 #define WINDOW_HEIGHT 900
 #define MINIMAP_SIZE_DIVISER 4 // Makes minimap smaller
 
-typedef struct Point2D_int
+typedef struct point2d_int
 {
 	int x;
 	int y;
-} t_Point2D;
+} t_point2d;
 
 typedef struct Point2D_double
 {
@@ -26,16 +26,16 @@ typedef struct Point2D_double
 
 typedef struct line2d_int
 {
-	t_Point2D start;
-	t_Point2D end;
+	t_point2d start;
+	t_point2d end;
 	int color_start;
 	int color_end;
 } t_line2d;
 
 typedef struct line2d_double
 {
-	t_Point2D start;
-	t_Point2D end;
+	t_point2d start;
+	t_point2d end;
 	int color_start;
 	int color_end;
 } t_line2d_d;
@@ -79,9 +79,9 @@ typedef struct raycastfinaldata // This is for norminette
 
 typedef struct gameupdateutil // This is for norminette
 {
-	t_Point2D offset;  // Calculate gap between player and wall
-	t_Point2D current; // Where is current player position for map[][]
-	t_Point2D next;	   // Where is player position after change for map[][]
+	t_point2d offset;  // Calculate gap between player and wall
+	t_point2d current; // Where is current player position for map[][]
+	t_point2d next;	   // Where is player position after change for map[][]
 } t_updateutil;
 
 typedef enum statuscode

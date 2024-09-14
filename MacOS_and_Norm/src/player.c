@@ -1,6 +1,6 @@
 #include "../header/player.h"
 
-static void	set_player_angle(t_player *player, t_minimap *minimap, t_Point2D pos)
+static void	set_player_angle(t_player *player, t_minimap *minimap, t_point2d pos)
 {
 	if (minimap->map[pos.y][pos.x] == 'W')
 		player->angle = get_radians(PLAYER_ANGLE_DEFAULT * 2);
@@ -12,9 +12,9 @@ static void	set_player_angle(t_player *player, t_minimap *minimap, t_Point2D pos
 		player->angle = get_radians(PLAYER_ANGLE_DEFAULT);
 }
 
-t_statuscode	player_init(t_player *player, t_minimap *minimap, t_Point2D block_pos, int block_size)
+t_statuscode	player_init(t_player *player, t_minimap *minimap, t_point2d block_pos, int block_size)
 {
-	t_Point2D		pos;
+	t_point2d		pos;
 
 	if (!player || !minimap)
 		return (NULL_POINTER_ERROR);
@@ -40,7 +40,7 @@ t_statuscode	player_init(t_player *player, t_minimap *minimap, t_Point2D block_p
 
 void	player_on_minimap_draw_origin(t_image *image, t_player *player)
 {
-	t_Point2D	temp_pos;
+	t_point2d	temp_pos;
 
 	if (!image || !player)
 		return ;
@@ -51,8 +51,8 @@ void	player_on_minimap_draw_origin(t_image *image, t_player *player)
 
 void	player_on_minimap_draw_small(t_image *image, t_player *player)
 {
-	t_Point2D	temp_pos;
-	t_Point2D	temp_size;
+	t_point2d	temp_pos;
+	t_point2d	temp_size;
 
 	if (!image || !player)
 		return ;

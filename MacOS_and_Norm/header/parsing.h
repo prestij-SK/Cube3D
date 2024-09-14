@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skedikia <skedikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 12:54:21 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/09 15:25:48 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:43:41 by skedikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct ParsingData
 	char		**file;
 	char		**map;
 	char		**map_cpy;
-	t_Point2D	block_count;
+	t_point2d	block_count;
 	t_elements	elements;
 	char		*north;
 	char		*west;
@@ -148,8 +148,8 @@ int				check_textures_and_colors(t_parse *p_data);
 void			validate_map_chars(t_parse *p_data);
 void			validate_data(t_parse *p_data);
 void			validate_doors(t_parse *p_data);
-void			validate_invalid_path(t_parse *p_data, t_Point2D size,
-					t_Point2D cur, char to_fill);
+void			validate_invalid_path(t_parse *p_data, t_point2d size,
+					t_point2d cur, char to_fill);
 void			validate_borders(t_parse *p_data);
 
 // MEMORY

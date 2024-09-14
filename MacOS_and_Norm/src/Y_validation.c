@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Y_validation.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skedikia <skedikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 17:00:53 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/10 14:21:08 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:43:41 by skedikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	validate_map_completeness(t_parse *p_data)
 	}
 }
 
-t_Point2D	get_player_pos(char **map)
+t_point2d	get_player_pos(char **map)
 {
-	t_Point2D	pos;
+	t_point2d	pos;
 
 	pos.y = 0;
 	while (map[pos.y])
@@ -80,7 +80,7 @@ t_Point2D	get_player_pos(char **map)
 
 void	validate_data(t_parse *p_data)
 {
-	t_Point2D	player_pos;
+	t_point2d	player_pos;
 
 	validate_map_chars(p_data);
 	validate_map_completeness(p_data);

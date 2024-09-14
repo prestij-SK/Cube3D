@@ -32,5 +32,5 @@ void	draw_ray_line(t_gamedata *data, t_rcdata *ray_data)
 	ray_line.start.y = data->player.pos.y;
 	ray_line.end.x = ray_data->ray_f.x;
 	ray_line.end.y = ray_data->ray_f.y;
-	draw_line_Bresenham(&data->minimap.origin_image, &ray_line);
+	draw_line_bresenham(&data->minimap.origin_image, &ray_line);
 }

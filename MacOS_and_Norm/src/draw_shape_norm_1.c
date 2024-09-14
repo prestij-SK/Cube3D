@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_shape_norm_1.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: skedikia <skedikia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/14 13:59:09 by skedikia          #+#    #+#             */
+/*   Updated: 2024/09/14 14:00:04 by skedikia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/draw_shape.h"
 
-static int  is_steep(t_Point2D start, t_Point2D end)
+static int	is_steep(t_point2d start, t_point2d end)
 {
 	return (abs(end.y - start.y) > abs(end.x - start.x));
 }
 
-static int  in_range(int x, int y, int width, int height)
+static int	in_range(int x, int y, int width, int height)
 {
 	if (x > width || y > height || x < 0 || y < 0)
 		return (0);
-    if (x > WINDOW_WIDTH || y > WINDOW_HEIGHT)
-        return (0);
+	if (x > WINDOW_WIDTH || y > WINDOW_HEIGHT)
+		return (0);
 	return (1);
 }
 
@@ -54,7 +66,7 @@ static void	plot_check_norm(t_bresenhamutils *util)
 	}
 }
 
-void	draw_line_Bresenham(t_image *img, t_line2d *line)
+void	draw_line_bresenham(t_image *img, t_line2d *line)
 {
 	t_bresenhamutils	util;
 	int					pixel_color;
@@ -67,11 +79,11 @@ void	draw_line_Bresenham(t_image *img, t_line2d *line)
 	while (util.temp.x != line->end.x)
 	{
 		pixel_color = line->color_start;
-		if (util.steep && in_range(util.temp.y, util.temp.x,
-				img->size.x, img->size.y))
+		if (util.steep && in_range(util.temp.y, util.temp.x, img->size.x,
+				img->size.y))
 			alt_mlx_pixel_put(img, util.temp.y, util.temp.x, pixel_color);
-		else if (!util.steep && in_range(util.temp.x, util.temp.y,
-				img->size.x, img->size.y))
+		else if (!util.steep && in_range(util.temp.x, util.temp.y, img->size.x,
+				img->size.y))
 			alt_mlx_pixel_put(img, util.temp.x, util.temp.y, pixel_color);
 		else
 			return ;
@@ -82,56 +94,3 @@ void	draw_line_Bresenham(t_image *img, t_line2d *line)
 	}
 	return ;
 }
-
-// void    draw_line_Bresenham(t_Image *image, t_Line2D *line)
-// {
-//     t_BresenhamUtils    util;
-//     int                 pixel_color;
-
-//     if (!image || !line)
-//         return ;
-//     util.steep = is_steep(line->start, line->end); // Check if the line is steep
-//     // Swap coordinates if the line is steep to simplify calculations
-//     if (util.steep)
-//     {
-//         swap_int(&line->start.x, &line->start.y);
-//         swap_int(&line->end.x, &line->end.y);
-//     }
-//     // Ensure that we always iterate from left to right
-//     if (line->start.x > line->end.x)
-//     {
-//         swap_int(&line->start.x, &line->end.x);
-//         swap_int(&line->start.y, &line->end.y);
-//         swap_int(&line->color_start, &line->color_end);
-//     }
-
-//     util.delta.x = line->end.x - line->start.x; // we don't need to use abs() here as we ensured to start from bigger
-//     util.delta.y = abs(line->end.y - line->start.y); // change in y
-//     util.plot = 2 * util.delta.y - util.delta.x ; // Initial decision parameter
-//     util.step.x = line->start.x < line->end.x ? 1 : -1; // Determine the direction in x
-//     util.step.y = line->start.y < line->end.y ? 1 : -1; // Determine the direction in y
-//     util.temp.x = line->start.x; // Initialize current x coordinate
-//     util.temp.y = line->start.y; // Initialize current y coordinate
-
-//     int i = 0; // n-th pixel counter along the line
-//     while (util.temp.x != line->end.x)
-//     {
-//         pixel_color = line->color_start;
-//         // Plot the point, taking into account whether the line is steep or not
-//         if (util.steep && in_range(util.temp.y, util.temp.x, image->size.x, image->size.y))
-//             alt_mlx_pixel_put(image, util.temp.y, util.temp.x, pixel_color);
-//         else if (!util.steep && in_range(util.temp.x, util.temp.y, image->size.x, image->size.y))
-//             alt_mlx_pixel_put(image, util.temp.x, util.temp.y, pixel_color);
-//         else
-//             return ; // Quit the function if the coordinates are not in image's range
-//         util.temp.x += util.step.x; // Move to the next x coordinate
-//         // Update decision parameter and y coordinate if necessary
-//         if (util.plot >= 0)
-//         {
-//             util.temp.y += util.step.y;
-//             util.plot -= 2 * util.delta.x;
-//         }
-//         util.plot += 2 * util.delta.y; // Update decision parameter for the next point
-//         ++i;
-//     }
-// }

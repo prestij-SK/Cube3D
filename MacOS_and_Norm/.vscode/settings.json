@@ -4,6 +4,7 @@
 		"utils.h": "c",
 		"minimap.h": "c",
 		"parsing.h": "c",
-		"mlx.h": "c"
+		"mlx.h": "c",
+		"draw_shape.h": "c"
 	}
 }

@@ -61,7 +61,7 @@ typedef struct maingamedata
 void			the_game(char *path, t_statuscode status);
 void			game_nullify_pointers(t_gamedata *data);
 t_statuscode	game_mlx_init(t_gamedata *data);
-t_statuscode	game_data_init(t_gamedata *data, char **map, t_Point2D block_count);
+t_statuscode	game_data_init(t_gamedata *data, char **map, t_point2d block_count);
 void			game_data_delete(t_gamedata *data);
 void			input_update_render(t_gamedata *data); // main logic
 int				close_game(t_gamedata *data);

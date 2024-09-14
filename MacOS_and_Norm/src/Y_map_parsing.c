@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Y_map_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
+/*   By: skedikia <skedikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:07:54 by yuhayrap          #+#    #+#             */
-/*   Updated: 2024/09/09 14:08:08 by yuhayrap         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:43:41 by skedikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	get_end(t_parse *p_data)
 	return (i);
 }
 
-static int	fill_map(t_parse *p_data, t_Point2D block, t_index idx)
+static int	fill_map(t_parse *p_data, t_point2d block, t_index idx)
 {
 	p_data->map = (char **)malloc(sizeof(char *) * (block.y + 1));
 	if (!p_data->map)
@@ -47,7 +47,7 @@ static int	fill_map(t_parse *p_data, t_Point2D block, t_index idx)
 
 int	init_map(t_parse *p_data)
 {
-	t_Point2D	block;
+	t_point2d	block;
 	t_index		idx;
 	int			not_empty_lines;
 

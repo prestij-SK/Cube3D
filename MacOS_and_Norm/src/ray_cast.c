@@ -50,7 +50,7 @@ static void	texture_mapping(t_gamedata *data, t_rcdata *ray_data, t_rcutil *util
 	util->ty = util->ty_offset * util->ty_step;
 }
 
-static void	ray_texture_mapping_draw(t_gamedata *data, t_rcutil *util, t_Point2D size, t_Point2D pos)
+static void	ray_texture_mapping_draw(t_gamedata *data, t_rcutil *util, t_point2d size, t_point2d pos)
 {
 	util->y = 0;
 	while (util->y < size.y)
@@ -76,8 +76,8 @@ static void	ray_texture_mapping_draw(t_gamedata *data, t_rcutil *util, t_Point2D
 static void	ray_cast_walls(t_gamedata *data, t_rcdata *ray_data, int ray, double ray_angle)
 {
 	t_rcutil	util;
-	t_Point2D	pos;
-	t_Point2D	size;
+	t_point2d	pos;
+	t_point2d	size;
 	double		ca;
 
 	ca = data->player.angle - ray_angle;

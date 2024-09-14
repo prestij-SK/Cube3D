@@ -14,16 +14,16 @@ void	minimap_delete(t_minimap *minimap)
 	minimap->map = NULL;
 }
 
-static t_statuscode	minimap_small_image_init(t_minimap *minimap, void *mlx, t_Point2D pos, t_Point2D size)
+static t_statuscode	minimap_small_image_init(t_minimap *minimap, void *mlx, t_point2d pos, t_point2d size)
 {
-	t_Point2D new_size;
+	t_point2d new_size;
 
 	new_size.x = size.x / MINIMAP_SIZE_DIVISER;
 	new_size.y = size.y / MINIMAP_SIZE_DIVISER;
 	return (image_init(&minimap->small_image, mlx, pos, new_size));
 }
 
-static void	block_count_resolving_norm(t_minimap *minimap, t_Point2D block_count)
+static void	block_count_resolving_norm(t_minimap *minimap, t_point2d block_count)
 {
 	minimap->block_count.x = block_count.x;
 	minimap->block_count.y = block_count.y;
@@ -33,11 +33,11 @@ static void	block_count_resolving_norm(t_minimap *minimap, t_Point2D block_count
 		minimap->block_max = block_count.y;
 }
 
-t_statuscode	minimap_init(t_minimap *minimap, void *mlx, char **map, t_Point2D block_count)
+t_statuscode	minimap_init(t_minimap *minimap, void *mlx, char **map, t_point2d block_count)
 {
 	t_statuscode	status;
-	t_Point2D		pos;
-	t_Point2D		size;
+	t_point2d		pos;
+	t_point2d		size;
 
 	if (!minimap || !mlx)
 		return (NULL_POINTER_ERROR);
@@ -61,7 +61,7 @@ t_statuscode	minimap_init(t_minimap *minimap, void *mlx, char **map, t_Point2D b
 	return (SUCCESS_EXIT);
 }
 
-static void	big_map_draw_part_norm(t_minimap *minimap, t_Point2D pos, t_Point2D size)
+static void	big_map_draw_part_norm(t_minimap *minimap, t_point2d pos, t_point2d size)
 {
 	if (minimap->map[minimap->norm_i][minimap->norm_j] == '1')
 		draw_rectangle_filled(&minimap->origin_image, pos, size, minimap->wall_color);
@@ -79,8 +79,8 @@ static void	big_map_draw_part_norm(t_minimap *minimap, t_Point2D pos, t_Point2D 
 // big minimap
 void	minimap_draw_origin(t_minimap *minimap)
 {
-	t_Point2D size;
-	t_Point2D pos;
+	t_point2d size;
+	t_point2d pos;
 
 	if (!minimap)
 		return;

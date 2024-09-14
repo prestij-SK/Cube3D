@@ -64,8 +64,8 @@ typedef struct inputdata
 	short		arrow_left;
 	short		arrow_right;
 	short		mouse_move;
-	t_Point2D	mouse_prev_pos;
-	t_Point2D	mouse_curr_pos;
+	t_point2d	mouse_prev_pos;
+	t_point2d	mouse_curr_pos;
 	short		mouse_left;
 } t_input;
 
