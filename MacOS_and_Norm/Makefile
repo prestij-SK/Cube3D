@@ -49,6 +49,7 @@ SRCS_NAME = data_from_parsed.c \
 			ray_cast.c \
 			render.c \
 			the_game.c \
+			update_norm_1_norm.c \
 			update_norm_1.c \
 			update_norm_2.c \
 			update.c \

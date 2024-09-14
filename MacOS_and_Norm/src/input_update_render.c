@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_update_render.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/14 14:19:06 by yuhayrap          #+#    #+#             */
+/*   Updated: 2024/09/14 14:19:18 by yuhayrap         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/the_game.h"
 
 int	close_game(t_gamedata *data)
@@ -33,9 +45,12 @@ void	input_update_render(t_gamedata *data)
 {
 	if (!data)
 		return ;
-	mlx_hook(data->mlx_window, EVENT_KEYDOWN, 1L<<0, input_key_press, &data->input);
-	mlx_hook(data->mlx_window, EVENT_KEYUP, 1L<<1, input_key_release, &data->input);
-	mlx_hook(data->mlx_window, EVENT_MOUSEMOVE, 1L<<6, input_mouse_move, &data->input);
+	mlx_hook(data->mlx_window, EVENT_KEYDOWN, 1L << 0, input_key_press,
+		&data->input);
+	mlx_hook(data->mlx_window, EVENT_KEYUP, 1L << 1, input_key_release,
+		&data->input);
+	mlx_hook(data->mlx_window, EVENT_MOUSEMOVE, 1L << 6, input_mouse_move,
+		&data->input);
 	mlx_hook(data->mlx_window, EVENT_DESTROY, 0, close_game, data);
 	mlx_mouse_hook(data->mlx_window, input_mouse_button, &data->input);
 	mlx_loop_hook(data->mlx, update, data);

@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_cast.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/14 14:20:20 by yuhayrap          #+#    #+#             */
+/*   Updated: 2024/09/14 14:28:12 by yuhayrap         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/the_game.h"
 
-static void	set_wall_texture(t_gamedata *data, t_rcdata *ray_data, double ray_angle)
+static void	set_wall_texture(t_gamedata *data, t_rcdata *ray_data,
+		double ray_angle)
 {
 	if (ray_data->dis_v < ray_data->dis_h)
 	{
@@ -22,7 +35,8 @@ static void	set_wall_texture(t_gamedata *data, t_rcdata *ray_data, double ray_an
 	}
 }
 
-static void	texture_mapping(t_gamedata *data, t_rcdata *ray_data, t_rcutil *util, double ray_angle)
+static void	texture_mapping(t_gamedata *data, t_rcdata *ray_data,
+		t_rcutil *util, double ray_angle)
 {
 	util->ty_step = data->tex_p->size.y / util->line_h;
 	util->ty_offset = 0;
@@ -50,12 +64,14 @@ static void	texture_mapping(t_gamedata *data, t_rcdata *ray_data, t_rcutil *util
 	util->ty = util->ty_offset * util->ty_step;
 }
 
-static void	ray_texture_mapping_draw(t_gamedata *data, t_rcutil *util, t_point2d size, t_point2d pos)
+static void	ray_texture_mapping_draw(t_gamedata *data, t_rcutil *util,
+		t_point2d size, t_point2d pos)
 {
 	util->y = 0;
 	while (util->y < size.y)
 	{
-		util->pixel_index = (int)util->ty * data->tex_p->line_length + (int)util->tx * (data->tex_p->bits_per_pixel / 8);
+		util->pixel_index = (int)util->ty * data->tex_p->line_length
+			+ (int)util->tx * (data->tex_p->bits_per_pixel / 8);
 		if (util->pixel_index < 0)
 		{
 			data->easter_found = B_TRUE;
@@ -65,7 +81,8 @@ static void	ray_texture_mapping_draw(t_gamedata *data, t_rcutil *util, t_point2d
 		util->x = 0;
 		while (util->x < size.x)
 		{
-			alt_mlx_pixel_put(&data->view.image, pos.x + util->x, pos.y + util->y, util->color);
+			alt_mlx_pixel_put(&data->view.image, pos.x + util->x, pos.y
+				+ util->y, util->color);
 			++util->x;
 		}
 		util->ty += util->ty_step;
@@ -73,7 +90,8 @@ static void	ray_texture_mapping_draw(t_gamedata *data, t_rcutil *util, t_point2d
 	}
 }
 
-static void	ray_cast_walls(t_gamedata *data, t_rcdata *ray_data, int ray, double ray_angle)
+static void	ray_cast_walls(t_gamedata *data, t_rcdata *ray_data, int ray,
+		double ray_angle)
 {
 	t_rcutil	util;
 	t_point2d	pos;
@@ -82,7 +100,8 @@ static void	ray_cast_walls(t_gamedata *data, t_rcdata *ray_data, int ray, double
 
 	ca = data->player.angle - ray_angle;
 	ca = angle_wrapping(ca);
-	util.line_h = (data->minimap.block_size * FPV_HEIGHT) / (ray_data->dis_f * cos(ca));
+	util.line_h = (data->minimap.block_size * FPV_HEIGHT) / (ray_data->dis_f
+			* cos(ca));
 	if (data->easter_found == B_TRUE)
 		data->tex_p = &data->easter_tex;
 	else
@@ -96,8 +115,6 @@ static void	ray_cast_walls(t_gamedata *data, t_rcdata *ray_data, int ray, double
 	ray_texture_mapping_draw(data, &util, size, pos);
 }
 
-// A lot of stuff is going on here, which is read and written from internet sources.
-// Will update to more readable after I see the results.
 void	ray_casting(t_gamedata *data)
 {
 	t_rcdata	ray_data;

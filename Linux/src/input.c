@@ -33,13 +33,13 @@ void	input_reset_all(t_Input *input)
 // 		success_exit(SUCCESS_EXIT, "Game Exit.");
 // 	}
 // 	else if (key == KEY_A)
-// 		update_A_key(&data->player);
+// 		update_a_key(&data->player);
 // 	else if (key == KEY_D)
-// 		update_D_key(&data->player);
+// 		update_d_key(&data->player);
 // 	else if (key == KEY_W)
-// 		update_W_key(&data->player);
+// 		update_w_key(&data->player);
 // 	else if (key == KEY_S)
-// 		update_S_key(&data->player);
+// 		update_s_key(&data->player);
 // 	else if (key == KEY_LEFT)
 // 		update_Left_key(&data->player);
 // 	else if (key == KEY_RIGHT)

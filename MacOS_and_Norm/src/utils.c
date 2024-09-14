@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/14 14:21:27 by yuhayrap          #+#    #+#             */
+/*   Updated: 2024/09/14 14:36:25 by yuhayrap         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/utils.h"
 
 static void	error_exit_norm(t_statuscode status, char *str)
@@ -56,7 +68,7 @@ void	success_exit(t_statuscode status, char *str)
 
 size_t	get_time(void)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));
@@ -64,7 +76,9 @@ size_t	get_time(void)
 
 void	swap_int(int *a, int *b)
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+	int	temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }

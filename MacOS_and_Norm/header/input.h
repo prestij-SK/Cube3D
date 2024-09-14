@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/14 14:51:27 by yuhayrap          #+#    #+#             */
+/*   Updated: 2024/09/14 14:57:42 by yuhayrap         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef INPUT_H
 # define INPUT_H
 
@@ -46,8 +58,6 @@
 #  define KEY_ARROR_RIGHT 65363
 # endif
 
-
-
 // MOUSE CODES
 # define LEFT_CLICK 1
 
@@ -59,7 +69,7 @@ typedef struct inputdata
 	short		d;
 	short		m;
 	short		e;
-	short		e_checked; // E is action button, to avoid spams we will need this
+	short		e_checked;
 	short		esc;
 	short		arrow_left;
 	short		arrow_right;
@@ -67,7 +77,7 @@ typedef struct inputdata
 	t_point2d	mouse_prev_pos;
 	t_point2d	mouse_curr_pos;
 	short		mouse_left;
-} t_input;
+}	t_input;
 
 void	input_reset_all(t_input *input);
 int		input_key_press(int key, t_input *input);

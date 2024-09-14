@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/14 14:19:20 by yuhayrap          #+#    #+#             */
+/*   Updated: 2024/09/14 14:24:59 by yuhayrap         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/input.h"
 
 void	input_reset_all(t_input *input)
@@ -87,8 +99,8 @@ int	input_mouse_move(int x, int y, t_input *input)
 
 int	input_mouse_button(int button, int x, int y, t_input *input)
 {
-	(void) x;
-	(void) y;
+	(void)x;
+	(void)y;
 	if (!input)
 		return (B_FALSE);
 	if (button == LEFT_CLICK)

@@ -1,5 +1,17 @@
-#ifndef FIRST_PERSON_POV_H
-# define FIRST_PERSON_POV_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   first_person_view.h                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/14 14:50:08 by yuhayrap          #+#    #+#             */
+/*   Updated: 2024/09/14 14:56:41 by yuhayrap         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FIRST_PERSON_VIEW_H
+# define FIRST_PERSON_VIEW_H
 
 # include "image.h"
 # include "utils.h"

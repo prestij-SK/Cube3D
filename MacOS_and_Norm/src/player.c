@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yuhayrap <yuhayrap@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/14 14:20:02 by yuhayrap          #+#    #+#             */
+/*   Updated: 2024/09/14 14:27:55 by yuhayrap         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/player.h"
 
-static void	set_player_angle(t_player *player, t_minimap *minimap, t_point2d pos)
+static void	set_player_angle(t_player *player, t_minimap *minimap,
+		t_point2d pos)
 {
 	if (minimap->map[pos.y][pos.x] == 'W')
 		player->angle = get_radians(PLAYER_ANGLE_DEFAULT * 2);
@@ -12,9 +25,10 @@ static void	set_player_angle(t_player *player, t_minimap *minimap, t_point2d pos
 		player->angle = get_radians(PLAYER_ANGLE_DEFAULT);
 }
 
-t_statuscode	player_init(t_player *player, t_minimap *minimap, t_point2d block_pos, int block_size)
+t_statuscode	player_init(t_player *player, t_minimap *minimap,
+		t_point2d block_pos, int block_size)
 {
-	t_point2d		pos;
+	t_point2d	pos;
 
 	if (!player || !minimap)
 		return (NULL_POINTER_ERROR);

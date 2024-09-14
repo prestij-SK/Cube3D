@@ -27,7 +27,7 @@ static void	set_xy_offset(t_UpdateUtil *util, double change_x, double change_y, 
 }
 
 // strafing left
-void	update_A(t_Player *player)
+void	update_a(t_Player *player)
 {
 	if (!player)
 		return ;
@@ -55,7 +55,7 @@ void	update_A(t_Player *player)
 }
 
 // strafing right
-void	update_D(t_Player *player)
+void	update_d(t_Player *player)
 {
 	if (!player)
 		return ;
@@ -83,7 +83,7 @@ void	update_D(t_Player *player)
 }
 
 // going forward
-void	update_W(t_Player *player)
+void	update_w(t_Player *player)
 {
 	if (!player)
 		return ;
@@ -105,7 +105,7 @@ void	update_W(t_Player *player)
 }
 
 // going back
-void	update_S(t_Player *player)
+void	update_s(t_Player *player)
 {
 	if (!player)
 		return ;
@@ -127,7 +127,7 @@ void	update_S(t_Player *player)
 }
 
 // show big map
-void	update_M(t_Minimap *minimap, short val)
+void	update_m(t_Minimap *minimap, short val)
 {
 	if (!minimap)
 		return ;
@@ -135,7 +135,7 @@ void	update_M(t_Minimap *minimap, short val)
 }
 
 // Do action
-void	update_E(t_GameData *data, t_Player *player)
+void	update_e(t_GameData *data, t_Player *player)
 {
 	if (!player)
 		return ;
@@ -168,7 +168,7 @@ void	update_E(t_GameData *data, t_Player *player)
 }
 
 // rotating left
-void	update_Arrow_Left(t_Player *player, double rotate_speed)
+void	update_arrow_left(t_Player *player, double rotate_speed)
 {
 	if (!player)
 		return ;
@@ -183,7 +183,7 @@ void	update_Arrow_Left(t_Player *player, double rotate_speed)
 }
 
 // rotating right
-void	update_Arrow_Right(t_Player *player, double rotate_speed)
+void	update_arrow_right(t_Player *player, double rotate_speed)
 {
 	if (!player)
 		return ;
@@ -213,9 +213,9 @@ void	update_mouse_move(t_GameData *data, double rotate_speed)
 	pos_diff = abs(data->input.mouse_prev_pos.x - data->input.mouse_curr_pos.x);
 	new_speed = pos_diff * rotate_speed;
 	if (data->input.mouse_prev_pos.x < data->input.mouse_curr_pos.x)
-		update_Arrow_Right(&data->player, new_speed);
+		update_arrow_right(&data->player, new_speed);
 	else if (data->input.mouse_prev_pos.x > data->input.mouse_curr_pos.x)
-		update_Arrow_Left(&data->player, new_speed);
+		update_arrow_left(&data->player, new_speed);
 	data->input.mouse_prev_pos.x = data->input.mouse_curr_pos.x;
 	data->input.mouse_move = B_FALSE;
 }
@@ -235,28 +235,28 @@ void	update_check(t_GameData *data)
 	if (!data)
 		return ;
 	if (data->input.w == B_TRUE)
-		update_W(&data->player);
+		update_w(&data->player);
 	if (data->input.s == B_TRUE)
-		update_S(&data->player);
+		update_s(&data->player);
 	if (data->input.a == B_TRUE)
-		update_A(&data->player);
+		update_a(&data->player);
 	if (data->input.d == B_TRUE)
-		update_D(&data->player);
+		update_d(&data->player);
 	if (data->input.m == B_TRUE)
-		update_M(&data->minimap, B_TRUE);
+		update_m(&data->minimap, B_TRUE);
 	else
-		update_M(&data->minimap, B_FALSE);
+		update_m(&data->minimap, B_FALSE);
 	if (data->input.e == B_TRUE)
 	{
-		update_E(data, &data->player);
+		update_e(data, &data->player);
 		data->input.e_checked = B_TRUE;
 	}
 	if (data->input.mouse_move == B_TRUE)
 		update_mouse_move(data, data->player.mouse_sens);
 	if (data->input.arrow_left == B_TRUE)
-		update_Arrow_Left(&data->player, data->player.rotate_speed);
+		update_arrow_left(&data->player, data->player.rotate_speed);
 	if (data->input.arrow_right == B_TRUE)
-		update_Arrow_Right(&data->player, data->player.rotate_speed);
+		update_arrow_right(&data->player, data->player.rotate_speed);
 	if (data->input.mouse_left == B_TRUE)
 		update_mouse_left_click(data);
 }
